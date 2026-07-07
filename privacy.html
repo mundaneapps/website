@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — MundaneApps</title>
-  <meta name="description" content="How MundaneApps and the Heads-Up app handle your data. No analytics, no ads, no tracking. If you never sign in, nothing leaves your device.">
+  <meta name="description" content="How MundaneApps and the Heads-Up app handle your data. No ads, no data selling; optional, consent-based analytics and crash reporting that are off by default. If you never sign in, nothing leaves your device.">
   <meta name="theme-color" content="#0e7c86">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://mundaneapps.com/privacy">
@@ -32,7 +32,7 @@
   <main class="doc">
     <div class="doc-nav"><a href="/">← MundaneApps</a></div>
     <h1>Privacy Policy</h1>
-    <p class="meta">Version <strong>2026-07</strong> · Effective date 2026-07-05</p>
+    <p class="meta">Version <strong>2026-07</strong> · Effective date 2026-07-07</p>
 
     <p>
       This policy describes how the Heads-Up app ("the app", "we", "us"),
@@ -46,7 +46,7 @@
     <ul>
       <li><strong>If you never sign in, nothing about you ever leaves your device.</strong> Heads-Up works fully offline, forever, with no account.</li>
       <li>If you choose to sign in (optional, Google or Apple), we store the minimum needed to back up and sync your data across your devices: your email, an optional profile, your cadence data, your purchase status, and a device identifier used only to enforce a single-device backup slot on the Pro plan.</li>
-      <li>We do not run analytics, ads, or tracking SDKs of any kind.</li>
+      <li>With your consent, we use privacy-friendly analytics (PostHog) and crash reporting (Sentry) to improve the app. Both are <strong>off until you opt in</strong>, collect <strong>no personal data</strong> (no name, email, or cadence contents), are hosted in the <strong>EU</strong>, and can be turned off anytime in Settings. We never use them for advertising.</li>
       <li>We do not sell your data.</li>
     </ul>
 
@@ -88,12 +88,27 @@
       a minor — see §8.
     </p>
 
-    <h2>3. No analytics, ads, or tracking</h2>
+    <h2>3. Analytics &amp; crash reporting (optional, consent-based)</h2>
     <p>
-      Heads-Up does not include any analytics SDK, advertising SDK, or
-      third-party tracking library. We do not build an advertising profile
-      of you. This is true as of this policy's effective date and is
-      re-verified before each release.
+      With your explicit opt-in consent, Heads-Up uses two services to
+      understand how the app is used and to fix crashes:
+    </p>
+    <ul>
+      <li><strong>PostHog</strong> (product analytics) — anonymous, aggregated usage events (for example: onboarding completed, a cadence created, the paywall viewed). Data is hosted in the <strong>European Union</strong>.</li>
+      <li><strong>Sentry</strong> (crash reporting) — diagnostic reports when the app crashes or errors, including a stack trace and device/OS details. Data is hosted in the <strong>European Union</strong>.</li>
+    </ul>
+    <p>
+      <strong>Both are disabled by default.</strong> We ask once, during
+      onboarding, and you can change your choice at any time in
+      <strong>Settings → Privacy → "Share usage &amp; crash data."</strong>
+      When off, neither SDK is initialised and nothing is sent.
+    </p>
+    <p>
+      Neither service receives your name, email address, or the contents of
+      your cadences. If you are signed in, events are tagged with the same
+      anonymous account identifier used for sync (never your email). We do
+      <strong>not</strong> use these tools for advertising or cross-app
+      tracking, and we do not build an advertising profile of you.
     </p>
 
     <h2>4. Where your data is hosted</h2>
@@ -117,6 +132,8 @@
         <tr><td>Apple</td><td>Your Apple ID info (if you sign in with Apple — currently unavailable, see §11), and your app-store purchase data (App Store, once launched)</td><td>Sign-in; subscription billing</td></tr>
         <tr><td>RevenueCat</td><td>Your purchase/subscription status and an anonymous purchaser id</td><td>Subscription management across stores</td></tr>
         <tr><td>Resend</td><td>Your email address, for the specific transactional emails listed in §6</td><td>Sending those emails</td></tr>
+        <tr><td>PostHog (EU Cloud)</td><td>Anonymous product-usage events and an opaque user id, <strong>only if you opt in</strong></td><td>Product analytics to improve the app</td></tr>
+        <tr><td>Sentry (EU region)</td><td>Crash/error diagnostics (stack trace, device/OS metadata, opaque user id), <strong>only if you opt in</strong></td><td>Crash reporting and stability</td></tr>
       </tbody>
     </table>
     <p>We do not sell any of this data, and we do not share it with anyone for advertising purposes.</p>
@@ -166,7 +183,7 @@
       <li><strong>Access and export</strong> your data — in the app (export from Settings) or by emailing us (§10).</li>
       <li><strong>Delete your data</strong> — in the app: "Clear all data" removes your cadences (locally, or everywhere, your choice — see §7); "Delete account" removes your cloud account on the 30-day schedule in §7. You can also request deletion by email, or via <a href="/delete-account">mundaneapps.com/delete-account</a> if you no longer have the app installed.</li>
       <li><strong>Correct</strong> your profile at any time in Settings.</li>
-      <li><strong>Withdraw consent</strong> by signing out (which stops all further cloud processing; local data keeps working) or deleting your account.</li>
+      <li><strong>Withdraw consent</strong> by signing out (which stops all further cloud processing; local data keeps working) or deleting your account. You can also withdraw analytics/crash-reporting consent independently at any time in <strong>Settings → Privacy</strong>, without signing out — this stops all further analytics and crash collection immediately.</li>
     </ul>
     <p>If you are in the EU/EEA or UK, these rights are provided under the GDPR / UK GDPR. If you are in India, they are provided under the DPDP Act. We extend the same rights to users everywhere, regardless of location.</p>
 

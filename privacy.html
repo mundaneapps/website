@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — MundaneApps</title>
+  <meta name="description" content="How MundaneApps and the Heads-Up app handle your data. No analytics, no ads, no tracking. If you never sign in, nothing leaves your device.">
+  <meta name="theme-color" content="#0e7c86">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://mundaneapps.com/privacy">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <a class="brand" href="/">
+        <img src="/assets/logo.svg" alt="" width="30" height="30">
+        <span class="brand-name">Mundane<b>Apps</b></span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="/#apps">Apps</a>
+        <a href="/#values">Why MundaneApps</a>
+        <a href="/support">Support</a>
+        <a class="cta" href="/#heads-up">Meet Heads-Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="doc">
+    <div class="doc-nav"><a href="/">← MundaneApps</a></div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Version <strong>2026-07</strong> · Effective date 2026-07-05</p>
+
+    <p>
+      This policy describes how the Heads-Up app ("the app", "we", "us"),
+      made by MundaneApps, handles your data. It is written to be truthful and
+      specific about what the app actually does — every claim below is checked
+      against the app's source code before each release (see our release
+      checklist).
+    </p>
+
+    <h2>1. The short version</h2>
+    <ul>
+      <li><strong>If you never sign in, nothing about you ever leaves your device.</strong> Heads-Up works fully offline, forever, with no account.</li>
+      <li>If you choose to sign in (optional, Google or Apple), we store the minimum needed to back up and sync your data across your devices: your email, an optional profile, your cadence data, your purchase status, and a device identifier used only to enforce a single-device backup slot on the Pro plan.</li>
+      <li>We do not run analytics, ads, or tracking SDKs of any kind.</li>
+      <li>We do not sell your data.</li>
+    </ul>
+
+    <h2>2. Data collected, by mode</h2>
+    <h3>Local-only mode (no sign-in)</h3>
+    <p>
+      Nothing leaves your device. Your cadences, custom tags, notification
+      schedule, theme preference, and app icon choice are stored only in the
+      app's local storage on your device (and, if you use the home-screen
+      widget, briefly in the OS's widget storage on that same device).
+    </p>
+    <p>
+      To save you a step, the optional "region" field in your profile is
+      pre-filled using your SIM/carrier country if available, or your
+      device's language/locale setting otherwise — this is a coarse,
+      two-letter country code only (e.g. "US", "IN"), read directly
+      on-device via the operating system, never a phone number or precise
+      location, and no separate permission is required to read it. This
+      happens whether or not you ever sign in; the value only leaves your
+      device if you sign in and it syncs as part of your profile. You can
+      change it at any time.
+    </p>
+    <h3>Signed-in mode (optional)</h3>
+    <p>When you choose to sign in with Google or Apple, we additionally process:</p>
+    <table>
+      <thead><tr><th>Data</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Email address (from your sign-in provider)</td><td>Account identification; transactional email (see §6)</td></tr>
+        <tr><td>Optional profile: name, gender, occupation, region (region may be pre-filled from your SIM/carrier country or device locale — see above)</td><td>Shown back to you in the app; not used for any other purpose</td></tr>
+        <tr><td>Cadence data (titles, schedules, tags, notes)</td><td>Cloud backup and, on our Pro+ plan, cross-device sync</td></tr>
+        <tr><td>Purchase/subscription status</td><td>Determining your plan tier (Free / Pro / Pro+)</td></tr>
+        <tr><td>A device identifier and a device label you can edit</td><td>Enforcing the Pro plan's single-device backup slot, and detecting when you've switched devices</td></tr>
+        <tr><td>Consent record: policy version and timestamp</td><td>Evidence that you accepted this policy and our Terms of Service</td></tr>
+      </tbody>
+    </table>
+    <p>
+      We do not collect your birth date, phone number, or precise location.
+      We do not collect age or any data intended to identify whether you are
+      a minor — see §8.
+    </p>
+
+    <h2>3. No analytics, ads, or tracking</h2>
+    <p>
+      Heads-Up does not include any analytics SDK, advertising SDK, or
+      third-party tracking library. We do not build an advertising profile
+      of you. This is true as of this policy's effective date and is
+      re-verified before each release.
+    </p>
+
+    <h2>4. Where your data is hosted</h2>
+    <p>
+      Signed-in data is hosted on Supabase, in the <strong>European
+      Union</strong> (Frankfurt region). Cadence and profile data at rest
+      lives in that region.
+    </p>
+
+    <h2>5. Who we share data with (sub-processors)</h2>
+    <p>
+      We use a small number of service providers to run the app's optional
+      cloud features. None of them receive more data than they need, and none
+      may use your data for their own purposes.
+    </p>
+    <table>
+      <thead><tr><th>Sub-processor</th><th>What they receive</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Supabase</td><td>Everything in the "Signed-in mode" table above</td><td>Database hosting, authentication</td></tr>
+        <tr><td>Google</td><td>Your Google account info (if you sign in with Google), and your app-store purchase data (Play Store)</td><td>Sign-in; subscription billing</td></tr>
+        <tr><td>Apple</td><td>Your Apple ID info (if you sign in with Apple — currently unavailable, see §11), and your app-store purchase data (App Store, once launched)</td><td>Sign-in; subscription billing</td></tr>
+        <tr><td>RevenueCat</td><td>Your purchase/subscription status and an anonymous purchaser id</td><td>Subscription management across stores</td></tr>
+        <tr><td>Resend</td><td>Your email address, for the specific transactional emails listed in §6</td><td>Sending those emails</td></tr>
+      </tbody>
+    </table>
+    <p>We do not sell any of this data, and we do not share it with anyone for advertising purposes.</p>
+
+    <h2>6. Transactional email</h2>
+    <p>If you sign in, we send you email only for account events you triggered or that affect your account directly:</p>
+    <ul>
+      <li><strong>Welcome</strong> — once, when you first sign in.</li>
+      <li><strong>Account deleted</strong> — confirming a deletion you (or someone with access to your sign-in) initiated, and reminding you of the recovery window (§7).</li>
+      <li><strong>Subscription lapsed</strong> — when your Pro/Pro+ subscription ends, explaining that your cloud backup will be removed in 30 days unless you resubscribe.</li>
+      <li><strong>Purge warning</strong> — about 7 days before an unclaimed deleted account is permanently purged, so you have a last chance to recover it.</li>
+    </ul>
+    <p>These are transactional, not marketing, emails — we don't send newsletters or promotional email, and there is no separate marketing list to opt out of.</p>
+
+    <h2>7. Retention: how long we keep your data</h2>
+    <table>
+      <thead><tr><th>What happened</th><th>Cloud content</th><th>Deletion marker</th><th>Your device</th></tr></thead>
+      <tbody>
+        <tr><td>You sign out</td><td>Untouched</td><td>—</td><td>Untouched</td></tr>
+        <tr><td>You delete one cadence</td><td>Removed from our servers within 30 days</td><td>Kept until you delete your account</td><td>Removed immediately</td></tr>
+        <tr><td>Clear all data → This device only</td><td>Untouched (re-downloads next sync)</td><td>—</td><td>Wiped</td></tr>
+        <tr><td>Clear all data → Everywhere</td><td>Removed immediately</td><td>Kept until you delete your account</td><td>Wiped</td></tr>
+        <tr><td>Subscription lapses</td><td>Removed 30 days after lapsing</td><td>Kept</td><td>Untouched</td></tr>
+        <tr><td>You delete your account</td><td>Everything permanently deleted 30 days after you delete, unless you restore first</td><td>Deleted with the account</td><td>Untouched</td></tr>
+      </tbody>
+    </table>
+    <p>
+      In plain terms: <strong>content you delete is removed from our servers
+      within 30 days — immediately if you use Clear All Data.</strong>
+      Anonymous deletion markers (just an id and a "this was deleted" flag, no
+      content) are kept so a device that comes back online later can't
+      resurrect something you deleted; those markers are erased when your
+      account is deleted.
+    </p>
+
+    <h2>8. Children</h2>
+    <p>
+      Heads-Up is not directed at children and is intended for users 18 and
+      older (see our <a href="/terms">Terms of Service</a>). We do not
+      knowingly collect data from children, and we do not collect age or
+      birth-date information from anyone, at any age.
+    </p>
+
+    <h2>9. Your rights</h2>
+    <p>Regardless of where you live, you can:</p>
+    <ul>
+      <li><strong>Access and export</strong> your data — in the app (export from Settings) or by emailing us (§10).</li>
+      <li><strong>Delete your data</strong> — in the app: "Clear all data" removes your cadences (locally, or everywhere, your choice — see §7); "Delete account" removes your cloud account on the 30-day schedule in §7. You can also request deletion by email, or via <a href="/delete-account">mundaneapps.com/delete-account</a> if you no longer have the app installed.</li>
+      <li><strong>Correct</strong> your profile at any time in Settings.</li>
+      <li><strong>Withdraw consent</strong> by signing out (which stops all further cloud processing; local data keeps working) or deleting your account.</li>
+    </ul>
+    <p>If you are in the EU/EEA or UK, these rights are provided under the GDPR / UK GDPR. If you are in India, they are provided under the DPDP Act. We extend the same rights to users everywhere, regardless of location.</p>
+
+    <h2>10. Contact</h2>
+    <p>Questions, requests, or concerns about this policy: <a href="mailto:info@mundaneapps.com">info@mundaneapps.com</a>.</p>
+
+    <h2>11. Changes to this policy</h2>
+    <p>
+      We may update this policy as the app changes. For a <strong>material</strong>
+      change, the in-app policy version (currently <code>2026-07</code>) is
+      bumped, and signed-in users see a one-time notice the next time they open
+      the app, with a link to review the change before continuing. Typo-level
+      or clarifying edits do not trigger a new notice. This page always shows
+      its current version and effective date.
+    </p>
+    <p class="meta" style="margin-top:2.4em">
+      Sign in with Apple is currently unavailable in this build (the developer
+      is on a free Apple team); Google sign-in is available. This section will
+      be updated when Apple sign-in ships.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <img src="/assets/logo.svg" alt="" width="30" height="30">
+            <span class="brand-name">Mundane<b>Apps</b></span>
+          </a>
+          <p>Quiet, privacy-first apps that come in handy every day.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="/#heads-up">Heads-Up</a>
+            <a href="/#apps">All apps</a>
+            <a href="/#values">Why MundaneApps</a>
+            <a href="/#faq">FAQ</a>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <a href="/support">Support</a>
+            <a href="/delete-account">Delete account</a>
+            <a href="mailto:info@mundaneapps.com">info@mundaneapps.com</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 MundaneApps. All rights reserved.</span>
+        <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

@@ -21,13 +21,12 @@
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
     links.addEventListener("click", function (e) {
-      // Close the mobile menu when a real link is followed, but not when the
-      // Products trigger (a button) is tapped.
+      // Follow real links closes the mobile menu; the Products button does not.
       if (e.target.closest("a")) links.classList.remove("open");
     });
   }
 
-  // Products dropdown — click/keyboard for touch and accessibility; CSS covers hover.
+  // Products dropdown — click to open, stays open until dismissed.
   var item = document.querySelector(".nav-item");
   var trigger = item ? item.querySelector(".nav-trigger") : null;
   if (item && trigger) {
@@ -44,6 +43,23 @@
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") setOpen(false);
+    });
+  }
+
+  // Horizontal accordion — the clicked panel expands, the rest fold.
+  // One panel stays open at all times.
+  var accordion = document.getElementById("about-accordion");
+  if (accordion) {
+    var folds = Array.prototype.slice.call(accordion.querySelectorAll(".hfold"));
+    folds.forEach(function (fold) {
+      fold.addEventListener("click", function () {
+        folds.forEach(function (f) {
+          f.classList.remove("expanded");
+          f.setAttribute("aria-expanded", "false");
+        });
+        fold.classList.add("expanded");
+        fold.setAttribute("aria-expanded", "true");
+      });
     });
   }
 

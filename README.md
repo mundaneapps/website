@@ -14,6 +14,7 @@ open the files or push them to any static host.
 |---|---|
 | `index.html` | `/` |
 | `headsup.html` | `/headsup` |
+| `about.html` | `/about` |
 | `privacy.html` | `/privacy` |
 | `terms.html` | `/terms` |
 | `support.html` | `/support` |

@@ -13,6 +13,7 @@ open the files or push them to any static host.
 | File | URL |
 |---|---|
 | `index.html` | `/` |
+| `headsup.html` | `/headsup` |
 | `privacy.html` | `/privacy` |
 | `terms.html` | `/terms` |
 | `support.html` | `/support` |
@@ -43,8 +44,8 @@ icon. `CNAME` binds the custom domain; `.nojekyll` disables Jekyll processing.
 ## When Heads-Up goes live
 
 - [ ] Replace the disabled `store-btn` "Coming soon" placeholders in
-      `index.html` (2×) with real, linked Google Play / App Store buttons, and
-      remove the "In development · Coming soon" badge.
+      `headsup.html` (2×) with real, linked Google Play / App Store buttons, and
+      remove the "In development" badge (the product card badge in `index.html`).
 
 ## Deploy — GitHub Pages (current setup)
 

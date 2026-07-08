@@ -21,7 +21,49 @@
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
     links.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") links.classList.remove("open");
+      // Close the mobile menu when a real link is followed, but not when the
+      // Products trigger (a button) is tapped.
+      if (e.target.closest("a")) links.classList.remove("open");
+    });
+  }
+
+  // Products dropdown — click/keyboard for touch and accessibility; CSS covers hover.
+  var item = document.querySelector(".nav-item");
+  var trigger = item ? item.querySelector(".nav-trigger") : null;
+  if (item && trigger) {
+    var setOpen = function (open) {
+      item.classList.toggle("open", open);
+      trigger.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    trigger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      setOpen(!item.classList.contains("open"));
+    });
+    document.addEventListener("click", function (e) {
+      if (!item.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setOpen(false);
+    });
+  }
+
+  // "Suggest an app" form — build a mailto so nothing is sent to this site.
+  var form = document.getElementById("idea-form");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var title = (form.querySelector("#idea-title") || {}).value || "";
+      var detail = (form.querySelector("#idea-detail") || {}).value || "";
+      var subject = "App idea: " + title.trim();
+      var body =
+        "Here is an everyday app idea for MundaneApps.\n\n" +
+        "Idea: " + title.trim() + "\n\n" +
+        "More detail:\n" + (detail.trim() || "(none)") + "\n";
+      var href =
+        "mailto:info@mundaneapps.com" +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+      window.location.href = href;
     });
   }
 

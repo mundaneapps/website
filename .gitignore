@@ -141,3 +141,12 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+critique_and_change.md
+implementation_plan.md
+.claude/
+.repowise/
+.vscode/
+.mcp.json
+.nojekyll
+.serve.py

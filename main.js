@@ -1,4 +1,4 @@
-/* MundaneApps — minimal progressive enhancement. No dependencies, no tracking. */
+/* MundaneApps: minimal progressive enhancement. No dependencies, no tracking. */
 (function () {
   "use strict";
 
@@ -26,7 +26,7 @@
     });
   }
 
-  // Products dropdown — click to open, stays open until dismissed.
+  // Products dropdown: click to open, stays open until dismissed.
   var item = document.querySelector(".nav-item");
   var trigger = item ? item.querySelector(".nav-trigger") : null;
   if (item && trigger) {
@@ -46,7 +46,7 @@
     });
   }
 
-  // Horizontal accordion — the clicked panel expands, the rest fold.
+  // Horizontal accordion: the clicked panel expands, the rest fold.
   // One panel stays open at all times.
   var accordion = document.getElementById("about-accordion");
   if (accordion) {
@@ -63,27 +63,52 @@
     });
   }
 
-  // "Suggest an app" form — build a mailto so nothing is sent to this site.
-  var form = document.getElementById("idea-form");
-  if (form) {
+  // Inner-circle signup, posts to the Worker; calm inline states.
+  // WORKER_URL is a placeholder until the Cloudflare Worker (Phase 1) is deployed.
+  var WORKER_URL = "";
+  var joinForms = document.querySelectorAll("form.join-form");
+  Array.prototype.forEach.call(joinForms, function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var title = (form.querySelector("#idea-title") || {}).value || "";
-      var detail = (form.querySelector("#idea-detail") || {}).value || "";
-      var subject = "App idea: " + title.trim();
-      var body =
-        "Here is an everyday app idea for MundaneApps.\n\n" +
-        "Idea: " + title.trim() + "\n\n" +
-        "More detail:\n" + (detail.trim() || "(none)") + "\n";
-      var href =
-        "mailto:info@mundaneapps.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-      window.location.href = href;
-    });
-  }
+      var status = form.querySelector(".join-status");
+      var btn = form.querySelector("button[type=submit]");
+      var email = (form.querySelector("input[type=email]") || {}).value || "";
+      var idea = (form.querySelector("textarea[name=idea]") || {}).value || "";
+      var honey = (form.querySelector("input[name=company]") || {}).value || "";
 
-  // Scroll-reveal — honor reduced-motion.
+      if (!WORKER_URL) {
+        if (status) {
+          status.textContent = "Signups open shortly. Email info@mundaneapps.com and we'll add you to the inner circle by hand.";
+          status.className = "join-status err";
+        }
+        return;
+      }
+
+      if (status) { status.textContent = ""; status.className = "join-status"; }
+      if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = "Joining…"; }
+      fetch(WORKER_URL, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, idea: idea, company: honey, source: form.dataset.source || "site" }),
+      }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.d.ok) {
+            form.classList.add("joined");
+            if (status) { status.textContent = "You're in. Welcome to the circle. Check your inbox."; status.classList.add("ok"); }
+          } else {
+            var msg = res.d.error === "invalid_email" ? "That email doesn't look right."
+                    : res.d.error === "rate_limited" ? "Give it a moment and try again."
+                    : "Something hiccuped. Email info@mundaneapps.com and we'll add you.";
+            if (status) { status.textContent = msg; status.classList.add("err"); }
+          }
+        })
+        .catch(function () {
+          if (status) { status.textContent = "Network hiccup. Email info@mundaneapps.com and we'll add you."; status.classList.add("err"); }
+        })
+        .finally(function () { if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || "Join"; } });
+    });
+  });
+
+  // Scroll-reveal: honor reduced-motion.
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealEls = document.querySelectorAll(".reveal");
   if (reduce || !("IntersectionObserver" in window)) {

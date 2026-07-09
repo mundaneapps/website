@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Heads-Up · nothing catches you off guard · MundaneApps</title>
+  <title>Heads-Up · nothing important catches you off guard · MundaneApps</title>
   <meta name="description" content="Heads-Up keeps track of the things in life that need a little lead time, from bills and birthdays to renewals and maintenance, and nudges you early enough to actually plan for them.">
   <meta name="theme-color" content="#5f7c6e">
   <link rel="icon" href="/assets/mundaneapps-icon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/mundaneapps-icon.png">
   <link rel="canonical" href="https://mundaneapps.com/headsup">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Heads-Up · nothing catches you off guard">
+  <meta property="og:title" content="Heads-Up · nothing important catches you off guard">
   <meta property="og:description" content="One calm place that keeps track of what is coming and gives you a nudge early enough to act.">
   <meta property="og:url" content="https://mundaneapps.com/headsup">
-  <meta property="og:image" content="https://mundaneapps.com/assets/mundaneapps-icon.png">
+  <meta property="og:image" content="https://mundaneapps.com/assets/og/og-headsup.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mundaneapps.com/assets/og/og-headsup.png">
+  <link rel="preload" as="image" href="/assets/shots/home-overview.webp">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -43,20 +46,11 @@
                   <span>Nothing important catches you off guard.</span>
                 </div>
               </a>
-              <div class="product-tile more" aria-disabled="true">
-                <div class="tile-mark">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-                </div>
-                <div>
-                  <strong>Many more coming</strong>
-                  <span>New everyday apps are in the works.</span>
-                </div>
-              </div>
+              <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
             </div>
           </div>
           <a href="/about">About us</a>
           <a href="/support">Support</a>
-          <a class="cta" href="/#idea">Suggest an app</a>
         </div>
         <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -71,10 +65,23 @@
       <div class="shell">
         <div class="spotlight">
           <div class="spot-copy">
+            <div class="product-brand reveal">
+              <img src="/assets/heads-up-icon.png" alt="">
+              <span>Heads-Up</span>
+            </div>
             <span class="eyebrow reveal">Our first app · Coming soon</span>
             <h1 class="reveal d1" style="font-size:clamp(2.4rem,5.6vw,4rem);margin:0 0 20px">Nothing important <span class="grad">catches you off guard.</span></h1>
             <p class="lede reveal d2" style="margin-bottom:30px">Heads-Up keeps track of the things in life that need a little lead time, from bills and birthdays to renewals and car maintenance, and gives you a nudge early enough to actually do something about them.</p>
-            <div class="store-row reveal d3">
+            <form class="join-form reveal d3" data-source="headsup-hero" novalidate>
+              <div class="join-row">
+                <input type="email" id="hu-hero-email" name="email" inputmode="email" autocomplete="email" placeholder="you@email.com" aria-label="Email address" required>
+                <button class="btn btn-primary" type="submit">Be first in line</button>
+              </div>
+              <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <p class="join-note">Launching soon on Android, then iOS. Inner circle members get in first.</p>
+              <p class="join-status" role="status" aria-live="polite"></p>
+            </form>
+            <div class="store-row reveal d3" style="margin-top:22px">
               <span class="store-btn disabled" aria-disabled="true" title="Coming soon to Google Play">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.1v-.2L3.7 2.2l-.1.1z" opacity=".9"/><path d="M16.4 15.3 13 12.1v-.2l3.4-3.2 3.9 2.2c1.1.6 1.1 1.7 0 2.3l-3.9 2.1z"/><path d="m3.7 21.8 9.3-9.3 3.4 3.2-9.9 5.6c-1 .6-1.8.5-2.8.5z" opacity=".8"/><path d="m3.7 2.2 12.7 6.5-3.4 3.2L3.7 2.2z" opacity=".6"/></svg>
                 <span class="store-txt"><small>Coming soon to</small><strong>Google Play</strong></span>
@@ -86,8 +93,10 @@
             </div>
           </div>
           <div class="spot-visual reveal d2">
-            <div class="spot-frame">
-              <img src="/assets/heads-up-icon.png" alt="Heads-Up app icon">
+            <div class="phone-cluster">
+              <div class="phone"><img src="/assets/shots/upcoming.webp" width="230" height="500" alt="Heads-Up showing only what's upcoming in the near future" loading="eager"></div>
+              <div class="phone"><img src="/assets/shots/home-overview.webp" width="230" height="500" alt="Heads-Up home screen showing 4 due in 2 weeks, 0 overdue" loading="eager"></div>
+              <div class="phone"><img src="/assets/shots/list-all.webp" width="230" height="500" alt="Heads-Up list of all cadences in one place" loading="eager"></div>
             </div>
           </div>
         </div>
@@ -128,6 +137,55 @@
         <div class="glass" style="padding:clamp(36px,6vw,72px);text-align:center">
           <p class="pull reveal" style="margin:0 auto">What if everything that mattered lived in one place, and gave you a nudge <span class="grad">early enough to actually do something?</span></p>
           <p class="reveal d1" style="color:var(--muted);max-width:52ch;margin:22px auto 0;font-size:1.06rem">That is the whole idea. The promise is peace of mind, not another list to feel guilty about.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshot walkthrough -->
+    <section id="gallery">
+      <div class="shell">
+        <div class="section-head reveal">
+          <span class="eyebrow">A closer look</span>
+          <h2>See it before you believe it.</h2>
+          <p>Every screen was made for one job: keep the important stuff visible without ever feeling like a chore. We call them <strong>cadences</strong>, the recurring rhythms of your life.</p>
+        </div>
+        <div class="gallery">
+          <figure class="reveal">
+            <div class="phone"><img src="/assets/shots/list-all.webp" width="300" height="652" alt="Every cadence in one calm list" loading="lazy"></div>
+            <figcaption><strong>Every cadence, one list</strong><span>Bills, birthdays, renewals, maintenance, all together, sorted the way you like.</span></figcaption>
+          </figure>
+          <figure class="reveal d1">
+            <div class="phone"><img src="/assets/shots/upcoming.webp" width="300" height="652" alt="Only the things upcoming in the near future" loading="lazy"></div>
+            <figcaption><strong>Only what's coming up</strong><span>See just the near future, so today isn't buried under someday.</span></figcaption>
+          </figure>
+          <figure class="reveal d2">
+            <div class="phone"><img src="/assets/shots/detail.webp" width="300" height="652" alt="Detailed view of a cadence" loading="lazy"></div>
+            <figcaption><strong>The full picture at a glance</strong><span>Severity, next date, and history without digging.</span></figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="phone"><img src="/assets/shots/notes.webp" width="300" height="652" alt="Notes attached to a cadence for context" loading="lazy"></div>
+            <figcaption><strong>Notes that remember why</strong><span>A running thread on every item, so you never lose the reason it mattered.</span></figcaption>
+          </figure>
+          <figure class="reveal d1">
+            <div class="phone"><img src="/assets/shots/followup.webp" width="300" height="652" alt="Completion and follow-up screen" loading="lazy"></div>
+            <figcaption><strong>Follow-ups that carry on</strong><span>When something isn't truly done, the thread keeps going.</span></figcaption>
+          </figure>
+          <figure class="reveal d2">
+            <div class="phone"><img src="/assets/shots/recurrence.webp" width="300" height="652" alt="Advanced recurrence options suited to real life" loading="lazy"></div>
+            <figcaption><strong>Recurrences that fit real life</strong><span>Fixed schedules, or counted from the day you last did it.</span></figcaption>
+          </figure>
+          <figure class="reveal">
+            <div class="phone"><img src="/assets/shots/offline-pro.webp" width="300" height="652" alt="Pro features available offline with no sign-in" loading="lazy"></div>
+            <figcaption><strong>Yours, and offline</strong><span>Pro features with no account, fully offline. Sync only if you want it.</span></figcaption>
+          </figure>
+          <figure class="reveal d1">
+            <div class="phone"><img src="/assets/shots/widget.webp" width="300" height="652" alt="Home-screen widget showing what's next" loading="lazy"></div>
+            <figcaption><strong>A glance from your home screen</strong><span>The widget shows what's next without opening the app.</span></figcaption>
+          </figure>
+          <figure class="reveal d2">
+            <div class="phone"><img src="/assets/shots/light-dark.webp" width="300" height="652" alt="Heads-Up in light and dark mode" loading="lazy"></div>
+            <figcaption><strong>Light or dark, always calm</strong><span>Feels at home on iOS and Android, in either mode.</span></figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -221,21 +279,6 @@
         </div>
       </div>
     </section>
-
-    <!-- CTA -->
-    <section>
-      <div class="shell">
-        <div class="idea-panel reveal" style="text-align:center">
-          <span class="eyebrow">Coming soon</span>
-          <h2 style="font-size:clamp(1.7rem,4vw,2.4rem);margin:10px 0 14px">Your life, one step ahead.</h2>
-          <p style="color:var(--muted);max-width:52ch;margin:0 auto 26px;font-size:1.06rem">Heads-Up is in active development, launching first on Google Play with the App Store to follow. Want to know the moment it is out?</p>
-          <div class="hero-actions" style="justify-content:center">
-            <a class="btn btn-primary" href="mailto:info@mundaneapps.com?subject=Notify%20me%20when%20Heads-Up%20launches">Email us to get notified</a>
-            <a class="btn btn-glass" href="/about">About MundaneApps</a>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -246,13 +289,13 @@
           <span class="brand-name">Mundane<b>Apps</b></span>
         </a>
         <p>Quiet, privacy-first apps that come in handy every day.</p>
+        <p style="margin-top:10px"><a href="/#circle">Join the inner circle →</a></p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h4>Products</h4>
           <a href="/headsup">Heads-Up</a>
-          <a href="/#products">All products</a>
-          <a href="/#idea">Suggest an app</a>
+          <a href="/#circle">Join the circle</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>

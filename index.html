@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MundaneApps · quiet solutions for everyday life</title>
-  <meta name="description" content="MundaneApps builds a small family of quiet, private tools for the everyday things in life. No ads, no data selling, privacy by default. Meet Heads-Up, our first app.">
+  <title>MundaneApps · never get caught off guard</title>
+  <meta name="description" content="MundaneApps builds Heads-Up, the calm way to stay ahead of bills, renewals, and birthdays. Join the inner circle to get it first and help shape what's next. No ads, no tracking.">
   <meta name="theme-color" content="#5f7c6e">
   <link rel="icon" href="/assets/mundaneapps-icon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/mundaneapps-icon.png">
   <link rel="canonical" href="https://mundaneapps.com/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="MundaneApps · quiet solutions for everyday life">
-  <meta property="og:description" content="A small family of quiet, private tools for the everyday things in life. No ads, no data selling, privacy by default.">
+  <meta property="og:title" content="MundaneApps · never get caught off guard">
+  <meta property="og:description" content="Heads-Up remembers the bill, the renewal, the birthday, and nudges you early enough to actually do something. Join the inner circle.">
   <meta property="og:url" content="https://mundaneapps.com/">
-  <meta property="og:image" content="https://mundaneapps.com/assets/mundaneapps-icon.png">
+  <meta property="og:image" content="https://mundaneapps.com/assets/og/og-home.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mundaneapps.com/assets/og/og-home.png">
+  <link rel="preload" as="image" href="/assets/shots/home-overview.webp">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -43,20 +46,11 @@
                   <span>Nothing important catches you off guard.</span>
                 </div>
               </a>
-              <div class="product-tile more" aria-disabled="true">
-                <div class="tile-mark">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-                </div>
-                <div>
-                  <strong>Many more coming</strong>
-                  <span>New everyday apps are in the works.</span>
-                </div>
-              </div>
+              <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
             </div>
           </div>
           <a href="/about">About us</a>
           <a href="/support">Support</a>
-          <a class="cta" href="#idea">Suggest an app</a>
         </div>
         <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -66,81 +60,89 @@
   </header>
 
   <main>
-    <!-- Hero: motto & vision -->
+    <!-- Hero -->
     <section class="hero">
       <div class="shell">
-        <h1 class="reveal">Quiet solutions for the <span class="grad">everyday</span> things in life.</h1>
-        <p class="lede reveal d1">We build a small family of calm, private tools for the ordinary parts of life that deserve better solutions. Few things, made well, that earn a lasting place on your home screen instead of chasing your attention.</p>
-        <div class="hero-actions reveal d2">
-          <a class="btn btn-primary" href="#story">Read our story</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Products showcase -->
-    <section id="products">
-      <div class="shell">
-        <div class="section-head reveal">
-          <span class="eyebrow">Products</span>
-          <h2>A small, growing family.</h2>
-          <p>One app today, more on the way. Each one earns its place before it ships.</p>
-        </div>
-        <div class="showcase">
-          <a class="product-card reveal" href="/headsup">
-            <div class="pc-top">
-              <img class="pc-icon" src="/assets/heads-up-icon.png" alt="Heads-Up app icon" width="64" height="64">
-              <div>
-                <h3>Heads-Up</h3>
-                <p class="pc-tag">Nothing catches you off guard.</p>
-              </div>
+        <div class="spotlight">
+          <div class="spot-copy">
+            <div class="eyebrow-lockup reveal">
+              <img src="/assets/heads-up-icon.png" alt="" width="22" height="22">
+              <span class="eyebrow">Meet Heads-Up · our first app</span>
             </div>
-            <p class="pc-desc">Keeps track of the things in life that need a little lead time, from bills and birthdays to renewals and car maintenance, and nudges you early enough to actually do something about them.</p>
-            <div class="pc-foot">
-              <span class="badge"><span class="dot"></span>In development</span>
-              <span class="pc-open">Explore Heads-Up
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
+            <h1 class="reveal d1">Never get caught off guard by life's <span class="grad">small, important things.</span></h1>
+            <p class="lede reveal d2">The bill, the renewal, the service that's overdue, the birthday you can't miss: it all lives in your head, and your head is tired of holding it. Heads-Up remembers, and nudges you early enough to actually do something.</p>
+            <p class="reveal d3" style="margin-top:4px"><a href="#how">See how it works ↓</a></p>
+          </div>
+          <div class="spot-visual reveal d2">
+            <div class="phone">
+              <img src="/assets/shots/home-overview.webp" width="300" height="652" alt="Heads-Up home screen showing 4 things due in 2 weeks and 0 overdue" loading="eager">
             </div>
-          </a>
-
-          <div class="product-card soon reveal d1">
-            <div class="pc-mark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-            </div>
-            <h3>Many more coming</h3>
-            <p>We are quietly working on the next handy little app. Same principles: private, polished, and genuinely useful.</p>
-            <p style="margin-top:14px"><a href="#idea">Have one in mind? Tell us &rarr;</a></p>
           </div>
         </div>
+        <div class="trust-strip reveal d3">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No ads</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No tracking</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Works offline</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Privacy by default</span>
+        </div>
       </div>
     </section>
 
-    <!-- Idea CTA -->
-    <section id="idea">
+    <!-- Why Heads-Up helps -->
+    <section id="how">
+      <div class="shell">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why Heads-Up helps</span>
+          <h2>A calm list, not another list.</h2>
+          <p>Everything that needs a little lead time, bills, renewals, birthdays, maintenance, in one place, with enough warning to actually act.</p>
+        </div>
+        <div class="phone-cluster reveal d1" style="margin-bottom:clamp(28px,4vw,40px)">
+          <div class="phone"><img src="/assets/shots/list-all.webp" width="300" height="652" alt="Heads-Up list showing all cadences in one place" loading="lazy"></div>
+          <div class="phone"><img src="/assets/shots/upcoming.webp" width="300" height="652" alt="Heads-Up filtered to only what's upcoming soon" loading="lazy"></div>
+        </div>
+        <p class="reveal d2" style="text-align:center"><a href="/headsup#gallery">See the full walkthrough →</a></p>
+      </div>
+    </section>
+
+    <!-- Inner circle -->
+    <section id="circle">
       <div class="shell">
         <div class="idea-panel reveal">
           <div class="idea-grid">
             <div class="idea-copy">
-              <span class="eyebrow">Suggest an app</span>
-              <h2>What mundane thing should we fix next?</h2>
-              <p>Everyone has a small, recurring annoyance that better solutions could quietly solve. If you have an idea for an everyday app that would make your life a little easier, we read every note.</p>
+              <span class="eyebrow">The inner circle</span>
+              <h2>You're early enough to shape it.</h2>
+              <p>Inner circle members get Heads-Up first, and get a real say in what we build next. Tell us the everyday annoyance you wish software would quietly fix, we read every note, and members help pick what comes after Heads-Up.</p>
             </div>
-            <form class="idea-form" id="idea-form">
-              <div class="form-row">
-                <label for="idea-title">Your idea in a line</label>
-                <input type="text" id="idea-title" name="title" placeholder="An app that quietly does..." required>
+            <form class="join-form wide" data-source="home-circle" novalidate>
+              <div class="join-row">
+                <input type="email" id="home-circle-email" name="email" inputmode="email" autocomplete="email" placeholder="you@email.com" aria-label="Email address" required>
+                <button class="btn btn-primary" type="submit">Join the inner circle</button>
               </div>
-              <div class="form-row">
-                <label for="idea-detail">A little more (optional)</label>
-                <textarea id="idea-detail" name="detail" placeholder="What is the everyday annoyance, and who feels it?"></textarea>
-              </div>
-              <button class="btn btn-primary" type="submit">Send it our way</button>
-              <p class="idea-note">This opens your email app with the note drafted. Nothing is sent until you press send, and no data touches this site.</p>
+              <textarea class="join-idea" id="home-circle-idea" name="idea" aria-label="Your idea (optional)" placeholder="Optional: the everyday thing you wish an app would quietly fix"></textarea>
+              <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <p class="join-note">One list, ours only, leave anytime. No tracking.</p>
+              <p class="join-status" role="status" aria-live="polite"></p>
             </form>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Studio trust band -->
+    <section>
+      <div class="shell narrow">
+        <div class="glass studio-band" style="padding:clamp(30px,5vw,48px)">
+          <div class="sb-copy reveal">
+            <span class="eyebrow">Built by MundaneApps</span>
+            <h2>A two-person studio, not a growth machine.</h2>
+            <p>We're Paul &amp; Bhatt. We build quiet, private software: no ads, no tracking, privacy by default, and a genuine home for just a few things done well. Heads-Up is the first; the inner circle helps pick what's next.</p>
+            <a href="/about">Meet the studio →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
@@ -151,13 +153,13 @@
           <span class="brand-name">Mundane<b>Apps</b></span>
         </a>
         <p>Quiet, privacy-first apps that come in handy every day.</p>
+        <p style="margin-top:10px"><a href="/#circle">Join the inner circle →</a></p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h4>Products</h4>
           <a href="/headsup">Heads-Up</a>
-          <a href="/#products">All products</a>
-          <a href="/#idea">Suggest an app</a>
+          <a href="/#circle">Join the circle</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>

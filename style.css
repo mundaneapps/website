@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MundaneApps — mundaneapps.com
+   MundaneApps · mundaneapps.com
    Plain static site. No build step, no third-party requests, no trackers.
    Light/dark follows the browser via prefers-color-scheme.
    System font stack (privacy-first: no Google Fonts fetch that would leak IP).
@@ -48,6 +48,8 @@
   --radius-lg: 26px;
   --radius-xl: 34px;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --danger: #b4483d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -63,6 +65,8 @@
     --accent: #93b3a3;
     --accent-ink: #a9c6b7;
     --accent-contrast: #0f1a15;
+
+    --danger: #e08b82;
 
     --btn-bg: #8faca0;
     --btn-bg-hover: #a3c0b4;
@@ -154,6 +158,19 @@ img { max-width: 100%; display: block; }
   margin-bottom: 14px;
 }
 
+/* Small icon + eyebrow text, used to keep a product's identity visible */
+.eyebrow-lockup { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+.eyebrow-lockup img { width: 22px; height: 22px; border-radius: 6px; box-shadow: var(--shadow-sm); flex: none; }
+.eyebrow-lockup .eyebrow { margin-bottom: 0; }
+
+/* Product brand lockup (icon + wordmark), for product-page heroes */
+.product-brand {
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em;
+  color: var(--fg); margin-bottom: 16px;
+}
+.product-brand img { width: 38px; height: 38px; border-radius: 11px; box-shadow: var(--shadow-sm); flex: none; }
+
 .grad {
   background: linear-gradient(100deg, var(--accent), var(--accent-ink));
   -webkit-background-clip: text;
@@ -162,7 +179,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* --------------------------------------------------------------------------
-   Motion background — a whisper of movement, barely there (CSS only)
+   Motion background: a whisper of movement, barely there (CSS only)
    -------------------------------------------------------------------------- */
 .bg-canvas {
   position: fixed;
@@ -208,7 +225,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* --------------------------------------------------------------------------
-   Header — glass, floating
+   Header: glass, floating
    -------------------------------------------------------------------------- */
 .site-header {
   position: sticky;
@@ -282,16 +299,16 @@ img { max-width: 100%; display: block; }
 .nav-item.open .nav-trigger { color: var(--fg); background: color-mix(in srgb, var(--fg) 6%, transparent); }
 .nav-item.open .nav-trigger svg { transform: rotate(180deg); }
 
-/* Products mega dropdown — click to open, stays until dismissed */
+/* Products mega dropdown: click to open, stays until dismissed */
 .mega {
   position: absolute;
   top: calc(100% + 12px);
   left: 50%;
   transform: translateX(-50%) translateY(8px);
-  width: min(560px, 92vw);
+  width: min(320px, 92vw);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 4px;
   padding: 14px;
   background: var(--glass-bg-strong);
   backdrop-filter: saturate(170%) blur(var(--glass-blur));
@@ -328,21 +345,18 @@ a.product-tile:hover {
   background: color-mix(in srgb, var(--surface) 80%, transparent);
   box-shadow: var(--shadow-md);
 }
-.product-tile img,
-.product-tile .tile-mark {
-  width: 44px; height: 44px; flex: none;
-  border-radius: 12px;
-}
-.product-tile .tile-mark {
-  display: grid; place-items: center;
-  border: 1px dashed var(--border-strong);
-  color: var(--muted);
-}
-.product-tile .tile-mark svg { width: 22px; height: 22px; }
+.product-tile img { width: 44px; height: 44px; flex: none; border-radius: 12px; }
 .product-tile strong { display: block; font-size: 1rem; margin-bottom: 2px; }
 .product-tile span { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.4; }
-.product-tile.more { cursor: default; }
-.product-tile.more:hover { transform: none; box-shadow: none; border-color: var(--glass-hairline); }
+
+.mega-note {
+  display: block;
+  padding: 8px 13px 4px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+}
+.mega-note:hover { color: var(--accent-ink); text-decoration: none; }
 
 .nav-toggle {
   display: none;
@@ -531,7 +545,7 @@ section { padding: clamp(64px, 9vw, 108px) 0; position: relative; }
 .tile p { color: var(--muted); font-size: 0.98rem; margin: 0; }
 
 /* --------------------------------------------------------------------------
-   Horizontal accordion (About — folding principles, side by side)
+   Horizontal accordion (About: folding principles, side by side)
    -------------------------------------------------------------------------- */
 .haccordion {
   display: flex;
@@ -863,7 +877,7 @@ a.product-card:hover .pc-open svg { transform: translateX(4px); }
 .pull .grad { font-weight: 700; }
 
 /* --------------------------------------------------------------------------
-   Legal / content pages (docs) — glass reading panel over the background
+   Legal / content pages (docs): glass reading panel over the background
    -------------------------------------------------------------------------- */
 .doc {
   max-width: calc(var(--content-width) + 2 * var(--gutter));
@@ -953,3 +967,87 @@ a.product-card:hover .pc-open svg { transform: translateX(4px); }
   .btn:hover, .tile:hover, .cadence:hover, .store-btn:hover,
   a.product-card:hover, a.product-tile:hover, .spot-frame:hover { transform: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Founding-circle form
+   -------------------------------------------------------------------------- */
+.join-form { display: flex; flex-direction: column; gap: 12px; max-width: 460px; }
+.join-form.wide { max-width: 560px; }
+.join-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.join-form input[type="email"] {
+  flex: 1 1 220px; padding: 13px 15px; font-size: 1rem; font-family: inherit; color: var(--fg);
+  background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm); transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.join-form input[type="email"]:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.join-form textarea.join-idea {
+  width: 100%; min-height: 96px; resize: vertical; font-family: inherit; font-size: 1rem;
+  color: var(--fg); background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm); padding: 13px 15px; transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.join-form textarea.join-idea:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.join-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.join-note { font-size: 0.85rem; color: var(--muted); margin: 0; }
+.join-status { font-size: 0.9rem; margin: 2px 0 0; min-height: 1.2em; }
+.join-status.ok { color: var(--accent-ink); font-weight: 600; }
+.join-status.err { color: var(--danger); }
+.join-form.joined .join-row,
+.join-form.joined .join-idea { display: none; }
+
+/* --------------------------------------------------------------------------
+   Phone frame for real screenshots
+   -------------------------------------------------------------------------- */
+.phone {
+  position: relative; width: clamp(220px, 30vw, 300px); aspect-ratio: 1206 / 2622;
+  border-radius: 40px; padding: 10px; background: var(--surface-2);
+  border: 1px solid var(--border-strong); box-shadow: var(--shadow-lg); flex: none;
+}
+.phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 32px; display: block; }
+.phone-cluster { display: flex; gap: clamp(14px, 3vw, 28px); align-items: center; justify-content: center; }
+.phone-cluster .phone { width: clamp(160px, 22vw, 230px); }
+.phone-cluster .phone:nth-child(2) { transform: translateY(-18px) scale(1.04); z-index: 2; }
+@media (max-width: 640px) { .phone-cluster .phone:nth-child(3) { display: none; } }
+
+/* --------------------------------------------------------------------------
+   Screenshot gallery (Heads-Up walkthrough)
+   -------------------------------------------------------------------------- */
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(20px, 4vw, 40px); }
+.gallery figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.gallery figcaption { text-align: center; max-width: 30ch; }
+.gallery figcaption strong { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+.gallery figcaption span { color: var(--muted); font-size: 0.92rem; }
+
+/* --------------------------------------------------------------------------
+   Trust strip
+   -------------------------------------------------------------------------- */
+.trust-strip { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; justify-content: center; margin-top: 22px; }
+.trust-strip span { display: inline-flex; align-items: center; gap: 7px; font-size: 0.88rem; color: var(--muted); }
+.trust-strip svg { width: 16px; height: 16px; color: var(--accent); flex: none; }
+.hero .trust-strip { justify-content: flex-start; }
+
+/* --------------------------------------------------------------------------
+   Studio trust band (condensed philosophy on Home)
+   -------------------------------------------------------------------------- */
+.studio-band { display: flex; align-items: center; gap: clamp(20px, 4vw, 40px); flex-wrap: wrap; }
+.studio-band .sb-copy { flex: 1 1 420px; }
+.studio-band h2 { font-size: clamp(1.5rem, 3.2vw, 2rem); margin: 10px 0 12px; }
+.studio-band p { color: var(--muted); font-size: 1.03rem; margin: 0 0 14px; max-width: 60ch; }
+
+/* --------------------------------------------------------------------------
+   Founders' typographic mark (About: no photo, warmer than a logo)
+   -------------------------------------------------------------------------- */
+.founders-mark { display: flex; align-items: center; justify-content: center; gap: clamp(4px, 2vw, 14px); }
+.fm-initial {
+  font-weight: 700; font-size: clamp(3.6rem, 11vw, 5.4rem); line-height: 1;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(160deg, var(--accent), var(--accent-ink));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.fm-p { transform: translateY(-6%) rotate(-4deg); }
+.fm-b { transform: translateY(6%) rotate(4deg); opacity: 0.72; }

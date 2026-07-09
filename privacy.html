@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — MundaneApps</title>
+  <title>Privacy Policy · MundaneApps</title>
   <meta name="description" content="How MundaneApps and the Heads-Up app handle your data. No ads, no data selling; optional, consent-based analytics and crash reporting that are off by default. If you never sign in, nothing leaves your device.">
   <meta name="theme-color" content="#5f7c6e">
   <link rel="icon" href="/assets/mundaneapps-icon.png" type="image/png">
@@ -36,20 +36,11 @@
                   <span>Nothing important catches you off guard.</span>
                 </div>
               </a>
-              <div class="product-tile more" aria-disabled="true">
-                <div class="tile-mark">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-                </div>
-                <div>
-                  <strong>Many more coming</strong>
-                  <span>New everyday apps are in the works.</span>
-                </div>
-              </div>
+              <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
             </div>
           </div>
           <a href="/about">About us</a>
           <a href="/support">Support</a>
-          <a class="cta" href="/#idea">Suggest an app</a>
         </div>
         <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -63,10 +54,18 @@
     <h1>Privacy Policy</h1>
     <p class="meta">Version <strong>2026-07</strong> · Effective date 2026-07-07</p>
 
+    <div class="callout">
+      <strong>The plain-English version:</strong> we try to be a good houseguest.
+      If you never sign in, nothing about you ever leaves your device. Heads-Up
+      works fully offline. Analytics and crash reporting are anonymous and off
+      by default; you opt in, and can opt out anytime. We never sell your data,
+      and you can leave with it whenever you want. The legal detail is below.
+    </div>
+
     <p>
       This policy describes how the Heads-Up app ("the app", "we", "us"),
       made by MundaneApps, handles your data. It is written to be truthful and
-      specific about what the app actually does — every claim below is checked
+      specific about what the app actually does: every claim below is checked
       against the app's source code before each release (see our release
       checklist).
     </p>
@@ -90,7 +89,7 @@
     <p>
       To save you a step, the optional "region" field in your profile is
       pre-filled using your SIM/carrier country if available, or your
-      device's language/locale setting otherwise — this is a coarse,
+      device's language/locale setting otherwise. This is a coarse,
       two-letter country code only (e.g. "US", "IN"), read directly
       on-device via the operating system, never a phone number or precise
       location, and no separate permission is required to read it. This
@@ -104,7 +103,7 @@
       <thead><tr><th>Data</th><th>Purpose</th></tr></thead>
       <tbody>
         <tr><td>Email address (from your sign-in provider)</td><td>Account identification; transactional email (see §6)</td></tr>
-        <tr><td>Optional profile: name, gender, occupation, region (region may be pre-filled from your SIM/carrier country or device locale — see above)</td><td>Shown back to you in the app; not used for any other purpose</td></tr>
+        <tr><td>Optional profile: name, gender, occupation, region (region may be pre-filled from your SIM/carrier country or device locale, see above)</td><td>Shown back to you in the app; not used for any other purpose</td></tr>
         <tr><td>Cadence data (titles, schedules, tags, notes)</td><td>Cloud backup and, on our Pro+ plan, cross-device sync</td></tr>
         <tr><td>Purchase/subscription status</td><td>Determining your plan tier (Free / Pro / Pro+)</td></tr>
         <tr><td>A device identifier and a device label you can edit</td><td>Enforcing the Pro plan's single-device backup slot, and detecting when you've switched devices</td></tr>
@@ -114,7 +113,7 @@
     <p>
       We do not collect your birth date, phone number, or precise location.
       We do not collect age or any data intended to identify whether you are
-      a minor — see §8.
+      a minor. See §8.
     </p>
 
     <h2>3. Analytics &amp; crash reporting (optional, consent-based)</h2>
@@ -123,8 +122,8 @@
       understand how the app is used and to fix crashes:
     </p>
     <ul>
-      <li><strong>PostHog</strong> (product analytics) — anonymous, aggregated usage events (for example: onboarding completed, a cadence created, the paywall viewed). Data is hosted in the <strong>European Union</strong>.</li>
-      <li><strong>Sentry</strong> (crash reporting) — diagnostic reports when the app crashes or errors, including a stack trace and device/OS details. Data is hosted in the <strong>European Union</strong>.</li>
+      <li><strong>PostHog</strong> (product analytics): anonymous, aggregated usage events (for example: onboarding completed, a cadence created, the paywall viewed). Data is hosted in the <strong>European Union</strong>.</li>
+      <li><strong>Sentry</strong> (crash reporting): diagnostic reports when the app crashes or errors, including a stack trace and device/OS details. Data is hosted in the <strong>European Union</strong>.</li>
     </ul>
     <p>
       <strong>Both are disabled by default.</strong> We ask once, during
@@ -158,7 +157,7 @@
       <tbody>
         <tr><td>Supabase</td><td>Everything in the "Signed-in mode" table above</td><td>Database hosting, authentication</td></tr>
         <tr><td>Google</td><td>Your Google account info (if you sign in with Google), and your app-store purchase data (Play Store)</td><td>Sign-in; subscription billing</td></tr>
-        <tr><td>Apple</td><td>Your Apple ID info (if you sign in with Apple — currently unavailable, see §11), and your app-store purchase data (App Store, once launched)</td><td>Sign-in; subscription billing</td></tr>
+        <tr><td>Apple</td><td>Your Apple ID info (if you sign in with Apple, currently unavailable, see §11), and your app-store purchase data (App Store, once launched)</td><td>Sign-in; subscription billing</td></tr>
         <tr><td>RevenueCat</td><td>Your purchase/subscription status and an anonymous purchaser id</td><td>Subscription management across stores</td></tr>
         <tr><td>Resend</td><td>Your email address, for the specific transactional emails listed in §6</td><td>Sending those emails</td></tr>
         <tr><td>PostHog (EU Cloud)</td><td>Anonymous product-usage events and an opaque user id, <strong>only if you opt in</strong></td><td>Product analytics to improve the app</td></tr>
@@ -170,20 +169,20 @@
     <h2>6. Transactional email</h2>
     <p>If you sign in, we send you email only for account events you triggered or that affect your account directly:</p>
     <ul>
-      <li><strong>Welcome</strong> — once, when you first sign in.</li>
-      <li><strong>Account deleted</strong> — confirming a deletion you (or someone with access to your sign-in) initiated, and reminding you of the recovery window (§7).</li>
-      <li><strong>Subscription lapsed</strong> — when your Pro/Pro+ subscription ends, explaining that your cloud backup will be removed in 30 days unless you resubscribe.</li>
-      <li><strong>Purge warning</strong> — about 7 days before an unclaimed deleted account is permanently purged, so you have a last chance to recover it.</li>
+      <li><strong>Welcome</strong>: once, when you first sign in.</li>
+      <li><strong>Account deleted</strong>: confirming a deletion you (or someone with access to your sign-in) initiated, and reminding you of the recovery window (§7).</li>
+      <li><strong>Subscription lapsed</strong>: when your Pro/Pro+ subscription ends, explaining that your cloud backup will be removed in 30 days unless you resubscribe.</li>
+      <li><strong>Purge warning</strong>: about 7 days before an unclaimed deleted account is permanently purged, so you have a last chance to recover it.</li>
     </ul>
-    <p>These are transactional, not marketing, emails — we don't send newsletters or promotional email, and there is no separate marketing list to opt out of.</p>
+    <p>These are transactional, not marketing, emails: we don't send newsletters or promotional email, and there is no separate marketing list to opt out of.</p>
 
     <h2>7. Retention: how long we keep your data</h2>
     <table>
       <thead><tr><th>What happened</th><th>Cloud content</th><th>Deletion marker</th><th>Your device</th></tr></thead>
       <tbody>
-        <tr><td>You sign out</td><td>Untouched</td><td>—</td><td>Untouched</td></tr>
+        <tr><td>You sign out</td><td>Untouched</td><td>None</td><td>Untouched</td></tr>
         <tr><td>You delete one cadence</td><td>Removed from our servers within 30 days</td><td>Kept until you delete your account</td><td>Removed immediately</td></tr>
-        <tr><td>Clear all data → This device only</td><td>Untouched (re-downloads next sync)</td><td>—</td><td>Wiped</td></tr>
+        <tr><td>Clear all data → This device only</td><td>Untouched (re-downloads next sync)</td><td>None</td><td>Wiped</td></tr>
         <tr><td>Clear all data → Everywhere</td><td>Removed immediately</td><td>Kept until you delete your account</td><td>Wiped</td></tr>
         <tr><td>Subscription lapses</td><td>Removed 30 days after lapsing</td><td>Kept</td><td>Untouched</td></tr>
         <tr><td>You delete your account</td><td>Everything permanently deleted 30 days after you delete, unless you restore first</td><td>Deleted with the account</td><td>Untouched</td></tr>
@@ -191,7 +190,7 @@
     </table>
     <p>
       In plain terms: <strong>content you delete is removed from our servers
-      within 30 days — immediately if you use Clear All Data.</strong>
+      within 30 days, immediately if you use Clear All Data.</strong>
       Anonymous deletion markers (just an id and a "this was deleted" flag, no
       content) are kept so a device that comes back online later can't
       resurrect something you deleted; those markers are erased when your
@@ -209,10 +208,10 @@
     <h2>9. Your rights</h2>
     <p>Regardless of where you live, you can:</p>
     <ul>
-      <li><strong>Access and export</strong> your data — in the app (export from Settings) or by emailing us (§10).</li>
-      <li><strong>Delete your data</strong> — in the app: "Clear all data" removes your cadences (locally, or everywhere, your choice — see §7); "Delete account" removes your cloud account on the 30-day schedule in §7. You can also request deletion by email, or via <a href="/delete-account">mundaneapps.com/delete-account</a> if you no longer have the app installed.</li>
+      <li><strong>Access and export</strong> your data: in the app (export from Settings) or by emailing us (§10).</li>
+      <li><strong>Delete your data</strong>: in the app, "Clear all data" removes your cadences (locally, or everywhere, your choice, see §7); "Delete account" removes your cloud account on the 30-day schedule in §7. You can also request deletion by email, or via <a href="/delete-account">mundaneapps.com/delete-account</a> if you no longer have the app installed.</li>
       <li><strong>Correct</strong> your profile at any time in Settings.</li>
-      <li><strong>Withdraw consent</strong> by signing out (which stops all further cloud processing; local data keeps working) or deleting your account. You can also withdraw analytics/crash-reporting consent independently at any time in <strong>Settings → Privacy</strong>, without signing out — this stops all further analytics and crash collection immediately.</li>
+      <li><strong>Withdraw consent</strong> by signing out (which stops all further cloud processing; local data keeps working) or deleting your account. You can also withdraw analytics/crash-reporting consent independently at any time in <strong>Settings → Privacy</strong>, without signing out. This stops all further analytics and crash collection immediately.</li>
     </ul>
     <p>If you are in the EU/EEA or UK, these rights are provided under the GDPR / UK GDPR. If you are in India, they are provided under the DPDP Act. We extend the same rights to users everywhere, regardless of location.</p>
 
@@ -243,13 +242,13 @@
           <span class="brand-name">Mundane<b>Apps</b></span>
         </a>
         <p>Quiet, privacy-first apps that come in handy every day.</p>
+        <p style="margin-top:10px"><a href="/#circle">Join the inner circle →</a></p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h4>Products</h4>
           <a href="/headsup">Heads-Up</a>
-          <a href="/#products">All products</a>
-          <a href="/#idea">Suggest an app</a>
+          <a href="/#circle">Join the circle</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>

@@ -1,0 +1,10 @@
+project_id = "mundaneapps-website"
+
+[functions.site-signup]
+verify_jwt = false
+
+[functions.manage-signup]
+verify_jwt = false
+
+[functions.send-signup-update]
+verify_jwt = false

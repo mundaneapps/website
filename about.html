@@ -5,27 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About us · MundaneApps</title>
   <meta name="description" content="MundaneApps is a small, independent studio building quiet, private tools for the everyday parts of life. Our story, what we believe, and what we stand for.">
-  <meta name="theme-color" content="#5f7c6e">
-  <link rel="icon" href="/assets/mundaneapps-icon.png" type="image/png">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ABCDEF">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/mundaneapps-icon.png">
   <link rel="canonical" href="https://mundaneapps.com/about">
   <meta property="og:type" content="website">
   <meta property="og:title" content="About us · MundaneApps">
   <meta property="og:description" content="A small, independent studio building quiet, private tools for the everyday parts of life.">
   <meta property="og:url" content="https://mundaneapps.com/about">
-  <meta property="og:image" content="https://mundaneapps.com/assets/mundaneapps-icon.png">
+  <meta property="og:image" content="https://mundaneapps.com/assets/og/og-home-v2.png">
+  <script src="/theme-init.js"></script>
   <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <div class="bg-canvas" aria-hidden="true">
-    <span class="orb orb-1"></span>
-    <span class="orb orb-2"></span>
-  </div>
-
+<body class="theme-org">
   <header class="site-header">
     <nav>
       <a class="brand" href="/">
-        <img src="/assets/mundaneapps-icon.png" alt="" width="30" height="30">
+        <img src="/assets/logo.svg" alt="" width="30" height="30">
         <span class="brand-name">Mundane<b>Apps</b></span>
       </a>
       <div class="nav-cluster">
@@ -57,93 +54,63 @@
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="hero">
+    <!-- Belief and principles -->
+    <section class="hero about-belief" id="belief">
       <div class="shell">
-        <span class="eyebrow reveal">About us</span>
-        <h1 class="reveal d1">We build the <span class="grad">mundane</span> stuff, on purpose.</h1>
-        <p class="lede reveal d2">MundaneApps is a small, independent studio. We make quiet, private tools for the ordinary parts of life, and we would rather do a few things well than chase the next big thing.</p>
-      </div>
-    </section>
-
-    <!-- Our story -->
-    <section>
-      <div class="shell">
-        <div class="spotlight">
-          <div class="spot-copy reveal">
-            <span class="eyebrow">Our story</span>
-            <h2>It started with the unglamorous things.</h2>
-            <p>The parts of life that no one enjoys tracking, the bills, the renewals, the little recurring chores, are exactly the things our phones should quietly help with. Instead, the tools meant to help are often noisy, packed with ads, or slowly turning into one more thing you have to manage.</p>
-            <p style="margin-top:16px">We wanted the opposite. Software that does one useful thing, respects your time and your data, and then gets out of the way. So we started building it, one small app at a time, beginning with Heads-Up.</p>
+        <div class="about-belief-grid">
+          <div class="about-belief-copy">
+            <h1 class="reveal d1">Everyday software should be a <span class="grad">good houseguest.</span></h1>
+            <p class="lede reveal d2">It should arrive when needed, explain itself clearly, and become quiet again. We do not measure usefulness by how often an app pulls you back. We measure whether it gave back more attention than it asked for.</p>
           </div>
-          <div class="spot-visual reveal d1">
-            <div class="spot-frame founders-mark" aria-hidden="true">
-              <span class="fm-initial fm-p">P</span>
-              <span class="fm-initial fm-b">B</span>
-            </div>
-          </div>
+          <figure class="about-belief-photo reveal d2">
+            <img src="/assets/brand/about-good-houseguest-human-v3.webp" data-light-src="/assets/brand/about-good-houseguest-human-v3.webp" data-dark-src="/assets/brand/about-good-houseguest-human-dark-v1.webp" alt="A considerate visitor waters a houseplant at the doorway and waves goodbye" width="1448" height="1086" fetchpriority="high">
+          </figure>
         </div>
-      </div>
-    </section>
-
-    <!-- Our vision -->
-    <section>
-      <div class="shell narrow">
-        <div class="glass" style="padding:clamp(34px,6vw,64px)">
-          <span class="eyebrow reveal">Our vision</span>
-          <p class="pull reveal d1" style="max-width:30ch">Everyday software should be a <span class="grad">good houseguest.</span></p>
-          <p class="reveal d2" style="color:var(--muted);font-size:1.08rem;margin:22px 0 0;max-width:60ch">It should earn its place on your home screen by being useful, not by competing for your attention or quietly selling what it learns about you. Privacy should be the default, not a setting you go hunting for. Pricing should be honest. And an app should still work years from now, offline, without asking anything of you. That is the standard we hold ourselves to, and the kind of software we want more of in the world.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- What we stand for -->
-    <section>
-      <div class="shell">
         <div class="section-head reveal">
-          <span class="eyebrow">What we stand for</span>
           <h2>Five things we will not compromise on.</h2>
-          <p>Hover or tap a card to read more.</p>
+          <p>These principles apply to every product we choose to make.</p>
         </div>
-        <div class="haccordion reveal" id="about-accordion">
-          <button class="hfold expanded" type="button" aria-expanded="true">
-            <span class="hfold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.3-7 9-4-1.7-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-            <span class="hfold-title">Private by design</span>
-            <span class="hfold-body">No ads and no third-party tracking, ever. Optional analytics and crash reporting are anonymous, EU-hosted, and off by default. You choose, and you can leave with your data anytime.</span>
-          </button>
-          <button class="hfold" type="button" aria-expanded="false">
-            <span class="hfold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 1 1 5.64 6.64"/><path d="M12 2v10"/></svg></span>
-            <span class="hfold-title">Works offline</span>
-            <span class="hfold-body">Our apps run fully offline, forever, with no account required. Sign-in and sync are optional, added only when they genuinely help you.</span>
-          </button>
-          <button class="hfold" type="button" aria-expanded="false">
-            <span class="hfold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
-            <span class="hfold-title">Fair and honest</span>
-            <span class="hfold-body">A genuinely useful free tier, with optional subscriptions to keep the lights on. Never dark patterns to trap you, and cancelling is always straightforward.</span>
-          </button>
-          <button class="hfold" type="button" aria-expanded="false">
-            <span class="hfold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4M3 5h4M6 17v4M4 19h4"/><path d="M13 3l3.5 7L23 12l-6.5 2L13 21l-3.5-7L3 12l6.5-2z"/></svg></span>
-            <span class="hfold-title">Clean and polished</span>
-            <span class="hfold-body">Calm, uncluttered interfaces that feel at home on iOS and Android, in light and dark mode, and get out of your way.</span>
-          </button>
-          <button class="hfold" type="button" aria-expanded="false">
-            <span class="hfold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9M14 17H5M9 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM19 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg></span>
-            <span class="hfold-title">Few things, done well</span>
-            <span class="hfold-body">We would rather build a handful of tools with care than a pile of them loudly. Depth over noise, always.</span>
-          </button>
+        <div class="principles-list reveal">
+          <article><h3>Collect less by design</h3><p>Every feature begins with a simpler question: what information can the product avoid asking for or keeping?</p></article>
+          <article><h3>Longevity over lock-in</h3><p>A useful tool should not become useless because an account, subscription, or network connection is absent.</p></article>
+          <article><h3>Fair and honest</h3><p>A genuinely useful free tier, optional subscriptions, straightforward cancellation, and no dark patterns.</p></article>
+          <article><h3>Details earn trust</h3><p>Copy, motion, accessibility, failure states, and support deserve the same attention as the headline feature.</p></article>
+          <article><h3>A deliberate portfolio</h3><p>New products begin with a durable problem, not a release calendar or a target app count.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- Founders' note -->
-    <section>
-      <div class="shell narrow">
-        <div class="idea-panel reveal">
-          <span class="eyebrow">A note from us</span>
-          <p style="font-size:clamp(1.1rem,2.2vw,1.3rem);color:var(--fg-soft);line-height:1.6;margin:14px 0 0;max-width:62ch">
-            We build MundaneApps because we kept wishing these apps existed, made the way we actually wanted them: calm, private, and genuinely useful. It is a small operation, put together with a lot of care and none of the growth-at-all-costs playbook. If something here makes an ordinary day a little easier, that is the whole point. And if you have an idea for the next one, we would genuinely love to hear it.
-          </p>
-          <p style="margin:20px 0 0;color:var(--muted);font-weight:600">Paul &amp; Bhatt, MundaneApps</p>
+    <!-- Why MundaneApps -->
+    <section class="org-pattern-section" id="why-mundaneapps">
+      <div class="shell about-story-grid">
+        <div class="spot-copy reveal">
+          <h2>The unglamorous work was the point.</h2>
+          <p>The parts of life that no one enjoys tracking, the bills, the renewals, the little recurring chores, are exactly the things our phones should quietly help with. Instead, the tools meant to help are often noisy, packed with ads, or slowly turning into one more thing you have to manage.</p>
+          <p>We wanted the opposite. Software that does one useful thing, respects your time and your data, and then gets out of the way. So we started building it, one small app at a time, beginning with Heads-Up.</p>
+        </div>
+        <figure class="about-story-photo reveal d1">
+          <img src="/assets/brand/about-unglamorous-work-human-v3.webp" data-light-src="/assets/brand/about-unglamorous-work-human-v3.webp" data-dark-src="/assets/brand/about-unglamorous-work-human-dark-v1.webp" alt="A person carefully replaces an ordinary household air filter" width="1448" height="1086" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- Founders and founders' note -->
+    <section class="about-founders" id="founders">
+      <div class="shell about-founder-grid">
+        <div class="about-founder-copy">
+          <h2 class="reveal">Paul &amp; Bhatt make MundaneApps together.</h2>
+          <p class="founders-intro reveal d1">We choose problems that stay useful for years, then give their ordinary details more care than they usually receive.</p>
+          <figure class="founder-note reveal d2">
+            <h3>A note from the founders</h3>
+            <blockquote>
+              <p>Decisions, support replies, release notes, and the small details all come back to the two of us. That is slower than a growth-at-all-costs studio, and deliberately so. It keeps the distance between a thoughtful suggestion and a product decision short.</p>
+            </blockquote>
+            <figcaption>Paul &amp; Bhatt, MundaneApps</figcaption>
+          </figure>
+        </div>
+        <div class="about-symbol founders-mark reveal d1" aria-hidden="true">
+          <span class="fm-initial fm-p">P</span>
+          <span class="fm-initial fm-b">B</span>
         </div>
       </div>
     </section>
@@ -154,17 +121,17 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="brand" href="/">
-          <img src="/assets/mundaneapps-icon.png" alt="" width="30" height="30">
+          <img src="/assets/logo.svg" alt="" width="30" height="30">
           <span class="brand-name">Mundane<b>Apps</b></span>
         </a>
         <p>Quiet, privacy-first apps that come in handy every day.</p>
-        <p style="margin-top:10px"><a href="/#circle">Join the inner circle →</a></p>
+        <p style="margin-top:10px"><a href="/#circle">Join the Mundane Circle →</a></p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h4>Products</h4>
           <a href="/headsup">Heads-Up</a>
-          <a href="/#circle">Join the circle</a>
+          <a href="/#circle">Mundane Circle</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>

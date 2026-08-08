@@ -1,12 +1,12 @@
 # mundaneapps.com
 
-The public marketing + legal site for **MundaneApps** — quiet, privacy-first
+The public marketing + legal site for **MundaneApps**: quiet, privacy-first
 apps that come in handy every day. First app: **Heads-Up**.
 
-Plain static HTML/CSS/JS. **No build step, no dependencies, no analytics, no
-third-party requests of any kind** (a tracker on a privacy-policy site would
-ironically create consent obligations the apps themselves don't have). Just
-open the files or push them to any static host.
+The public site is plain HTML/CSS/JS with no build step, analytics, or trackers.
+Signup forms post only when submitted to a Supabase Edge Function; Supabase
+stores the two audiences separately and Resend sends confirmations and later
+audience updates from the server side.
 
 ## Pages
 
@@ -21,21 +21,71 @@ open the files or push them to any static host.
 | `delete-account.html` | `/delete-account` |
 | `404.html` | served for unknown paths |
 
-`style.css` (shared stylesheet, light/dark via `prefers-color-scheme`) and
-`main.js` (tiny vanilla enhancement: scroll reveal, mobile nav, sticky-header
-shadow) are shared across all pages. `assets/` holds the logo, favicon, and app
-icon. `CNAME` binds the custom domain; `.nojekyll` disables Jekyll processing.
+`style.css` (shared stylesheet with a saved light/dark choice) and
+`main.js` (dependency-free direction-aware reveals, reversible scroll-linked
+product stories, mobile nav, and sticky-header behavior) are shared across all
+pages. Motion is reduced to a static, readable layout when the browser requests
+reduced motion.
+`assets/` holds the logo, favicon, and app icon. `CNAME` binds the custom domain;
+`.nojekyll` disables Jekyll processing.
+
+## Signup backend: Supabase + Resend
+
+The repository includes:
+
+- `supabase/migrations/202608080001_site_signups.sql`: separate community and
+  HeadsUp beta tables, email audit log, hashed rate limiting, and RLS.
+- `supabase/functions/site-signup`: validates and stores a signup, then sends
+  the first confirmation through Resend.
+- `supabase/functions/manage-signup`: one-click unsubscribe handling.
+- `supabase/functions/send-signup-update`: administrator-only future updates,
+  sent in Resend batches of 100 with per-recipient unsubscribe links.
+
+To connect a Supabase project:
+
+```bash
+supabase login
+supabase link --project-ref YOUR_PROJECT_REF
+supabase db push
+cp supabase/.env.example supabase/.env.local
+# Fill supabase/.env.local. It is ignored by git.
+supabase secrets set --env-file supabase/.env.local
+supabase functions deploy site-signup
+supabase functions deploy manage-signup
+supabase functions deploy send-signup-update
+```
+
+Then set the public, non-secret endpoint in `site-config.js`:
+
+```js
+window.MUNDANEAPPS_CONFIG = {
+  signupEndpoint: "https://YOUR_PROJECT_REF.supabase.co/functions/v1/site-signup"
+};
+```
+
+Never put a Supabase service-role key or Resend API key in `site-config.js`.
+They belong only in Supabase Function Secrets.
+
+Send a later update from a trusted machine with a unique campaign ID:
+
+```bash
+curl --request POST \
+  'https://YOUR_PROJECT_REF.supabase.co/functions/v1/send-signup-update' \
+  --header 'content-type: application/json' \
+  --header 'x-admin-secret: YOUR_BROADCAST_ADMIN_SECRET' \
+  --data '{"audience":"community","campaignId":"circle-2026-08","subject":"A Mundane Circle update","html":"<p>What changed…</p>","text":"What changed…"}'
+```
 
 > **Why clean URLs work:** the app hardcodes `mundaneapps.com/privacy` and
 > `/terms` (no `.html`). GitHub Pages automatically serves `privacy.html` at
-> `/privacy`, so the files must stay at the repo root — do not move them into
+> `/privacy`, so the files must stay at the repo root. Do not move them into
 > subfolders.
 
-## Before publishing — required
+## Before publishing: required
 
-- [ ] **[HUMAN]** In `terms.html`, replace **`[legal name/entity — to be
+- [ ] **[HUMAN]** In `terms.html`, replace **`[legal name/entity, to be
       supplied]`** (§ intro) with the final registered/legal publisher name.
-- [ ] **[HUMAN]** In `terms.html`, replace **`[Governing-law jurisdiction — to
+- [ ] **[HUMAN]** In `terms.html`, replace **`[Governing-law jurisdiction, to
       be supplied]`** (§9) with the governing-law jurisdiction (and optional
       venue/arbitration clause).
 - [ ] Confirm the policy version on `privacy.html`/`terms.html` (currently
@@ -48,7 +98,7 @@ icon. `CNAME` binds the custom domain; `.nojekyll` disables Jekyll processing.
       `headsup.html` (2×) with real, linked Google Play / App Store buttons, and
       remove the "In development" badge (the product card badge in `index.html`).
 
-## Deploy — GitHub Pages (current setup)
+## Deploy: GitHub Pages (current setup)
 
 1. Push this directory's contents to the repo root of
    `github.com/mundaneapps/website` on the `main` branch.
@@ -64,7 +114,7 @@ icon. `CNAME` binds the custom domain; `.nojekyll` disables Jekyll processing.
    `/terms`, `/support`, `/delete-account`.
 
 > **DNS caution:** do not disturb any existing email records (SPF / DKIM /
-> DMARC, e.g. Resend) when adding the Pages records — they're separate record
+> DMARC, e.g. Resend) when adding the Pages records. They're separate record
 > types/names and shouldn't conflict, but review the full record list before
 > and after.
 
@@ -73,5 +123,8 @@ icon. `CNAME` binds the custom domain; `.nojekyll` disables Jekyll processing.
 No build needed. From this directory:
 
 ```bash
-python -m http.server 8000     # then open http://localhost:8000
+python3 serve.py 8000          # then open http://localhost:8000
 ```
+
+Use `serve.py` for local previews so clean routes such as `/headsup`, `/about`,
+and `/support` resolve the same way they do in production.

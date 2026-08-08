@@ -177,7 +177,7 @@
     var galleryDialog = document.createElement("dialog");
     galleryDialog.className = "gallery-preview";
     galleryDialog.setAttribute("aria-label", "HeadsUp screenshot preview");
-    galleryDialog.innerHTML = '<div class="gallery-preview-shell"><div class="gallery-preview-bar"><span class="gallery-preview-count" aria-live="polite"></span><button class="gallery-preview-close" type="button" aria-label="Close screenshot preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><button class="gallery-preview-nav gallery-preview-prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><figure class="gallery-preview-figure"><div class="gallery-preview-device"><img alt=""></div><figcaption><h3></h3><p></p></figcaption></figure><button class="gallery-preview-nav gallery-preview-next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>';
+    galleryDialog.innerHTML = '<div class="gallery-preview-shell"><div class="gallery-preview-bar"><span class="gallery-preview-count" aria-live="polite"></span><button class="gallery-preview-close" type="button" aria-label="Close screenshot preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><button class="gallery-preview-nav gallery-preview-prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button><figure class="gallery-preview-figure"><div class="phone gallery-preview-device"><img src="/assets/shots/light-dark.webp" alt="" width="620" height="1348" decoding="async"></div><figcaption><h3></h3><p></p></figcaption></figure><button class="gallery-preview-nav gallery-preview-next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>';
     document.body.appendChild(galleryDialog);
 
     var previewImage = galleryDialog.querySelector(".gallery-preview-device img");
@@ -273,6 +273,40 @@
     });
   }
 
+  // Founder portraits behave as an accessible tab set: click, touch and arrow
+  // keys all reveal the matching story without moving the reader elsewhere.
+  var founderStories = document.querySelector("[data-founder-stories]");
+  if (founderStories) {
+    var founderTabs = Array.prototype.slice.call(founderStories.querySelectorAll("[data-founder-tab]"));
+    var founderPanels = Array.prototype.slice.call(founderStories.querySelectorAll("[data-founder-panel]"));
+    var selectFounder = function (tab, moveFocus) {
+      var founder = tab.getAttribute("data-founder-tab");
+      founderTabs.forEach(function (candidate) {
+        var active = candidate === tab;
+        candidate.setAttribute("aria-selected", active ? "true" : "false");
+        candidate.tabIndex = active ? 0 : -1;
+      });
+      founderPanels.forEach(function (panel) {
+        panel.hidden = panel.getAttribute("data-founder-panel") !== founder;
+      });
+      if (moveFocus) tab.focus();
+    };
+
+    founderTabs.forEach(function (tab, index) {
+      tab.addEventListener("click", function () { selectFounder(tab, false); });
+      tab.addEventListener("keydown", function (event) {
+        var nextIndex = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") nextIndex = (index + 1) % founderTabs.length;
+        if (event.key === "ArrowLeft" || event.key === "ArrowUp") nextIndex = (index - 1 + founderTabs.length) % founderTabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = founderTabs.length - 1;
+        if (nextIndex === null) return;
+        event.preventDefault();
+        selectFounder(founderTabs[nextIndex], true);
+      });
+    });
+  }
+
   // Each route gets a distinct set of page-length ribbons. Catmull-Rom points
   // are converted to cubic curves so every bend stays smooth while scrolling.
   var shapeMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -314,6 +348,7 @@
     var shapeVariants = strokeWidths.map(function (_, index) { return buildFlow(index); });
     var organicShapes = [];
     var shapeFrame = 0;
+    var organicMorphIntensity = 10;
     var svgNamespace = "http://www.w3.org/2000/svg";
     var makeOrganicPath = function (points) {
       var pairs = [];
@@ -354,18 +389,35 @@
 
     var updateOrganicShape = function () {
       shapeFrame = 0;
-      var pageHeight = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+      // Measure the normal document flow, not scrollHeight: these absolutely
+      // positioned layers contribute to scroll overflow and would otherwise
+      // feed their previous height back into the next measurement.
+      var pageHeight = Math.max(document.body.getBoundingClientRect().height, window.innerHeight);
       var maxScroll = Math.max(pageHeight - window.innerHeight, 1);
       var progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
       var eased = progress * progress * (3 - 2 * progress);
+      var viewportPhase = window.scrollY / Math.max(window.innerHeight, 1);
       organicShapes.forEach(function (shape) {
         shape.layer.style.height = pageHeight + "px";
+        var relativeDrift = Math.sin(viewportPhase * 1.35 + shape.index * 0.55)
+          * (shape.index - 2) * 0.075 * organicMorphIntensity;
+        var shapeProgress = Math.min(Math.max(eased + relativeDrift, 0), 1);
         var points = shape.definition.start.map(function (value, pointIndex) {
-          return Math.round((value + (shape.definition.end[pointIndex] - value) * eased) * 10) / 10;
+          var ripple = pointIndex % 2 === 0
+            ? Math.sin(viewportPhase * 2.25 + (pointIndex / 2) * 0.88 + shape.index * 1.1)
+              * (30 + shape.index * 6) * organicMorphIntensity
+            : 0;
+          return Math.round((value + (shape.definition.end[pointIndex] - value) * shapeProgress + ripple) * 10) / 10;
         });
         shape.path.setAttribute("d", makeOrganicPath(points));
         var direction = shape.index % 2 === 0 ? 1 : -1;
-        shape.svg.style.transform = "translate3d(" + (((eased - 0.5) * 34) * direction).toFixed(1) + "px,0,0)";
+        var lateralTravel = (((eased - 0.5) * 118) * direction
+          + Math.sin(viewportPhase * 1.7 + shape.index * 0.7) * 38) * organicMorphIntensity;
+        var verticalDrift = Math.cos(viewportPhase * 1.9 + shape.index * 0.85)
+          * 34 * organicMorphIntensity;
+        var horizontalBreath = 1 + Math.sin(viewportPhase * 1.3 + shape.index * 0.6)
+          * (shape.index % 2 ? 0.025 : 0.035) * organicMorphIntensity;
+        shape.svg.style.transform = "translate3d(" + lateralTravel.toFixed(1) + "px," + verticalDrift.toFixed(1) + "px,0) scaleX(" + horizontalBreath.toFixed(3) + ")";
       });
     };
     var requestOrganicUpdate = function () {

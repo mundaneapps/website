@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HeadsUp · get a HeadsUp while there’s still time · MundaneApps</title>
   <meta name="description" content="HeadsUp keeps what’s coming visible early, giving you lead time to prepare at your pace without carrying it all in your head.">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#008080">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#007272">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/mundaneapps-icon.png">
@@ -25,7 +25,7 @@
   <header class="site-header">
     <nav>
       <a class="brand" href="/">
-        <img src="/assets/logo.svg" alt="" width="30" height="30">
+        <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-name">Mundane<b>Apps</b></span>
       </a>
       <div class="nav-cluster">
@@ -188,23 +188,16 @@
     <!-- How does HeadsUp solve it? -->
     <section class="solution-story">
       <div class="shell">
-        <div class="section-head reveal">
-          <h2>HeadsUp gives the lead-up a place to live.</h2>
-          <p>HeadsUp brings what’s coming into view early, with notes, decisions, and next steps attached, so you can prepare at your pace without carrying it all in your head.</p>
+        <div class="solution-intro reveal">
+          <figure class="solution-figure">
+            <img src="/assets/brand/headsup-relief-human-v1.webp" width="1536" height="1024" alt="A relaxed person sits comfortably with a cup while their phone rests face down beside them" loading="lazy" decoding="async">
+          </figure>
+          <div class="solution-copy">
+            <h2>A HeadsUp on what matters, with time to prepare.</h2>
+            <p>HeadsUp keeps important tasks together in one place and brings each one into view early, so you can prepare at your pace and keep your mind at peace.</p>
+          </div>
         </div>
         <div class="leadtime reveal d1">
-          <p class="leadtime-example">
-            <strong>Get a HeadsUp on 10 August. Due on 31 August.</strong>
-            <span>Twenty-one days of useful lead time.</span>
-          </p>
-          <div class="leadtime-visual" role="img" aria-label="A HeadsUp lead-time window from 10 August to a due date on 31 August">
-            <div class="leadtime-dates" aria-hidden="true"><span>10 Aug</span><span>31 Aug</span></div>
-            <div class="leadtime-track" aria-hidden="true">
-              <div class="leadtime-window"><span>HeadsUp lead-time window</span></div>
-              <span class="leadtime-pin leadtime-pin-start"></span>
-              <span class="leadtime-pin leadtime-pin-due"></span>
-            </div>
-          </div>
           <ol class="leadtime-proof">
             <li><strong>See it early</strong><span>Know what’s coming while there’s time to prepare.</span></li>
             <li><strong>Keep context attached</strong><span>Keep notes, dates, and decisions together.</span></li>
@@ -276,19 +269,67 @@
       <div class="shell">
         <div class="section-head reveal">
           <h2>Playground: Understand how HeadsUp keeps time.</h2>
-          <p>Choose a cadence, adjust the dates, and see exactly where its follow-up date is counted from.</p>
+          <p>Choose when a task is due, decide how early you want to see it, and explore what each cadence schedules next.</p>
         </div>
         <div class="cadence-playground reveal d1" data-cadence-playground>
-          <div class="playground-controls">
+          <div class="playground-control-group playground-headsup-controls">
+            <h3>When do you want a HeadsUp?</h3>
+            <div class="playground-fields">
+              <label class="playground-field-wide">
+                <span>Task name</span>
+                <input type="text" value="Plan annual health check" autocomplete="off" data-playground-task>
+              </label>
+              <label>
+                <span>Due date</span>
+                <input type="date" data-playground-due>
+              </label>
+              <label>
+                <span>Preview date</span>
+                <input type="date" data-playground-preview>
+              </label>
+              <div class="playground-sentence-field playground-field-wide">
+                <span>Give me a HeadsUp</span>
+                <label>
+                  <span class="sr-only">HeadsUp amount</span>
+                  <input type="number" min="1" max="99" value="3" inputmode="numeric" data-playground-headsup-amount>
+                </label>
+                <label>
+                  <span class="sr-only">HeadsUp period</span>
+                  <select data-playground-headsup-unit>
+                    <option value="days">Days</option>
+                    <option value="weeks" selected>Weeks</option>
+                    <option value="months">Months</option>
+                    <option value="years">Years</option>
+                  </select>
+                </label>
+                <span>before.</span>
+              </div>
+            </div>
+            <p class="playground-error" data-playground-headsup-error hidden></p>
+          </div>
+
+          <section class="playground-live playground-current-output" aria-labelledby="playground-current-title">
+            <h3 id="playground-current-title" data-playground-current-title>Your task enters Home with time to prepare.</h3>
+            <p data-playground-current-explanation>Adjust the dates to see when it appears.</p>
+            <div class="playground-window-meter" aria-hidden="true">
+              <span class="playground-window-meter-fill"></span>
+              <span class="playground-meter-point playground-meter-start"><small>HeadsUp begins</small><strong data-playground-current-start-label></strong></span>
+              <span class="playground-meter-point playground-meter-preview" data-playground-meter-preview><small>Preview date</small><strong data-playground-preview-label></strong></span>
+              <span class="playground-meter-point playground-meter-due"><small>Due date</small><strong data-playground-current-due-label></strong></span>
+            </div>
+          </section>
+
+          <div class="playground-control-group playground-cadence-controls">
+            <h3>What happens after completion?</h3>
             <fieldset class="playground-types">
               <legend>Cadence type</legend>
               <div class="playground-segments">
                 <label for="playground-one-time">
-                  <input type="radio" id="playground-one-time" name="playground-type" value="oneTime" checked>
+                  <input type="radio" id="playground-one-time" name="playground-type" value="oneTime">
                   <span>One time</span>
                 </label>
                 <label for="playground-fixed">
-                  <input type="radio" id="playground-fixed" name="playground-type" value="fixedSchedule">
+                  <input type="radio" id="playground-fixed" name="playground-type" value="fixedSchedule" checked>
                   <span>Fixed schedule</span>
                 </label>
                 <label for="playground-completion">
@@ -297,16 +338,12 @@
                 </label>
               </div>
             </fieldset>
-            <div class="playground-fields">
-              <label>
-                <span>Current due date</span>
-                <input type="date" value="2026-09-10" data-playground-due>
+            <div class="playground-fields playground-cadence-fields">
+              <label class="playground-field-wide">
+                <span>If you complete it on</span>
+                <input type="date" data-playground-completed>
               </label>
-              <label>
-                <span>Completed on</span>
-                <input type="date" value="2026-09-13" data-playground-completed>
-              </label>
-              <fieldset class="playground-fixed-rule" data-playground-fixed-rule hidden>
+              <fieldset class="playground-fixed-rule playground-field-wide" data-playground-fixed-rule>
                 <legend>Fixed schedule rule</legend>
                 <div class="playground-segments playground-rule-segments">
                   <label for="playground-rule-simple">
@@ -319,9 +356,9 @@
                   </label>
                 </div>
               </fieldset>
-              <div class="playground-repeat" data-playground-repeat hidden>
+              <div class="playground-repeat playground-field-wide" data-playground-repeat>
                 <label>
-                  <span>Follow-up after</span>
+                  <span>Repeat every</span>
                   <input type="number" min="1" max="99" value="1" inputmode="numeric" data-playground-amount>
                 </label>
                 <label>
@@ -329,12 +366,12 @@
                   <select data-playground-unit>
                     <option value="days">Days</option>
                     <option value="weeks">Weeks</option>
-                    <option value="months" selected>Months</option>
-                    <option value="years">Years</option>
+                    <option value="months">Months</option>
+                    <option value="years" selected>Years</option>
                   </select>
                 </label>
               </div>
-              <div class="playground-advanced" data-playground-advanced hidden>
+              <div class="playground-advanced playground-field-wide" data-playground-advanced hidden>
                 <fieldset class="playground-frequency">
                   <legend>Repeat</legend>
                   <div class="playground-segments playground-frequency-segments">
@@ -356,77 +393,115 @@
                   <legend>Repeat on</legend>
                   <div class="playground-days">
                     <label><input type="checkbox" value="0" data-playground-weekday><span>Sun</span></label>
-                    <label><input type="checkbox" value="1" data-playground-weekday><span>Mon</span></label>
+                    <label><input type="checkbox" value="1" data-playground-weekday checked><span>Mon</span></label>
                     <label><input type="checkbox" value="2" data-playground-weekday><span>Tue</span></label>
                     <label><input type="checkbox" value="3" data-playground-weekday><span>Wed</span></label>
                     <label><input type="checkbox" value="4" data-playground-weekday><span>Thu</span></label>
-                    <label><input type="checkbox" value="5" data-playground-weekday checked><span>Fri</span></label>
+                    <label><input type="checkbox" value="5" data-playground-weekday><span>Fri</span></label>
                     <label><input type="checkbox" value="6" data-playground-weekday><span>Sat</span></label>
                   </div>
                 </fieldset>
-                <div class="playground-pattern playground-pattern-fields" data-playground-pattern="monthly" hidden>
-                  <label>
-                    <span>Occurrence</span>
-                    <select data-playground-monthly-ordinal>
-                      <option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option><option value="4">4th</option><option value="-1">Last</option>
-                    </select>
-                  </label>
-                  <label>
-                    <span>Day of week</span>
-                    <select data-playground-monthly-weekday>
-                      <option value="0">Sunday</option><option value="1" selected>Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option>
-                    </select>
-                  </label>
+                <div class="playground-pattern" data-playground-pattern="monthly" hidden>
+                  <div class="playground-pattern-builder">
+                    <label>
+                      <span>Occurrence</span>
+                      <select data-playground-monthly-ordinal>
+                        <option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option><option value="4">4th</option><option value="-1">Last</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Day of week</span>
+                      <select data-playground-monthly-weekday>
+                        <option value="0">Sunday</option><option value="1" selected>Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option>
+                      </select>
+                    </label>
+                    <button type="button" class="playground-add-rule" data-playground-add-monthly>Add pattern</button>
+                  </div>
+                  <ul class="playground-rule-list" data-playground-monthly-list aria-label="Monthly patterns"></ul>
                 </div>
-                <div class="playground-pattern playground-pattern-fields playground-pattern-yearly" data-playground-pattern="yearly" hidden>
-                  <label>
-                    <span>Month</span>
-                    <select data-playground-yearly-month>
-                      <option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option>
-                    </select>
-                  </label>
-                  <label>
-                    <span>Occurrence</span>
-                    <select data-playground-yearly-ordinal>
-                      <option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option><option value="4">4th</option><option value="-1">Last</option>
-                    </select>
-                  </label>
-                  <label>
-                    <span>Day of week</span>
-                    <select data-playground-yearly-weekday>
-                      <option value="0">Sunday</option><option value="1" selected>Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option>
-                    </select>
-                  </label>
+                <div class="playground-pattern" data-playground-pattern="yearly" hidden>
+                  <div class="playground-pattern-builder playground-pattern-builder-yearly">
+                    <label>
+                      <span>Month</span>
+                      <select data-playground-yearly-month>
+                        <option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Occurrence</span>
+                      <select data-playground-yearly-ordinal>
+                        <option value="1">1st</option><option value="2">2nd</option><option value="3">3rd</option><option value="4">4th</option><option value="-1">Last</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Day of week</span>
+                      <select data-playground-yearly-weekday>
+                        <option value="0">Sunday</option><option value="1" selected>Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option>
+                      </select>
+                    </label>
+                    <button type="button" class="playground-add-rule" data-playground-add-yearly>Add pattern</button>
+                  </div>
+                  <ul class="playground-rule-list" data-playground-yearly-list aria-label="Yearly patterns"></ul>
                 </div>
               </div>
             </div>
+            <p class="playground-error" data-playground-cadence-error hidden></p>
           </div>
-          <div class="playground-output">
-            <div class="playground-summary">
-              <h3 data-playground-title>This cadence ends when you complete it.</h3>
-              <p data-playground-explanation>If you need it again, you choose a new date.</p>
+
+          <section class="playground-live playground-next-output" aria-labelledby="playground-next-title">
+            <h3 id="playground-next-title" data-playground-next-title>The calendar keeps the next occurrence on schedule.</h3>
+            <p data-playground-next-explanation>Change the cadence to see what moves the next due date.</p>
+            <p class="playground-observation" data-playground-observation hidden></p>
+          </section>
+
+          <section class="playground-timeline-wrap" aria-labelledby="playground-timeline-title">
+            <div class="playground-timeline-heading">
+              <h3 id="playground-timeline-title">See the whole schedule.</h3>
+              <span data-playground-gap-label></span>
             </div>
-            <div class="playground-timeline is-one-time" aria-hidden="true" data-playground-timeline>
-              <span class="playground-interval" data-playground-interval><span data-playground-interval-label></span></span>
-              <span class="playground-line"></span>
-              <div class="playground-point playground-point-due">
-                <span class="playground-dot"></span>
-                <small>Current due date</small>
-                <strong data-playground-due-label>10 Sep 2026</strong>
+            <div class="playground-schedule" aria-hidden="true" data-playground-schedule>
+              <div class="playground-schedule-lane playground-current-lane">
+                <span class="playground-lane-label">Current occurrence</span>
+                <div class="playground-lane-content">
+                  <div class="playground-lane-track">
+                    <span class="playground-lane-window" data-playground-current-window><span>HeadsUp window</span></span>
+                    <span class="playground-window-endpoint playground-window-start"></span>
+                    <span class="playground-window-endpoint playground-window-end"></span>
+                  </div>
+                  <dl class="playground-event-grid playground-current-events">
+                    <div><dt>HeadsUp begins</dt><dd data-playground-current-start-date></dd></div>
+                    <div><dt>Preview date</dt><dd data-playground-current-preview-date></dd></div>
+                    <div><dt>Current due date</dt><dd data-playground-current-due-date></dd></div>
+                    <div><dt>Completed on</dt><dd data-playground-completed-date></dd></div>
+                  </dl>
+                </div>
               </div>
-              <div class="playground-point playground-point-completed">
-                <span class="playground-dot"></span>
-                <small>Completed on</small>
-                <strong data-playground-completed-label>13 Sep 2026</strong>
-              </div>
-              <div class="playground-point playground-point-result">
-                <span class="playground-dot"></span>
-                <small data-playground-next-caption>Next due date will be scheduled on</small>
-                <strong data-playground-next-label>Not scheduled</strong>
+              <div class="playground-schedule-lane playground-next-lane">
+                <span class="playground-lane-label">Next occurrence</span>
+                <div class="playground-lane-content">
+                  <div class="playground-lane-track">
+                    <span class="playground-lane-window" data-playground-next-window><span>HeadsUp window</span></span>
+                    <span class="playground-window-endpoint playground-window-start"></span>
+                    <span class="playground-window-endpoint playground-window-end"></span>
+                  </div>
+                  <dl class="playground-event-grid playground-next-events">
+                    <div class="playground-next-start-event"><dt>HeadsUp begins</dt><dd data-playground-next-start-date></dd></div>
+                    <div><dt data-playground-next-caption>Next due date</dt><dd data-playground-next-due-date></dd></div>
+                  </dl>
+                </div>
               </div>
             </div>
-            <p class="playground-result" role="status" aria-live="polite" data-playground-result>You complete this one on 13 September 2026. No follow-up is created automatically.</p>
-            <p class="playground-local">This playground runs locally in your browser and saves nothing.</p>
+            <div class="playground-result-summary">
+              <p><strong>Your HeadsUp:</strong> <span data-playground-headsup-summary></span></p>
+              <p><strong>On the preview date:</strong> <span data-playground-preview-summary></span></p>
+              <p><strong>What happens next:</strong> <span data-playground-next-summary></span></p>
+            </div>
+            <p class="sr-only" aria-live="polite" aria-atomic="true" data-playground-announcement></p>
+          </section>
+
+          <div class="playground-actions">
+            <button type="button" class="playground-reset" data-playground-reset>Reset example</button>
+            <p>This playground runs locally in your browser and saves nothing.</p>
           </div>
         </div>
       </div>
@@ -438,17 +513,21 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="brand" href="/">
-          <img src="/assets/logo.svg" alt="" width="30" height="30">
+          <span class="brand-mark" aria-hidden="true"></span>
           <span class="brand-name">Mundane<b>Apps</b></span>
         </a>
         <p>Quiet, privacy-first apps for everyday life.</p>
         <p style="margin-top:10px"><a href="/#circle">Join Mundane Circle →</a></p>
+        <nav class="footer-socials" aria-label="MundaneApps social links">
+          <a class="footer-social-link footer-social-discord" href="https://discord.gg/KyemSVPEU" target="_blank" rel="noopener noreferrer" aria-label="Join MundaneApps on Discord" title="Discord"></a>
+          <span class="footer-social-link footer-social-placeholder footer-social-instagram" role="img" aria-label="Instagram link coming soon" aria-disabled="true" title="Instagram link coming soon"></span>
+          <span class="footer-social-link footer-social-placeholder footer-social-twitter" role="img" aria-label="Twitter link coming soon" aria-disabled="true" title="Twitter link coming soon"></span>
+        </nav>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
           <h4>Products</h4>
           <a href="/headsup">HeadsUp</a>
-          <a href="/#circle">Mundane Circle</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
@@ -458,8 +537,6 @@
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
-          <a href="/privacy">Privacy Policy</a>
-          <a href="/terms">Terms of Service</a>
           <a href="/delete-account">Delete account</a>
         </div>
       </div>
@@ -470,7 +547,7 @@
     </div>
   </footer>
 
-  <script src="/site-config.js"></script>
+  <script src="/site-config.js?v=20260809"></script>
   <script src="/main.js" defer></script>
 </body>
 </html>

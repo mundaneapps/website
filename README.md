@@ -48,7 +48,8 @@ supabase login
 supabase link --project-ref YOUR_PROJECT_REF
 supabase db push
 cp supabase/.env.example supabase/.env.local
-# Fill supabase/.env.local. It is ignored by git.
+# Fill supabase/.env.local, including the private Mundane Circle Discord invite.
+# The file is ignored by git.
 supabase secrets set --env-file supabase/.env.local
 supabase functions deploy site-signup
 supabase functions deploy manage-signup
@@ -84,9 +85,9 @@ curl --request POST \
 ## Before publishing: required
 
 - [ ] **[HUMAN]** In `terms.html`, replace **`[legal name/entity, to be
-      supplied]`** (§ intro) with the final registered/legal publisher name.
+      supplied]`** (introductory section) with the final registered/legal publisher name.
 - [ ] **[HUMAN]** In `terms.html`, replace **`[Governing-law jurisdiction, to
-      be supplied]`** (§9) with the governing-law jurisdiction (and optional
+      be supplied]`** (section 9) with the governing-law jurisdiction (and optional
       venue/arbitration clause).
 - [ ] Confirm the policy version on `privacy.html`/`terms.html` (currently
       `2026-07`) matches `kTermsVersion` in the app's

@@ -33,10 +33,6 @@ Introduce MundaneApps as an organization: the kind of apps it chooses to make an
 
 > Meet HeadsUp
 
-**Secondary action**
-
-> Why we build this way
-
 **Trust note**
 
 > No ads. No third-party tracking. An independent two-person studio, mindful of what you pay.
@@ -70,10 +66,6 @@ Show how the first MundaneApps product helps with the everyday things people nee
 
 > Explore HeadsUp
 
-**Secondary action**
-
-> See the screens
-
 ### 3. Mundane Circle
 
 #### Purpose
@@ -95,6 +87,18 @@ Invite visitors to help identify everyday problems and shape the products Mundan
 - Help improve HeadsUp as we build it.
 - Share problems to solve, vote and comment to prioritize what’s next.
 - Join early research and get early access to new apps.
+
+**Public community action**
+
+> Join the public MundaneApps Discord
+
+**Inner Circle form heading**
+
+> Join the Mundane Circle
+
+**Inner Circle form description**
+
+> Enter your email and we’ll send your private Discord invite.
 
 **Email label**
 
@@ -126,9 +130,15 @@ Close with a concise reminder of the MundaneApps promise, provide a final route 
 
 **Navigation groups**
 
-- Products: HeadsUp, Mundane Circle
+- Products: HeadsUp
 - Company: About us, Support, info@mundaneapps.com
-- Legal: Privacy Policy, Terms of Service, Delete account
+- Legal: Delete account
+
+**Social links**
+
+- Discord: active
+- Instagram: placeholder until the URL is supplied
+- Twitter: placeholder until the URL is supplied
 
 **Copyright**
 
@@ -242,27 +252,15 @@ Resolve the gap established above. HeadsUp gives the lead-up a visible place, ke
 
 **Heading**
 
-> HeadsUp gives the lead-up a place to live.
+> A HeadsUp on what matters, with time to prepare.
 
 **Description**
 
-> HeadsUp brings what’s coming into view early, with notes, decisions, and next steps attached, so you can prepare at your pace without carrying it all in your head.
+> HeadsUp keeps important tasks together in one place and brings each one into view early, so you can prepare at your pace and keep your mind at peace.
 
-Treat this as the product’s central promise and the visual turning point of the page. Give it full-width presence, hero-scale typography, and clear separation from both the problem above and the proof that follows.
+Treat this as the product’s central promise and the visual turning point of the page. Pair a positive human illustration on the left with the hero-scale promise on the right, showing the mental relief of no longer carrying everything in your head. Stack the image above the copy on mobile.
 
-**Lead-time illustration**
-
-> Get a HeadsUp on 10 August. Due on 31 August.
-
-> Twenty-one days of useful lead time.
-
-Present this as one compact annotation attached to the timeline, not as another section heading.
-
-**Timeline label**
-
-> HeadsUp lead-time window
-
-**How the window helps**
+**Three supporting features**
 
 - See it early: Know what’s coming while there’s time to prepare.
 - Keep context attached: Keep notes, dates, and decisions together.
@@ -372,7 +370,7 @@ Turn the solution into visible proof. The sequence moves from control, to focus,
 
 #### Purpose
 
-Let visitors experience the difference between the three cadence types instead of reading another feature explanation. Changing the completion date should immediately show whether the cadence ends, follows its fixed schedule, or moves with the person.
+Let visitors understand when a task enters the HeadsUp Home page, how much preparation time remains, and what each cadence schedules after completion.
 
 #### Refined copy
 
@@ -382,9 +380,22 @@ Let visitors experience the difference between the three cadence types instead o
 
 **Description**
 
-> Choose a cadence, adjust the dates, and see exactly where its follow-up date is counted from.
+> Choose when a task is due, decide how early you want to see it, and explore what each cadence schedules next.
 
 #### Playground controls
+
+**When do you want a HeadsUp?**
+
+- Task name
+- Due date
+- Preview date
+- Give me a HeadsUp {amount} {period} before.
+
+**What happens after completion?**
+
+- If you complete it on
+- Cadence type
+- Recurrence settings
 
 **Cadence type**
 
@@ -392,14 +403,9 @@ Let visitors experience the difference between the three cadence types instead o
 - Fixed schedule
 - On completion
 
-**Shared inputs**
-
-- Current due date
-- Completed on
-
 **Repeating-cadence inputs**
 
-- Follow-up after
+- Repeat every
 - Time period
 - Days, weeks, months, or years
 
@@ -414,11 +420,27 @@ Let visitors experience the difference between the three cadence types instead o
 
 **Advanced monthly rule**
 
-- Choose an occurrence (1st, 2nd, 3rd, 4th, or Last) and a weekday.
+- Add one or more occurrence and weekday combinations.
 
 **Advanced yearly rule**
 
-- Choose a month, occurrence, and weekday.
+- Add one or more month, occurrence, and weekday combinations.
+
+#### Live explanation
+
+Present three connected statements:
+
+**Your HeadsUp**
+
+> {Task} appears on Home from {HeadsUp start date}, {HeadsUp window} before its due date.
+
+**On the preview date**
+
+> {Task status}. {Time until HeadsUp, time to prepare, overdue duration, or completion status}.
+
+**What happens next**
+
+> {Next due date and the rule it follows}.
 
 #### One time
 
@@ -428,11 +450,11 @@ Let visitors experience the difference between the three cadence types instead o
 
 **Explanation**
 
-> This cadence ends when you complete it. If you need it again, you choose a new date.
+> This task ends after completion. No next due date is scheduled automatically.
 
 **Dynamic result**
 
-> You complete this one on {completion date}. No follow-up is created automatically.
+> No next due date is scheduled automatically. You can choose a new date later if you need it again.
 
 #### Fixed schedule
 
@@ -442,11 +464,11 @@ Let visitors experience the difference between the three cadence types instead o
 
 **Explanation**
 
-> The follow-up stays on schedule. Its due date is one interval after this one’s due date, even if you complete this one early or late.
+> The calendar keeps the next occurrence on schedule. Completion does not reanchor it.
 
 **Dynamic result**
 
-> Follow-up due {next due date}: one interval after this due date. Completing this one on {completion date} does not change it.
+> The next due date is {next due date}, following {fixed schedule rule}.
 
 #### On completion
 
@@ -456,26 +478,32 @@ Let visitors experience the difference between the three cadence types instead o
 
 **Explanation**
 
-> The follow-up moves with completion. Its due date is one interval after the day you complete this one.
+> Completion sets the next due date.
 
 **Dynamic result**
 
-> Follow-up due {next due date}: one interval after you complete this one.
+> The next due date is {next due date}, {interval} after completion.
 
 #### Working illustration
 
-Show three points on one timeline:
+Show the current and next occurrence as two lanes on one chronological timeline:
 
-1. Current due date
-2. Completed on
-3. Next due date will be scheduled on
+1. Current HeadsUp window begins
+2. Current due date
+3. Preview date
+4. Completed on
+5. Next HeadsUp window begins
+6. Next due date
 
-Changing the completion date updates the third point immediately:
+Long quiet periods may be compressed but must be labelled with their actual duration. If the current and next HeadsUp windows overlap, show and explain the overlap.
+
+Changing the controls updates every affected date immediately:
 
 - One time ends with no automatic next date.
-- Fixed schedule places the follow-up one selected interval after this due date; changing the completion date does not move it.
-- A fixed schedule with an advanced rule places the follow-up on the next matching calendar pattern; changing the completion date does not move it.
+- Fixed schedule remains anchored to the calendar and advances to the first matching date after completion if scheduled dates have already passed.
+- A fixed schedule with multiple advanced patterns uses the earliest next matching date.
 - On completion places the follow-up one selected interval after the actual completion date.
+- The selected HeadsUp window is applied to both the current and next due date.
 
 #### Behavioural source of truth
 
@@ -484,12 +512,19 @@ Changing the completion date updates the third point immediately:
 - Fixed-schedule cadences advance from their calendar schedule, regardless of when they are completed.
 - On-completion cadences advance from the actual completion date.
 - Day and week intervals use calendar-day arithmetic. Month and year intervals preserve the intended day where possible and clamp safely for shorter months.
+- A HeadsUp window controls when a cadence becomes eligible for the Home page. It does not change the cadence or due date.
 
 #### Playground scope
 
-- Keep the first version focused on periodic intervals so the difference between the three cadence types is immediately clear.
 - Run all calculations locally in the browser; the playground stores and submits nothing.
-- Use labelled controls and announce the updated result accessibly. Do not rely on timeline color alone.
+- Use labelled controls, visible validation, and a debounced live summary. Do not rely on timeline color alone.
+- Allow past or future due dates and early or late completion so every meaningful state can be explored.
+- Provide a Reset example action that restores the annual health-check scenario.
+
+#### Product alignment note
+
+The playground treats HeadsUp months and years as calendar periods. The HeadsUp application should align Home eligibility with the same rule so its form preview and Home behavior remain consistent.
+
 ## About page
 
 ### MundaneApps principles

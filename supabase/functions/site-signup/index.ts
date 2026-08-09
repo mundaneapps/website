@@ -5,6 +5,7 @@ import { emailFrame, emailFrom, replyTo, sendEmail } from "../_shared/resend.ts"
 const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
 const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 const rateLimitSalt = Deno.env.get("RATE_LIMIT_SALT") || "mundaneapps-signup";
+const mundaneCircleInviteUrl = Deno.env.get("MUNDANE_CIRCLE_DISCORD_INVITE_URL") || "";
 const manageUrl = `${supabaseUrl}/functions/v1/manage-signup`;
 const supabase = createClient(supabaseUrl, serviceRoleKey, { auth: { persistSession: false } });
 
@@ -83,18 +84,19 @@ Deno.serve(async (request) => {
   if (!subscriber.confirmation_email_sent_at || resubscribed) {
     const unsubscribeUrl = `${manageUrl}?action=unsubscribe&audience=${audience}&token=${subscriber.unsubscribe_token}`;
     const isBeta = signup === "beta";
-    const title = isBeta ? "You're on the HeadsUp beta list" : "Welcome to the Mundane Circle";
+    const title = isBeta ? "You're on the HeadsUp beta list" : "Your Mundane Circle invite";
     const body = isBeta
       ? `<p style="font-size:17px;line-height:1.65">We saved your request for <strong>${escapeHtml(platform)}</strong> beta access. We will email you when a suitable testing place opens and when there is a meaningful HeadsUp update.</p>`
-      : '<p style="font-size:17px;line-height:1.65">Your community invitation request is saved. We will email you about invitations, product discussions, and meaningful roadmap decisions, not generic marketing.</p>';
+      : `<p style="font-size:17px;line-height:1.65">Welcome to the Mundane Circle. Join the private Discord to help refine HeadsUp, discuss problems worth solving, and take part in early research.</p><p style="margin:30px 0"><a href="${escapeHtml(mundaneCircleInviteUrl)}" style="display:inline-block;border-radius:12px;background:#35617a;color:#ffffff;font-size:16px;font-weight:700;line-height:1;padding:15px 20px;text-decoration:none">Join the Mundane Circle on Discord</a></p><p style="font-size:14px;line-height:1.6;color:#5f687a">This invite is intended for you as a Mundane Circle member.</p>`;
     try {
+      if (!isBeta && !mundaneCircleInviteUrl) throw new Error("MUNDANE_CIRCLE_DISCORD_INVITE_URL is not configured");
       const sent = await sendEmail({
         from: emailFrom,
         to: [email],
         reply_to: replyTo,
         subject: title,
         html: emailFrame(title, body, unsubscribeUrl),
-        text: `${title}\n\n${isBeta ? `We saved your request for ${platform} beta access.` : "Your Mundane Circle invitation request is saved."}\n\nStop updates: ${unsubscribeUrl}`,
+        text: `${title}\n\n${isBeta ? `We saved your request for ${platform} beta access.` : `Welcome to the Mundane Circle. Join the private Discord: ${mundaneCircleInviteUrl}`}\n\nStop updates: ${unsubscribeUrl}`,
         tags: [{ name: "audience", value: audience }, { name: "kind", value: "confirmation" }],
       }, resubscribed ? `signup-resubscribe-${audience}-${crypto.randomUUID()}` : `signup-confirmation-${audience}-${subscriber.id}`);
       const sentAt = new Date().toISOString();

@@ -15,12 +15,13 @@
   // Explicit theme control. theme-init.js applies the saved choice before CSS
   // loads; this control owns later changes without flashing the wrong theme.
   var themeStorageKey = "mundaneapps-theme";
+  var themeCookieKey = "mundaneapps-theme";
   var themeHost = document.querySelector(".nav-cluster") || document.querySelector(".site-header nav");
   var themeToggle = null;
 
-  var updateThemeColor = function (theme) {
-    var isProductPage = document.body.classList.contains("theme-headsup");
-    var color = theme === "dark" ? "#000000" : (isProductPage ? "#008080" : "#ABCDEF");
+  var updateThemeColor = function () {
+    var color = window.getComputedStyle(document.body).getPropertyValue("--browser-theme-color").trim();
+    if (!color) return;
     var metas = document.querySelectorAll('meta[name="theme-color"]');
     Array.prototype.forEach.call(metas, function (meta, index) {
       if (index === 0) {
@@ -45,6 +46,7 @@
     document.documentElement.style.colorScheme = theme;
     if (persist) {
       try { window.localStorage.setItem(themeStorageKey, theme); } catch (_) {}
+      try { document.cookie = themeCookieKey + "=" + theme + "; path=/; max-age=31536000; SameSite=Lax"; } catch (_) {}
     }
     if (themeToggle) {
       var next = theme === "dark" ? "light" : "dark";
@@ -52,7 +54,7 @@
       themeToggle.setAttribute("title", "Switch to " + next + " mode");
       themeToggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
     }
-    updateThemeColor(theme);
+    updateThemeColor();
     syncThemeAssets(theme);
     document.dispatchEvent(new CustomEvent("mundaneapps:themechange", { detail: { theme: theme } }));
   };
@@ -150,8 +152,8 @@
             form.classList.add("joined");
             if (status) {
               status.textContent = res.d.emailPending
-                ? (signup === "beta" ? "You're registered for HeadsUp beta access. Your confirmation email may take a moment." : "You're on the Mundane Circle invitation list. Your confirmation email may take a moment.")
-                : (signup === "beta" ? "You're registered for HeadsUp beta access. Check your inbox." : "You're in. Welcome to the Mundane Circle. Check your inbox.");
+                ? (signup === "beta" ? "You're registered for HeadsUp beta access. Your confirmation email may take a moment." : "You're on the Mundane Circle list. Your private Discord invite may take a moment to arrive.")
+                : (signup === "beta" ? "You're registered for HeadsUp beta access. Check your inbox." : "You're in. Check your inbox for the private Mundane Circle Discord invite.");
               status.classList.add("ok");
             }
           } else {
@@ -273,36 +275,67 @@
     });
   }
 
-  // Cadence playground: a local, dependency-free illustration of the three
-  // scheduling models used by HeadsUp. It stores and submits nothing.
+  // Cadence playground: a local scheduling simulator for the HeadsUp window
+  // and the three cadence models. It stores and submits nothing.
   var cadencePlayground = document.querySelector("[data-cadence-playground]");
   if (cadencePlayground) {
-    var cadenceTypeInputs = Array.prototype.slice.call(cadencePlayground.querySelectorAll('input[name="playground-type"]'));
-    var fixedRuleInputs = Array.prototype.slice.call(cadencePlayground.querySelectorAll('input[name="playground-fixed-rule"]'));
-    var frequencyInputs = Array.prototype.slice.call(cadencePlayground.querySelectorAll('input[name="playground-frequency"]'));
-    var dueInput = cadencePlayground.querySelector("[data-playground-due]");
-    var completedInput = cadencePlayground.querySelector("[data-playground-completed]");
-    var fixedRuleFields = cadencePlayground.querySelector("[data-playground-fixed-rule]");
-    var repeatFields = cadencePlayground.querySelector("[data-playground-repeat]");
-    var advancedFields = cadencePlayground.querySelector("[data-playground-advanced]");
-    var patternFields = Array.prototype.slice.call(cadencePlayground.querySelectorAll("[data-playground-pattern]"));
-    var weekdayInputs = Array.prototype.slice.call(cadencePlayground.querySelectorAll("[data-playground-weekday]"));
-    var monthlyOrdinalInput = cadencePlayground.querySelector("[data-playground-monthly-ordinal]");
-    var monthlyWeekdayInput = cadencePlayground.querySelector("[data-playground-monthly-weekday]");
-    var yearlyMonthInput = cadencePlayground.querySelector("[data-playground-yearly-month]");
-    var yearlyOrdinalInput = cadencePlayground.querySelector("[data-playground-yearly-ordinal]");
-    var yearlyWeekdayInput = cadencePlayground.querySelector("[data-playground-yearly-weekday]");
-    var amountInput = cadencePlayground.querySelector("[data-playground-amount]");
-    var unitInput = cadencePlayground.querySelector("[data-playground-unit]");
-    var titleOutput = cadencePlayground.querySelector("[data-playground-title]");
-    var explanationOutput = cadencePlayground.querySelector("[data-playground-explanation]");
-    var timelineOutput = cadencePlayground.querySelector("[data-playground-timeline]");
-    var intervalLabel = cadencePlayground.querySelector("[data-playground-interval-label]");
-    var dueLabel = cadencePlayground.querySelector("[data-playground-due-label]");
-    var completedLabel = cadencePlayground.querySelector("[data-playground-completed-label]");
-    var nextCaption = cadencePlayground.querySelector("[data-playground-next-caption]");
-    var nextLabel = cadencePlayground.querySelector("[data-playground-next-label]");
-    var resultOutput = cadencePlayground.querySelector("[data-playground-result]");
+    var playgroundQuery = function (selector) { return cadencePlayground.querySelector(selector); };
+    var playgroundQueryAll = function (selector) { return Array.prototype.slice.call(cadencePlayground.querySelectorAll(selector)); };
+    var taskInput = playgroundQuery("[data-playground-task]");
+    var dueInput = playgroundQuery("[data-playground-due]");
+    var previewInput = playgroundQuery("[data-playground-preview]");
+    var completedInput = playgroundQuery("[data-playground-completed]");
+    var headsUpAmountInput = playgroundQuery("[data-playground-headsup-amount]");
+    var headsUpUnitInput = playgroundQuery("[data-playground-headsup-unit]");
+    var amountInput = playgroundQuery("[data-playground-amount]");
+    var unitInput = playgroundQuery("[data-playground-unit]");
+    var cadenceTypeInputs = playgroundQueryAll('input[name="playground-type"]');
+    var fixedRuleInputs = playgroundQueryAll('input[name="playground-fixed-rule"]');
+    var frequencyInputs = playgroundQueryAll('input[name="playground-frequency"]');
+    var weekdayInputs = playgroundQueryAll("[data-playground-weekday]");
+    var fixedRuleFields = playgroundQuery("[data-playground-fixed-rule]");
+    var repeatFields = playgroundQuery("[data-playground-repeat]");
+    var advancedFields = playgroundQuery("[data-playground-advanced]");
+    var patternFields = playgroundQueryAll("[data-playground-pattern]");
+    var monthlyOrdinalInput = playgroundQuery("[data-playground-monthly-ordinal]");
+    var monthlyWeekdayInput = playgroundQuery("[data-playground-monthly-weekday]");
+    var yearlyMonthInput = playgroundQuery("[data-playground-yearly-month]");
+    var yearlyOrdinalInput = playgroundQuery("[data-playground-yearly-ordinal]");
+    var yearlyWeekdayInput = playgroundQuery("[data-playground-yearly-weekday]");
+    var addMonthlyButton = playgroundQuery("[data-playground-add-monthly]");
+    var addYearlyButton = playgroundQuery("[data-playground-add-yearly]");
+    var monthlyList = playgroundQuery("[data-playground-monthly-list]");
+    var yearlyList = playgroundQuery("[data-playground-yearly-list]");
+    var resetButton = playgroundQuery("[data-playground-reset]");
+    var headsUpError = playgroundQuery("[data-playground-headsup-error]");
+    var cadenceError = playgroundQuery("[data-playground-cadence-error]");
+    var currentTitle = playgroundQuery("[data-playground-current-title]");
+    var currentExplanation = playgroundQuery("[data-playground-current-explanation]");
+    var nextTitle = playgroundQuery("[data-playground-next-title]");
+    var nextExplanation = playgroundQuery("[data-playground-next-explanation]");
+    var observationOutput = playgroundQuery("[data-playground-observation]");
+    var headsUpSummaryOutput = playgroundQuery("[data-playground-headsup-summary]");
+    var previewSummaryOutput = playgroundQuery("[data-playground-preview-summary]");
+    var nextSummaryOutput = playgroundQuery("[data-playground-next-summary]");
+    var announcementOutput = playgroundQuery("[data-playground-announcement]");
+    var gapLabel = playgroundQuery("[data-playground-gap-label]");
+    var scheduleOutput = playgroundQuery("[data-playground-schedule]");
+    var currentLane = playgroundQuery(".playground-current-lane");
+    var nextLane = playgroundQuery(".playground-next-lane");
+    var nextCaption = playgroundQuery("[data-playground-next-caption]");
+    var currentStartDateOutput = playgroundQuery("[data-playground-current-start-date]");
+    var currentDueDateOutput = playgroundQuery("[data-playground-current-due-date]");
+    var completedDateOutput = playgroundQuery("[data-playground-completed-date]");
+    var nextStartDateOutput = playgroundQuery("[data-playground-next-start-date]");
+    var nextDueDateOutput = playgroundQuery("[data-playground-next-due-date]");
+    var currentPreviewDateOutput = playgroundQuery("[data-playground-current-preview-date]");
+    var meterPreview = playgroundQuery("[data-playground-meter-preview]");
+    var currentStartLabel = playgroundQuery("[data-playground-current-start-label]");
+    var previewLabel = playgroundQuery("[data-playground-preview-label]");
+    var currentDueLabel = playgroundQuery("[data-playground-current-due-label]");
+    var monthlyRules = [];
+    var yearlyRules = [];
+    var announcementTimer = null;
 
     var startOfLocalDay = function (date) {
       return new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12);
@@ -335,34 +368,39 @@
       var monthDay = Math.min(preferredDay || from.getDate(), daysInMonth(target.getFullYear(), target.getMonth()));
       return new Date(target.getFullYear(), target.getMonth(), monthDay, 12);
     };
+    var subtractCalendarInterval = function (date, amount, unit) {
+      return addCalendarInterval(date, -amount, unit, date.getDate());
+    };
+    var dayNumber = function (date) {
+      return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000;
+    };
+    var daysBetween = function (earlier, later) {
+      return Math.round(dayNumber(later) - dayNumber(earlier));
+    };
     var formatDate = function (date, long) {
       return date.toLocaleDateString(undefined, long
         ? { day: "numeric", month: "long", year: "numeric" }
         : { day: "numeric", month: "short", year: "numeric" });
     };
-    var selectedCadenceType = function () {
-      var selected = cadenceTypeInputs.find(function (input) { return input.checked; });
-      return selected ? selected.value : "oneTime";
+    var formatInterval = function (amount, unit) {
+      var singular = unit.replace(/s$/, "");
+      return amount + " " + (amount === 1 ? singular : unit);
     };
     var selectedRadioValue = function (inputs, fallback) {
       var selected = inputs.find(function (input) { return input.checked; });
       return selected ? selected.value : fallback;
     };
-    var formatInterval = function (amount, unit) {
-      var singular = unit.replace(/s$/, "");
-      return amount + " " + (amount === 1 ? singular : unit);
+    var selectRadioValue = function (inputs, value) {
+      inputs.forEach(function (input) { input.checked = input.value === value; });
+    };
+    var setError = function (element, message) {
+      element.hidden = !message;
+      element.textContent = message || "";
     };
     var weekdayShortLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     var weekdayLongLabels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var monthLongLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var ordinalLabels = { "1": "1st", "2": "2nd", "3": "3rd", "4": "4th", "-1": "Last" };
-    var nextSelectedWeekday = function (from, weekdays) {
-      for (var offset = 1; offset <= 7; offset += 1) {
-        var candidate = addCalendarInterval(from, offset, "days");
-        if (weekdays.indexOf(candidate.getDay()) !== -1) return candidate;
-      }
-      return null;
-    };
     var ordinalWeekdayInMonth = function (year, month, weekday, ordinal) {
       if (ordinal === -1) {
         var last = new Date(year, month + 1, 0, 12);
@@ -373,30 +411,149 @@
       var shift = (weekday - first.getDay() + 7) % 7;
       return new Date(year, month, 1 + shift + (ordinal - 1) * 7, 12);
     };
-    var nextMonthlyPattern = function (from, weekday, ordinal) {
-      for (var offset = 0; offset <= 12; offset += 1) {
-        var monthBase = new Date(from.getFullYear(), from.getMonth() + offset, 1, 12);
-        var candidate = ordinalWeekdayInMonth(monthBase.getFullYear(), monthBase.getMonth(), weekday, ordinal);
-        if (candidate.getTime() > from.getTime()) return candidate;
+    var nextSelectedWeekday = function (from, weekdays) {
+      for (var offset = 1; offset <= 7; offset += 1) {
+        var candidate = addCalendarInterval(from, offset, "days");
+        if (weekdays.indexOf(candidate.getDay()) !== -1) return candidate;
       }
       return null;
     };
-    var nextYearlyPattern = function (from, month, weekday, ordinal) {
-      for (var offset = 0; offset <= 5; offset += 1) {
-        var candidate = ordinalWeekdayInMonth(from.getFullYear() + offset, month, weekday, ordinal);
-        if (candidate.getTime() > from.getTime()) return candidate;
+    var nextMonthlyRulesDate = function (from, rules) {
+      var earliest = null;
+      for (var offset = 0; offset <= 24; offset += 1) {
+        var monthBase = new Date(from.getFullYear(), from.getMonth() + offset, 1, 12);
+        rules.forEach(function (rule) {
+          var candidate = ordinalWeekdayInMonth(monthBase.getFullYear(), monthBase.getMonth(), rule.weekday, rule.ordinal);
+          if (candidate.getTime() > from.getTime() && (!earliest || candidate.getTime() < earliest.getTime())) earliest = candidate;
+        });
+        if (earliest) return earliest;
       }
       return null;
+    };
+    var nextYearlyRulesDate = function (from, rules) {
+      var earliest = null;
+      for (var offset = 0; offset <= 10; offset += 1) {
+        rules.forEach(function (rule) {
+          var candidate = ordinalWeekdayInMonth(from.getFullYear() + offset, rule.month, rule.weekday, rule.ordinal);
+          if (candidate.getTime() > from.getTime() && (!earliest || candidate.getTime() < earliest.getTime())) earliest = candidate;
+        });
+        if (earliest) return earliest;
+      }
+      return null;
+    };
+    var monthlyRuleLabel = function (rule) {
+      return ordinalLabels[String(rule.ordinal)] + " " + weekdayLongLabels[rule.weekday];
+    };
+    var yearlyRuleLabel = function (rule) {
+      return monthLongLabels[rule.month] + ", " + ordinalLabels[String(rule.ordinal)] + " " + weekdayLongLabels[rule.weekday];
+    };
+    var renderRuleList = function (list, rules, labelForRule, type) {
+      while (list.firstChild) list.removeChild(list.firstChild);
+      rules.forEach(function (rule, index) {
+        var item = document.createElement("li");
+        var label = document.createElement("span");
+        var remove = document.createElement("button");
+        label.textContent = labelForRule(rule);
+        remove.type = "button";
+        remove.textContent = "Remove";
+        remove.setAttribute("data-remove-rule", type);
+        remove.setAttribute("data-rule-index", String(index));
+        remove.setAttribute("aria-label", "Remove " + label.textContent);
+        item.appendChild(label);
+        item.appendChild(remove);
+        list.appendChild(item);
+      });
+    };
+    var renderRuleLists = function () {
+      renderRuleList(monthlyList, monthlyRules, monthlyRuleLabel, "monthly");
+      renderRuleList(yearlyList, yearlyRules, yearlyRuleLabel, "yearly");
+    };
+    var buildFixedNextDate = function (due, completed, amount, unit, advancedActive, frequency) {
+      var threshold = completed.getTime() > due.getTime() ? completed : due;
+      var firstAfterDue = null;
+      var next = null;
+      var ruleDescription = "";
+      if (!advancedActive) {
+        firstAfterDue = addCalendarInterval(due, amount, unit, due.getDate());
+        next = firstAfterDue;
+        var guard = 0;
+        while (next.getTime() <= completed.getTime() && guard < 1000) {
+          next = addCalendarInterval(next, amount, unit, due.getDate());
+          guard += 1;
+        }
+        ruleDescription = "its " + formatInterval(amount, unit) + " fixed schedule";
+      } else if (frequency === "weekly") {
+        var weekdays = weekdayInputs.filter(function (input) { return input.checked; }).map(function (input) { return parseInt(input.value, 10); }).sort();
+        if (!weekdays.length) return { error: "Choose at least one weekday for the advanced weekly rule." };
+        firstAfterDue = nextSelectedWeekday(due, weekdays);
+        next = nextSelectedWeekday(threshold, weekdays);
+        ruleDescription = "its " + weekdays.map(function (day) { return weekdayShortLabels[day]; }).join(", ") + " schedule";
+      } else if (frequency === "monthly") {
+        if (!monthlyRules.length) return { error: "Add at least one monthly pattern." };
+        firstAfterDue = nextMonthlyRulesDate(due, monthlyRules);
+        next = nextMonthlyRulesDate(threshold, monthlyRules);
+        ruleDescription = "its monthly " + monthlyRules.map(monthlyRuleLabel).join(", ") + " pattern";
+      } else {
+        if (!yearlyRules.length) return { error: "Add at least one yearly pattern." };
+        firstAfterDue = nextYearlyRulesDate(due, yearlyRules);
+        next = nextYearlyRulesDate(threshold, yearlyRules);
+        ruleDescription = "its yearly " + yearlyRules.map(yearlyRuleLabel).join(", ") + " pattern";
+      }
+      return {
+        date: next,
+        lateCompletionAdvancedSchedule: firstAfterDue && firstAfterDue.getTime() <= completed.getTime(),
+        ruleDescription: ruleDescription
+      };
+    };
+    var statusForOccurrence = function (taskName, preview, start, due, occurrenceLabel) {
+      if (preview.getTime() < start.getTime()) {
+        var untilStart = daysBetween(preview, start);
+        return {
+          title: taskName + " is not on Home yet.",
+          detail: "Its " + occurrenceLabel + " HeadsUp begins in " + untilStart + " " + (untilStart === 1 ? "day" : "days") + ", on " + formatDate(start, true) + "."
+        };
+      }
+      if (preview.getTime() <= due.getTime()) {
+        var timeToPrepare = daysBetween(preview, due);
+        return {
+          title: taskName + " is visible on Home.",
+          detail: timeToPrepare === 0
+            ? "It is due today."
+            : "You have " + timeToPrepare + " " + (timeToPrepare === 1 ? "day" : "days") + " to prepare before it is due."
+        };
+      }
+      var overdueDays = daysBetween(due, preview);
+      return {
+        title: taskName + " is overdue.",
+        detail: "It is overdue by " + overdueDays + " " + (overdueDays === 1 ? "day" : "days") + "."
+      };
+    };
+    var queueAnnouncement = function (message) {
+      window.clearTimeout(announcementTimer);
+      announcementTimer = window.setTimeout(function () { announcementOutput.textContent = message; }, 260);
+    };
+    var renderInvalidPlayground = function (message, cadenceMessage) {
+      currentTitle.textContent = "Choose complete dates to explore the schedule.";
+      currentExplanation.textContent = message;
+      nextTitle.textContent = "The next occurrence needs a complete cadence.";
+      nextExplanation.textContent = cadenceMessage || "Complete the highlighted fields to continue.";
+      headsUpSummaryOutput.textContent = message;
+      previewSummaryOutput.textContent = "A valid due date, Preview date, and HeadsUp window are needed.";
+      nextSummaryOutput.textContent = cadenceMessage || "Complete the cadence settings to calculate the next due date.";
+      queueAnnouncement(message + " " + (cadenceMessage || ""));
     };
     var renderCadencePlayground = function () {
+      var taskName = taskInput.value.trim() || "This task";
       var due = parseLocalDate(dueInput.value);
+      var preview = parseLocalDate(previewInput.value);
       var completed = parseLocalDate(completedInput.value);
-      var type = selectedCadenceType();
+      var type = selectedRadioValue(cadenceTypeInputs, "fixedSchedule");
       var fixedRule = selectedRadioValue(fixedRuleInputs, "simple");
       var frequency = selectedRadioValue(frequencyInputs, "weekly");
-      var amount = Math.min(Math.max(parseInt(amountInput.value, 10) || 1, 1), 99);
-      var unit = unitInput.value || "months";
-      var readableInterval = formatInterval(amount, unit);
+      var headsUpAmount = parseInt(headsUpAmountInput.value, 10);
+      var headsUpUnit = headsUpUnitInput.value || "weeks";
+      var amount = parseInt(amountInput.value, 10);
+      var unit = unitInput.value || "years";
       var advancedActive = type === "fixedSchedule" && fixedRule === "advanced";
       fixedRuleFields.hidden = type !== "fixedSchedule";
       repeatFields.hidden = type === "oneTime" || advancedActive;
@@ -404,91 +561,195 @@
       patternFields.forEach(function (field) {
         field.hidden = !advancedActive || field.getAttribute("data-playground-pattern") !== frequency;
       });
-      timelineOutput.classList.remove("is-one-time", "is-fixed", "is-completion");
-      timelineOutput.classList.add(type === "fixedSchedule" ? "is-fixed" : type === "activityBased" ? "is-completion" : "is-one-time");
 
-      if (!due || !completed) {
-        resultOutput.textContent = "Choose both dates to see what happens next.";
+      var headsUpErrorMessage = !Number.isFinite(headsUpAmount) || headsUpAmount < 1 || headsUpAmount > 99
+        ? "Enter a HeadsUp amount from 1 to 99."
+        : "";
+      setError(headsUpError, headsUpErrorMessage);
+      setError(cadenceError, "");
+      if (!due || !preview || headsUpErrorMessage) {
+        renderInvalidPlayground("Choose a valid due date, Preview date, and HeadsUp window.");
         return;
       }
 
-      dueLabel.textContent = formatDate(due, false);
-      completedLabel.textContent = formatDate(completed, false);
+      var currentHeadsUpStart = subtractCalendarInterval(due, headsUpAmount, headsUpUnit);
+      var headsUpInterval = formatInterval(headsUpAmount, headsUpUnit);
+      currentStartLabel.textContent = formatDate(currentHeadsUpStart, false);
+      currentDueLabel.textContent = formatDate(due, false);
+      previewLabel.textContent = formatDate(preview, false);
+      var meterPosition = preview.getTime() <= currentHeadsUpStart.getTime()
+        ? 0
+        : preview.getTime() >= due.getTime()
+          ? 100
+          : (daysBetween(currentHeadsUpStart, preview) / Math.max(1, daysBetween(currentHeadsUpStart, due))) * 100;
+      meterPreview.style.setProperty("--preview-position", Math.max(0, Math.min(100, meterPosition)).toFixed(2) + "%");
+      meterPreview.classList.toggle("is-at-start", meterPosition <= 5);
+      meterPreview.classList.toggle("is-at-end", meterPosition >= 95);
 
-      if (type === "oneTime") {
-        titleOutput.textContent = "This cadence ends when you complete it.";
-        explanationOutput.textContent = "If you need it again, you choose a new date.";
-        intervalLabel.textContent = "";
-        nextCaption.textContent = "Next due date will be scheduled on";
-        nextLabel.textContent = "Not scheduled";
-        resultOutput.textContent = "You complete this one on " + formatDate(completed, true) + ". No follow-up is created automatically.";
-        return;
-      }
-
-      if (type === "fixedSchedule") {
-        var fixedNext;
-        var ruleLabel;
-        var ruleExplanation;
-        if (advancedActive && frequency === "weekly") {
-          var selectedWeekdays = weekdayInputs.filter(function (input) { return input.checked; }).map(function (input) { return parseInt(input.value, 10); }).sort();
-          fixedNext = nextSelectedWeekday(due, selectedWeekdays);
-          if (!fixedNext) {
-            titleOutput.textContent = "Choose at least one weekday.";
-            explanationOutput.textContent = "The advanced weekly rule needs a day before HeadsUp can schedule the next due date.";
-            intervalLabel.textContent = "Choose a weekday";
-            nextCaption.textContent = "Next due date will be scheduled on";
-            nextLabel.textContent = "Choose a weekday";
-            resultOutput.textContent = "Choose at least one weekday to see the next due date.";
-            return;
-          }
-          var selectedWeekdayLabels = selectedWeekdays.map(function (weekday) { return weekdayShortLabels[weekday]; });
-          ruleLabel = "Every " + selectedWeekdayLabels.join(", ") + " from current due date";
-          ruleExplanation = "The next due date is the first selected weekday after the current due date. Completion does not change it.";
-        } else if (advancedActive && frequency === "monthly") {
-          var monthlyOrdinal = parseInt(monthlyOrdinalInput.value, 10);
-          var monthlyWeekday = parseInt(monthlyWeekdayInput.value, 10);
-          fixedNext = nextMonthlyPattern(due, monthlyWeekday, monthlyOrdinal);
-          ruleLabel = ordinalLabels[String(monthlyOrdinal)] + " " + weekdayShortLabels[monthlyWeekday] + " each month";
-          ruleExplanation = "The next due date follows the " + ordinalLabels[String(monthlyOrdinal)].toLowerCase() + " " + weekdayLongLabels[monthlyWeekday] + " of the month. Completion does not change it.";
-        } else if (advancedActive) {
-          var yearlyMonth = parseInt(yearlyMonthInput.value, 10);
-          var yearlyOrdinal = parseInt(yearlyOrdinalInput.value, 10);
-          var yearlyWeekday = parseInt(yearlyWeekdayInput.value, 10);
-          fixedNext = nextYearlyPattern(due, yearlyMonth, yearlyWeekday, yearlyOrdinal);
-          ruleLabel = ordinalLabels[String(yearlyOrdinal)] + " " + weekdayShortLabels[yearlyWeekday] + " of " + monthLongLabels[yearlyMonth];
-          ruleExplanation = "The next due date follows the " + ordinalLabels[String(yearlyOrdinal)].toLowerCase() + " " + weekdayLongLabels[yearlyWeekday] + " of " + monthLongLabels[yearlyMonth] + ". Completion does not change it.";
-        } else {
-          fixedNext = addCalendarInterval(due, amount, unit, due.getDate());
-          ruleLabel = readableInterval + " from current due date";
-          ruleExplanation = "Its due date is " + readableInterval + " after the current due date, even if you complete this one early or late.";
+      var nextDue = null;
+      var nextHeadsUpStart = null;
+      var nextRuleDescription = "";
+      var cadenceErrorMessage = "";
+      var lateCompletion = false;
+      if (!completed) {
+        cadenceErrorMessage = "Choose when the current occurrence is completed.";
+      } else if (type !== "oneTime" && (!Number.isFinite(amount) || amount < 1 || amount > 99) && !advancedActive) {
+        cadenceErrorMessage = "Enter a repeat amount from 1 to 99.";
+      } else if (type === "fixedSchedule") {
+        var fixedResult = buildFixedNextDate(due, completed, amount, unit, advancedActive, frequency);
+        if (fixedResult.error) cadenceErrorMessage = fixedResult.error;
+        else {
+          nextDue = fixedResult.date;
+          nextRuleDescription = fixedResult.ruleDescription;
+          lateCompletion = fixedResult.lateCompletionAdvancedSchedule;
         }
-        titleOutput.textContent = "The follow-up stays on schedule.";
-        explanationOutput.textContent = ruleExplanation;
-        intervalLabel.textContent = ruleLabel;
-        nextCaption.textContent = "Next due date will be scheduled on";
-        nextLabel.textContent = formatDate(fixedNext, false);
-        resultOutput.textContent = "Next due date: " + formatDate(fixedNext, true) + ". It follows the fixed schedule, so completing this one on " + formatDate(completed, true) + " does not change it.";
+      } else if (type === "activityBased") {
+        nextDue = addCalendarInterval(completed, amount, unit, completed.getDate());
+        nextRuleDescription = formatInterval(amount, unit) + " after completion";
+      }
+      setError(cadenceError, cadenceErrorMessage);
+      if (nextDue) nextHeadsUpStart = subtractCalendarInterval(nextDue, headsUpAmount, headsUpUnit);
+
+      var currentStatus;
+      if (!completed || preview.getTime() < completed.getTime()) {
+        currentStatus = statusForOccurrence(taskName, preview, currentHeadsUpStart, due, "current");
+      } else if (nextDue && nextHeadsUpStart) {
+        currentStatus = statusForOccurrence(taskName, preview, nextHeadsUpStart, nextDue, "next");
+        currentStatus.detail = "The current occurrence is complete. " + currentStatus.detail;
+      } else {
+        currentStatus = {
+          title: taskName + " is complete.",
+          detail: "No next due date is scheduled automatically."
+        };
+      }
+      currentTitle.textContent = currentStatus.title;
+      currentExplanation.textContent = currentStatus.detail;
+      var headsUpSummary = taskName + " appears on Home from " + formatDate(currentHeadsUpStart, true) + ", " + headsUpInterval + " before its due date.";
+      headsUpSummaryOutput.textContent = headsUpSummary;
+      previewSummaryOutput.textContent = currentStatus.title + " " + currentStatus.detail;
+
+      var observations = [];
+      var nextSummary;
+      if (cadenceErrorMessage) {
+        nextTitle.textContent = "Complete the cadence to see what happens next.";
+        nextExplanation.textContent = cadenceErrorMessage;
+        nextSummary = cadenceErrorMessage;
+      } else if (type === "oneTime") {
+        nextTitle.textContent = "This task ends after completion.";
+        nextExplanation.textContent = "No next due date is scheduled automatically. You can choose a new date later if you need it again.";
+        nextSummary = "No next due date is scheduled automatically.";
+      } else if (type === "fixedSchedule") {
+        nextTitle.textContent = "The calendar keeps the next occurrence on schedule.";
+        nextExplanation.textContent = "The next due date is " + formatDate(nextDue, true) + ", following " + nextRuleDescription + ". Completion does not reanchor it.";
+        nextSummary = "The next due date is " + formatDate(nextDue, true) + ", following " + nextRuleDescription + ".";
+        if (lateCompletion) observations.push("A scheduled date passed before completion, so HeadsUp moves to the first matching date after completion without changing the rule.");
+      } else {
+        nextTitle.textContent = "Completion sets the next due date.";
+        nextExplanation.textContent = "The next due date is " + formatDate(nextDue, true) + ", " + nextRuleDescription + ".";
+        nextSummary = "The next due date is " + formatDate(nextDue, true) + ", counted from completion.";
+      }
+
+      if (nextDue && nextHeadsUpStart) {
+        if (nextHeadsUpStart.getTime() <= due.getTime()) {
+          var overlapDays = Math.max(0, daysBetween(nextHeadsUpStart, due));
+          observations.push("The next occurrence enters its HeadsUp window " + overlapDays + " " + (overlapDays === 1 ? "day" : "days") + " before this one is due.");
+          gapLabel.textContent = "HeadsUp windows overlap by " + overlapDays + " " + (overlapDays === 1 ? "day" : "days");
+        } else {
+          var quietDays = daysBetween(due, nextHeadsUpStart);
+          gapLabel.textContent = "Quiet period compressed: " + quietDays + " " + (quietDays === 1 ? "day" : "days");
+        }
+        var untilNextHeadsUp = daysBetween(preview, nextHeadsUpStart);
+        if (untilNextHeadsUp > 0) nextSummary += " Its HeadsUp begins in " + untilNextHeadsUp + " " + (untilNextHeadsUp === 1 ? "day" : "days") + ".";
+        else if (preview.getTime() <= nextDue.getTime()) nextSummary += " Its HeadsUp window has already begun on the Preview date.";
+      } else {
+        gapLabel.textContent = "No automatic next occurrence";
+      }
+      nextSummaryOutput.textContent = nextSummary;
+      observationOutput.hidden = observations.length === 0;
+      observationOutput.textContent = observations.join(" ");
+
+      if (!completed || cadenceErrorMessage) {
+        scheduleOutput.setAttribute("aria-hidden", "true");
+        nextLane.classList.add("is-terminal");
+        nextCaption.textContent = "Next due date";
+        nextDueDateOutput.textContent = "Complete the cadence";
+        nextSummaryOutput.textContent = nextSummary;
+        queueAnnouncement(headsUpSummary + " " + currentStatus.title + " " + currentStatus.detail + " " + nextSummary);
         return;
       }
 
-      var activityNext = addCalendarInterval(completed, amount, unit, completed.getDate());
-      titleOutput.textContent = "The follow-up moves with completion.";
-      explanationOutput.textContent = "Its due date is " + readableInterval + " after the day you complete this one.";
-      intervalLabel.textContent = readableInterval + " from completion";
-      nextCaption.textContent = "Next due date will be scheduled on";
-      nextLabel.textContent = formatDate(activityNext, false);
-      resultOutput.textContent = "Follow-up due " + formatDate(activityNext, true) + ": " + readableInterval + " after you complete this one.";
+      currentStartDateOutput.textContent = formatDate(currentHeadsUpStart, false);
+      currentDueDateOutput.textContent = formatDate(due, false);
+      completedDateOutput.textContent = formatDate(completed, false);
+      currentPreviewDateOutput.textContent = formatDate(preview, false);
+
+      if (nextDue && nextHeadsUpStart) {
+        nextLane.classList.remove("is-terminal");
+        nextStartDateOutput.textContent = formatDate(nextHeadsUpStart, false);
+        nextCaption.textContent = "Next due date";
+        nextDueDateOutput.textContent = formatDate(nextDue, false);
+      } else {
+        nextLane.classList.add("is-terminal");
+        nextCaption.textContent = "After completion";
+        nextDueDateOutput.textContent = "No next due date";
+      }
+      queueAnnouncement(headsUpSummary + " " + currentStatus.title + " " + currentStatus.detail + " " + nextSummary);
     };
 
-    var playgroundToday = startOfLocalDay(new Date());
-    dueInput.value = toDateInputValue(addCalendarInterval(playgroundToday, 21, "days"));
-    completedInput.value = toDateInputValue(addCalendarInterval(playgroundToday, 24, "days"));
-    cadenceTypeInputs.concat(fixedRuleInputs, frequencyInputs, weekdayInputs).forEach(function (input) { input.addEventListener("change", renderCadencePlayground); });
-    [dueInput, completedInput, amountInput, unitInput, monthlyOrdinalInput, monthlyWeekdayInput, yearlyMonthInput, yearlyOrdinalInput, yearlyWeekdayInput].forEach(function (input) {
+    var addMonthlyRule = function () {
+      var rule = { ordinal: parseInt(monthlyOrdinalInput.value, 10), weekday: parseInt(monthlyWeekdayInput.value, 10) };
+      var duplicate = monthlyRules.some(function (current) { return current.ordinal === rule.ordinal && current.weekday === rule.weekday; });
+      if (!duplicate) monthlyRules.push(rule);
+      renderRuleLists();
+      renderCadencePlayground();
+    };
+    var addYearlyRule = function () {
+      var rule = { month: parseInt(yearlyMonthInput.value, 10), ordinal: parseInt(yearlyOrdinalInput.value, 10), weekday: parseInt(yearlyWeekdayInput.value, 10) };
+      var duplicate = yearlyRules.some(function (current) { return current.month === rule.month && current.ordinal === rule.ordinal && current.weekday === rule.weekday; });
+      if (!duplicate) yearlyRules.push(rule);
+      renderRuleLists();
+      renderCadencePlayground();
+    };
+    var removeRule = function (event) {
+      var button = event.target.closest("[data-remove-rule]");
+      if (!button) return;
+      var index = parseInt(button.getAttribute("data-rule-index"), 10);
+      if (button.getAttribute("data-remove-rule") === "monthly") monthlyRules.splice(index, 1);
+      else yearlyRules.splice(index, 1);
+      renderRuleLists();
+      renderCadencePlayground();
+    };
+    var resetCadencePlayground = function () {
+      var today = startOfLocalDay(new Date());
+      var due = addCalendarInterval(today, 21, "days");
+      taskInput.value = "Plan annual health check";
+      previewInput.value = toDateInputValue(today);
+      dueInput.value = toDateInputValue(due);
+      completedInput.value = toDateInputValue(addCalendarInterval(due, 3, "days"));
+      headsUpAmountInput.value = "3";
+      headsUpUnitInput.value = "weeks";
+      amountInput.value = "1";
+      unitInput.value = "years";
+      selectRadioValue(cadenceTypeInputs, "fixedSchedule");
+      selectRadioValue(fixedRuleInputs, "simple");
+      selectRadioValue(frequencyInputs, "weekly");
+      weekdayInputs.forEach(function (input) { input.checked = input.value === "1"; });
+      monthlyRules = [{ ordinal: 1, weekday: 1 }];
+      yearlyRules = [{ month: due.getMonth(), ordinal: 1, weekday: 1 }];
+      renderRuleLists();
+      renderCadencePlayground();
+    };
+
+    playgroundQueryAll("input, select").forEach(function (input) {
       input.addEventListener("input", renderCadencePlayground);
       input.addEventListener("change", renderCadencePlayground);
     });
-    renderCadencePlayground();
+    addMonthlyButton.addEventListener("click", addMonthlyRule);
+    addYearlyButton.addEventListener("click", addYearlyRule);
+    monthlyList.addEventListener("click", removeRule);
+    yearlyList.addEventListener("click", removeRule);
+    resetButton.addEventListener("click", resetCadencePlayground);
+    resetCadencePlayground();
   }
 
   // Founder portraits behave as an accessible tab set: click, touch and arrow
@@ -528,7 +789,7 @@
   // Each route gets a distinct set of page-length ribbons. Catmull-Rom points
   // are converted to cubic curves so every bend stays smooth while scrolling.
   var shapeMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-  if (!shapeMotionPreference.matches) {
+  {
     var cleanPath = window.location.pathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
     var shapeKey = cleanPath === "/" ? "home"
       : cleanPath === "/headsup" ? "headsup"
@@ -541,16 +802,20 @@
     var shapeKeys = ["home", "headsup", "about", "support", "privacy", "terms", "deleteAccount", "notfound"];
     var routeSeed = shapeKeys.indexOf(shapeKey) + 1;
     var canvasHeight = 4000;
-    var pointCount = 13;
+    // Keep both endpoints well outside the clipped page canvas. The generous
+    // overscan also absorbs the largest scroll-linked vertical drift, so a
+    // path can never expose its cap at the top or bottom on a short viewport.
+    var endpointOverscan = 2800;
+    var pointCount = 23;
     var strokeWidths = [26, 19, 14, 10, 7];
     var buildFlow = function (index) {
       var start = [];
       var end = [];
       var center = 720 + (index - 2) * 112;
       var amplitude = 390 - index * 24;
-      var step = canvasHeight / (pointCount - 1);
+      var step = (canvasHeight + endpointOverscan * 2) / (pointCount - 1);
       for (var pointIndex = 0; pointIndex < pointCount; pointIndex += 1) {
-        var y = pointIndex * step;
+        var y = -endpointOverscan + pointIndex * step;
         var phase = pointIndex * (0.84 + index * 0.035) + routeSeed * 0.73 + index * 1.19;
         var startX = center
           + Math.sin(phase) * amplitude
@@ -566,7 +831,7 @@
     var shapeVariants = strokeWidths.map(function (_, index) { return buildFlow(index); });
     var organicShapes = [];
     var shapeFrame = 0;
-    var organicMorphIntensity = 10;
+    var organicMorphIntensity = shapeMotionPreference.matches ? 0 : 10;
     var svgNamespace = "http://www.w3.org/2000/svg";
     var makeOrganicPath = function (points) {
       var pairs = [];
@@ -613,8 +878,8 @@
       var pageHeight = Math.max(document.body.getBoundingClientRect().height, window.innerHeight);
       var maxScroll = Math.max(pageHeight - window.innerHeight, 1);
       var progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
-      var eased = progress * progress * (3 - 2 * progress);
-      var viewportPhase = window.scrollY / Math.max(window.innerHeight, 1);
+      var eased = shapeMotionPreference.matches ? 0.5 : progress * progress * (3 - 2 * progress);
+      var viewportPhase = shapeMotionPreference.matches ? 0 : window.scrollY / Math.max(window.innerHeight, 1);
       organicShapes.forEach(function (shape) {
         shape.layer.style.height = pageHeight + "px";
         var relativeDrift = Math.sin(viewportPhase * 1.35 + shape.index * 0.55)
@@ -642,7 +907,7 @@
       if (!shapeFrame) shapeFrame = window.requestAnimationFrame(updateOrganicShape);
     };
     updateOrganicShape();
-    window.addEventListener("scroll", requestOrganicUpdate, { passive: true });
+    if (!shapeMotionPreference.matches) window.addEventListener("scroll", requestOrganicUpdate, { passive: true });
     window.addEventListener("resize", requestOrganicUpdate, { passive: true });
     window.addEventListener("load", requestOrganicUpdate, { once: true });
     document.addEventListener("mundaneapps:themechange", requestOrganicUpdate);

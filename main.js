@@ -132,7 +132,7 @@
       if (!SIGNUP_ENDPOINT) {
         if (status) {
           status.textContent = signup === "beta"
-            ? "Heads-Up beta registration opens shortly. Email info@mundaneapps.com and tell us your platform for manual registration."
+            ? "HeadsUp beta registration opens shortly. Email info@mundaneapps.com and tell us your platform for manual registration."
             : "Community invitations open shortly. Email info@mundaneapps.com and we'll add you by hand.";
           status.className = "join-status err";
         }
@@ -150,8 +150,8 @@
             form.classList.add("joined");
             if (status) {
               status.textContent = res.d.emailPending
-                ? (signup === "beta" ? "You're registered for Heads-Up beta access. Your confirmation email may take a moment." : "You're on the Mundane Circle invitation list. Your confirmation email may take a moment.")
-                : (signup === "beta" ? "You're registered for Heads-Up beta access. Check your inbox." : "You're in. Welcome to the Mundane Circle. Check your inbox.");
+                ? (signup === "beta" ? "You're registered for HeadsUp beta access. Your confirmation email may take a moment." : "You're on the Mundane Circle invitation list. Your confirmation email may take a moment.")
+                : (signup === "beta" ? "You're registered for HeadsUp beta access. Check your inbox." : "You're in. Welcome to the Mundane Circle. Check your inbox.");
               status.classList.add("ok");
             }
           } else {
@@ -271,6 +271,224 @@
     document.addEventListener("mundaneapps:themechange", function () {
       if (galleryDialog.open) renderGalleryPreview(activeGalleryIndex);
     });
+  }
+
+  // Cadence playground: a local, dependency-free illustration of the three
+  // scheduling models used by HeadsUp. It stores and submits nothing.
+  var cadencePlayground = document.querySelector("[data-cadence-playground]");
+  if (cadencePlayground) {
+    var cadenceTypeInputs = Array.prototype.slice.call(cadencePlayground.querySelectorAll('input[name="playground-type"]'));
+    var fixedRuleInputs = Array.prototype.slice.call(cadencePlayground.querySelectorAll('input[name="playground-fixed-rule"]'));
+    var frequencyInputs = Array.prototype.slice.call(cadencePlayground.querySelectorAll('input[name="playground-frequency"]'));
+    var dueInput = cadencePlayground.querySelector("[data-playground-due]");
+    var completedInput = cadencePlayground.querySelector("[data-playground-completed]");
+    var fixedRuleFields = cadencePlayground.querySelector("[data-playground-fixed-rule]");
+    var repeatFields = cadencePlayground.querySelector("[data-playground-repeat]");
+    var advancedFields = cadencePlayground.querySelector("[data-playground-advanced]");
+    var patternFields = Array.prototype.slice.call(cadencePlayground.querySelectorAll("[data-playground-pattern]"));
+    var weekdayInputs = Array.prototype.slice.call(cadencePlayground.querySelectorAll("[data-playground-weekday]"));
+    var monthlyOrdinalInput = cadencePlayground.querySelector("[data-playground-monthly-ordinal]");
+    var monthlyWeekdayInput = cadencePlayground.querySelector("[data-playground-monthly-weekday]");
+    var yearlyMonthInput = cadencePlayground.querySelector("[data-playground-yearly-month]");
+    var yearlyOrdinalInput = cadencePlayground.querySelector("[data-playground-yearly-ordinal]");
+    var yearlyWeekdayInput = cadencePlayground.querySelector("[data-playground-yearly-weekday]");
+    var amountInput = cadencePlayground.querySelector("[data-playground-amount]");
+    var unitInput = cadencePlayground.querySelector("[data-playground-unit]");
+    var titleOutput = cadencePlayground.querySelector("[data-playground-title]");
+    var explanationOutput = cadencePlayground.querySelector("[data-playground-explanation]");
+    var timelineOutput = cadencePlayground.querySelector("[data-playground-timeline]");
+    var intervalLabel = cadencePlayground.querySelector("[data-playground-interval-label]");
+    var dueLabel = cadencePlayground.querySelector("[data-playground-due-label]");
+    var completedLabel = cadencePlayground.querySelector("[data-playground-completed-label]");
+    var nextCaption = cadencePlayground.querySelector("[data-playground-next-caption]");
+    var nextLabel = cadencePlayground.querySelector("[data-playground-next-label]");
+    var resultOutput = cadencePlayground.querySelector("[data-playground-result]");
+
+    var startOfLocalDay = function (date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12);
+    };
+    var parseLocalDate = function (value) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return null;
+      var parts = value.split("-").map(Number);
+      var date = new Date(parts[0], parts[1] - 1, parts[2], 12);
+      return isNaN(date.getTime()) ? null : date;
+    };
+    var toDateInputValue = function (date) {
+      var year = String(date.getFullYear());
+      var month = String(date.getMonth() + 1).padStart(2, "0");
+      var day = String(date.getDate()).padStart(2, "0");
+      return year + "-" + month + "-" + day;
+    };
+    var daysInMonth = function (year, month) {
+      return new Date(year, month + 1, 0).getDate();
+    };
+    var addCalendarInterval = function (date, amount, unit, preferredDay) {
+      var from = startOfLocalDay(date);
+      if (unit === "days") return new Date(from.getFullYear(), from.getMonth(), from.getDate() + amount, 12);
+      if (unit === "weeks") return new Date(from.getFullYear(), from.getMonth(), from.getDate() + amount * 7, 12);
+      if (unit === "years") {
+        var targetYear = from.getFullYear() + amount;
+        var yearDay = Math.min(preferredDay || from.getDate(), daysInMonth(targetYear, from.getMonth()));
+        return new Date(targetYear, from.getMonth(), yearDay, 12);
+      }
+      var target = new Date(from.getFullYear(), from.getMonth() + amount, 1, 12);
+      var monthDay = Math.min(preferredDay || from.getDate(), daysInMonth(target.getFullYear(), target.getMonth()));
+      return new Date(target.getFullYear(), target.getMonth(), monthDay, 12);
+    };
+    var formatDate = function (date, long) {
+      return date.toLocaleDateString(undefined, long
+        ? { day: "numeric", month: "long", year: "numeric" }
+        : { day: "numeric", month: "short", year: "numeric" });
+    };
+    var selectedCadenceType = function () {
+      var selected = cadenceTypeInputs.find(function (input) { return input.checked; });
+      return selected ? selected.value : "oneTime";
+    };
+    var selectedRadioValue = function (inputs, fallback) {
+      var selected = inputs.find(function (input) { return input.checked; });
+      return selected ? selected.value : fallback;
+    };
+    var formatInterval = function (amount, unit) {
+      var singular = unit.replace(/s$/, "");
+      return amount + " " + (amount === 1 ? singular : unit);
+    };
+    var weekdayShortLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var weekdayLongLabels = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var monthLongLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var ordinalLabels = { "1": "1st", "2": "2nd", "3": "3rd", "4": "4th", "-1": "Last" };
+    var nextSelectedWeekday = function (from, weekdays) {
+      for (var offset = 1; offset <= 7; offset += 1) {
+        var candidate = addCalendarInterval(from, offset, "days");
+        if (weekdays.indexOf(candidate.getDay()) !== -1) return candidate;
+      }
+      return null;
+    };
+    var ordinalWeekdayInMonth = function (year, month, weekday, ordinal) {
+      if (ordinal === -1) {
+        var last = new Date(year, month + 1, 0, 12);
+        while (last.getDay() !== weekday) last = addCalendarInterval(last, -1, "days");
+        return last;
+      }
+      var first = new Date(year, month, 1, 12);
+      var shift = (weekday - first.getDay() + 7) % 7;
+      return new Date(year, month, 1 + shift + (ordinal - 1) * 7, 12);
+    };
+    var nextMonthlyPattern = function (from, weekday, ordinal) {
+      for (var offset = 0; offset <= 12; offset += 1) {
+        var monthBase = new Date(from.getFullYear(), from.getMonth() + offset, 1, 12);
+        var candidate = ordinalWeekdayInMonth(monthBase.getFullYear(), monthBase.getMonth(), weekday, ordinal);
+        if (candidate.getTime() > from.getTime()) return candidate;
+      }
+      return null;
+    };
+    var nextYearlyPattern = function (from, month, weekday, ordinal) {
+      for (var offset = 0; offset <= 5; offset += 1) {
+        var candidate = ordinalWeekdayInMonth(from.getFullYear() + offset, month, weekday, ordinal);
+        if (candidate.getTime() > from.getTime()) return candidate;
+      }
+      return null;
+    };
+    var renderCadencePlayground = function () {
+      var due = parseLocalDate(dueInput.value);
+      var completed = parseLocalDate(completedInput.value);
+      var type = selectedCadenceType();
+      var fixedRule = selectedRadioValue(fixedRuleInputs, "simple");
+      var frequency = selectedRadioValue(frequencyInputs, "weekly");
+      var amount = Math.min(Math.max(parseInt(amountInput.value, 10) || 1, 1), 99);
+      var unit = unitInput.value || "months";
+      var readableInterval = formatInterval(amount, unit);
+      var advancedActive = type === "fixedSchedule" && fixedRule === "advanced";
+      fixedRuleFields.hidden = type !== "fixedSchedule";
+      repeatFields.hidden = type === "oneTime" || advancedActive;
+      advancedFields.hidden = !advancedActive;
+      patternFields.forEach(function (field) {
+        field.hidden = !advancedActive || field.getAttribute("data-playground-pattern") !== frequency;
+      });
+      timelineOutput.classList.remove("is-one-time", "is-fixed", "is-completion");
+      timelineOutput.classList.add(type === "fixedSchedule" ? "is-fixed" : type === "activityBased" ? "is-completion" : "is-one-time");
+
+      if (!due || !completed) {
+        resultOutput.textContent = "Choose both dates to see what happens next.";
+        return;
+      }
+
+      dueLabel.textContent = formatDate(due, false);
+      completedLabel.textContent = formatDate(completed, false);
+
+      if (type === "oneTime") {
+        titleOutput.textContent = "This cadence ends when you complete it.";
+        explanationOutput.textContent = "If you need it again, you choose a new date.";
+        intervalLabel.textContent = "";
+        nextCaption.textContent = "Next due date will be scheduled on";
+        nextLabel.textContent = "Not scheduled";
+        resultOutput.textContent = "You complete this one on " + formatDate(completed, true) + ". No follow-up is created automatically.";
+        return;
+      }
+
+      if (type === "fixedSchedule") {
+        var fixedNext;
+        var ruleLabel;
+        var ruleExplanation;
+        if (advancedActive && frequency === "weekly") {
+          var selectedWeekdays = weekdayInputs.filter(function (input) { return input.checked; }).map(function (input) { return parseInt(input.value, 10); }).sort();
+          fixedNext = nextSelectedWeekday(due, selectedWeekdays);
+          if (!fixedNext) {
+            titleOutput.textContent = "Choose at least one weekday.";
+            explanationOutput.textContent = "The advanced weekly rule needs a day before HeadsUp can schedule the next due date.";
+            intervalLabel.textContent = "Choose a weekday";
+            nextCaption.textContent = "Next due date will be scheduled on";
+            nextLabel.textContent = "Choose a weekday";
+            resultOutput.textContent = "Choose at least one weekday to see the next due date.";
+            return;
+          }
+          var selectedWeekdayLabels = selectedWeekdays.map(function (weekday) { return weekdayShortLabels[weekday]; });
+          ruleLabel = "Every " + selectedWeekdayLabels.join(", ") + " from current due date";
+          ruleExplanation = "The next due date is the first selected weekday after the current due date. Completion does not change it.";
+        } else if (advancedActive && frequency === "monthly") {
+          var monthlyOrdinal = parseInt(monthlyOrdinalInput.value, 10);
+          var monthlyWeekday = parseInt(monthlyWeekdayInput.value, 10);
+          fixedNext = nextMonthlyPattern(due, monthlyWeekday, monthlyOrdinal);
+          ruleLabel = ordinalLabels[String(monthlyOrdinal)] + " " + weekdayShortLabels[monthlyWeekday] + " each month";
+          ruleExplanation = "The next due date follows the " + ordinalLabels[String(monthlyOrdinal)].toLowerCase() + " " + weekdayLongLabels[monthlyWeekday] + " of the month. Completion does not change it.";
+        } else if (advancedActive) {
+          var yearlyMonth = parseInt(yearlyMonthInput.value, 10);
+          var yearlyOrdinal = parseInt(yearlyOrdinalInput.value, 10);
+          var yearlyWeekday = parseInt(yearlyWeekdayInput.value, 10);
+          fixedNext = nextYearlyPattern(due, yearlyMonth, yearlyWeekday, yearlyOrdinal);
+          ruleLabel = ordinalLabels[String(yearlyOrdinal)] + " " + weekdayShortLabels[yearlyWeekday] + " of " + monthLongLabels[yearlyMonth];
+          ruleExplanation = "The next due date follows the " + ordinalLabels[String(yearlyOrdinal)].toLowerCase() + " " + weekdayLongLabels[yearlyWeekday] + " of " + monthLongLabels[yearlyMonth] + ". Completion does not change it.";
+        } else {
+          fixedNext = addCalendarInterval(due, amount, unit, due.getDate());
+          ruleLabel = readableInterval + " from current due date";
+          ruleExplanation = "Its due date is " + readableInterval + " after the current due date, even if you complete this one early or late.";
+        }
+        titleOutput.textContent = "The follow-up stays on schedule.";
+        explanationOutput.textContent = ruleExplanation;
+        intervalLabel.textContent = ruleLabel;
+        nextCaption.textContent = "Next due date will be scheduled on";
+        nextLabel.textContent = formatDate(fixedNext, false);
+        resultOutput.textContent = "Next due date: " + formatDate(fixedNext, true) + ". It follows the fixed schedule, so completing this one on " + formatDate(completed, true) + " does not change it.";
+        return;
+      }
+
+      var activityNext = addCalendarInterval(completed, amount, unit, completed.getDate());
+      titleOutput.textContent = "The follow-up moves with completion.";
+      explanationOutput.textContent = "Its due date is " + readableInterval + " after the day you complete this one.";
+      intervalLabel.textContent = readableInterval + " from completion";
+      nextCaption.textContent = "Next due date will be scheduled on";
+      nextLabel.textContent = formatDate(activityNext, false);
+      resultOutput.textContent = "Follow-up due " + formatDate(activityNext, true) + ": " + readableInterval + " after you complete this one.";
+    };
+
+    var playgroundToday = startOfLocalDay(new Date());
+    dueInput.value = toDateInputValue(addCalendarInterval(playgroundToday, 21, "days"));
+    completedInput.value = toDateInputValue(addCalendarInterval(playgroundToday, 24, "days"));
+    cadenceTypeInputs.concat(fixedRuleInputs, frequencyInputs, weekdayInputs).forEach(function (input) { input.addEventListener("change", renderCadencePlayground); });
+    [dueInput, completedInput, amountInput, unitInput, monthlyOrdinalInput, monthlyWeekdayInput, yearlyMonthInput, yearlyOrdinalInput, yearlyWeekdayInput].forEach(function (input) {
+      input.addEventListener("input", renderCadencePlayground);
+      input.addEventListener("change", renderCadencePlayground);
+    });
+    renderCadencePlayground();
   }
 
   // Founder portraits behave as an accessible tab set: click, touch and arrow

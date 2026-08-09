@@ -1,7 +1,7 @@
 # mundaneapps.com
 
 The public marketing + legal site for **MundaneApps**: quiet, privacy-first
-apps that come in handy every day. First app: **Heads-Up**.
+apps that come in handy every day. First app: **HeadsUp**.
 
 The public site is plain HTML/CSS/JS with no build step, analytics, or trackers.
 Signup forms post only when submitted to a Supabase Edge Function; Supabase
@@ -92,7 +92,7 @@ curl --request POST \
       `2026-07`) matches `kTermsVersion` in the app's
       `lib/utils/app_constants.dart`.
 
-## When Heads-Up goes live
+## When HeadsUp goes live
 
 - [ ] Replace the disabled `store-btn` "Coming soon" placeholders in
       `headsup.html` (2×) with real, linked Google Play / App Store buttons, and

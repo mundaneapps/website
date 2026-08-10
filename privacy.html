@@ -50,7 +50,7 @@
   <main class="doc">
     <div class="doc-nav"><a href="/">← MundaneApps</a></div>
     <h1>Privacy Policy</h1>
-    <p class="meta">Version <strong>20260810-025953</strong> · Effective 10 August 2026, 02:59 UTC</p>
+    <p class="meta">Version <strong>20260810-032657</strong> · Effective 10 August 2026, 03:26 UTC</p>
 
     <div class="callout">
       <strong>The plain-English version:</strong> we try to be a good houseguest.
@@ -102,7 +102,7 @@
     </p>
     <ul>
       <li><strong>Home-screen widget storage.</strong> On a paid plan, the app writes a small snapshot — the titles of cadences that are overdue or due today, the next upcoming title, and counts — into the widget's private storage whenever your cadences change. This happens whether or not you have actually added a widget to your home screen. On the Free plan the snapshot deliberately contains no cadence-derived content. Android's Quick Add widget also parks the title and due date you type into it until the app picks it up.</li>
-      <li><strong>Temporary export and import files.</strong> Exporting writes a JSON file containing your complete cadence data, including history, into the app's temporary folder before handing it to the system share sheet. Importing copies the file you choose into the same folder. These files are not encrypted, are not included in device backups, and are removed when you uninstall the app, but the app does not delete them itself — the operating system reclaims them when it clears app caches.</li>
+      <li><strong>Temporary export and import files.</strong> Exporting writes a JSON file containing your complete cadence data, including history, into the app's temporary folder before handing it to the system share sheet. Importing copies the file you choose into the same folder. In both cases the app deletes its copy as soon as the transfer is finished — including when you close the share sheet without sending it anywhere, and when an import fails to load.</li>
     </ul>
     <p>
       HeadsUp supports purchases without requiring an account. To determine
@@ -130,7 +130,7 @@
         <tr><td><strong>Cadence data.</strong> This is more than a list of titles. Each uploaded cadence carries its title, type, category, tags and notes, its schedule and recurrence rules, its due and end dates, how much advance warning you asked for, its priority, whether it is pinned, paused or stopped, when it was created and last changed, and its full history: every completion, every skip, and every pause, resume, stop and reactivation, each with a timestamp.</td><td>Not uploaded on Free; single-device cloud backup on Pro; automatic cross-device sync on Pro+</td></tr>
         <tr><td>Purchase and subscription state: your plan tier, whether it is active, the store and product involved, renewal or expiry dates, when a plan lapsed, and the identifier RevenueCat uses for you</td><td>Determining your plan tier (Free / Pro / Pro+) and the 30-day window after a plan lapses</td></tr>
         <tr><td>A per-install device identifier and a label derived from the device model, plus a record of each time your backup moves to a different device</td><td>Enforcing the Pro plan's single-device backup slot, and detecting when you've switched devices</td></tr>
-        <tr><td>A record of each attempt to restore a deleted account, whether it succeeded, and whether it counted toward your restore allowance</td><td>Enforcing the limit on how often an account can be restored</td></tr>
+        <tr><td>A record of each time your account is restored or your backup is pulled to a device</td><td>An activity log we can look at if you report that something went wrong. Nothing is enforced or limited using it.</td></tr>
         <tr><td>Which version of this policy you accepted, and when</td><td>Keeping a record of what you agreed to</td></tr>
       </tbody>
     </table>
@@ -266,8 +266,8 @@
       <tbody>
         <tr><td>You sign out</td><td>Untouched</td><td>None</td><td>Your cadences, profile and settings stay. Your login tokens are deleted, you are signed out of Google, your analytics identity is reset, and your cached paid status is cleared until you sign back in.</td></tr>
         <tr><td>You delete one cadence</td><td>Content erased as soon as the deletion is sent, which is shortly after the undo option disappears</td><td>Kept until you delete your account</td><td>Removed immediately</td></tr>
-        <tr><td>Clear cadence data → This device only</td><td>Untouched (re-downloads next sync)</td><td>None</td><td>Every cadence removed. Profile, tags, settings, consent, onboarding state and sign-in are not affected.</td></tr>
-        <tr><td>Clear cadence data → Everywhere</td><td>Erased immediately</td><td>Kept until you delete your account</td><td>Same as above: cadences only</td></tr>
+        <tr><td>Clear my data → This device only</td><td>Untouched (re-downloads next sync)</td><td>None</td><td>Cadences, profile, saved tags, this install's analytics identifier, the last-sync record, the widget snapshot and any leftover export file are all removed. Your sign-in and your app settings — appearance, reminders, text size, app icon, onboarding and tour state, and your analytics choice — are kept.</td></tr>
+        <tr><td>Clear my data → Everywhere</td><td>Erased immediately</td><td>Kept until you delete your account</td><td>Same as above</td></tr>
         <tr><td>Subscription lapses</td><td>Erased 30 days after lapsing</td><td>Kept</td><td>Untouched</td></tr>
         <tr><td>You delete your account</td><td>Everything permanently deleted 30 days after you delete, unless you restore first</td><td>Deleted with the account</td><td>Same as signing out: content stays, login and paid status are cleared</td></tr>
       </tbody>
@@ -287,6 +287,15 @@
       anonymous</strong> — each one is stored against your account, so it shows
       that your account deleted something and when. Calling them anonymous, as
       an earlier version of this policy did, was wrong.
+    </p>
+    <p>
+      The two activity logs in section 2 — the record of your backup moving
+      between devices, and the record of restores and syncs — are
+      <strong>deleted after 90 days</strong> by a daily job. They used to be kept
+      for as long as the account existed, which meant a long-running account
+      built up a permanent history of both. Ninety days is long enough for us to
+      look into a problem you report, and long enough for the device-switch limit
+      described in section 2, which only counts the last 30 days.
     </p>
     <h3>How long our service providers keep data</h3>
     <p>
@@ -324,7 +333,7 @@
     <p>Regardless of where you live, you can:</p>
     <ul>
       <li><strong>Access and export</strong> your data: the in-app Settings export contains your cadence data. Email us as described in section 11 to request access to other account data.</li>
-      <li><strong>Delete your data</strong>: in the app, "Clear cadence data" removes your cadences (locally, or everywhere, your choice, see section 8) and leaves your profile, tags and settings in place; "Delete account" removes your cloud account on the 30-day schedule in section 8. To remove everything from a device you are handing on, uninstall the app. You can also request deletion by email, or via <a href="/delete-account">mundaneapps.com/delete-account</a> if you no longer have the app installed.</li>
+      <li><strong>Delete your data</strong>: in the app, "Clear my data" removes your cadences, profile and saved tags (locally, or everywhere, your choice, see section 8) while leaving your sign-in and app settings in place; "Delete account" removes your cloud account on the 30-day schedule in section 8. To remove everything from a device you are handing on, uninstall the app. You can also request deletion by email, or via <a href="/delete-account">mundaneapps.com/delete-account</a> if you no longer have the app installed.</li>
       <li><strong>Correct</strong> your profile at any time in Settings.</li>
       <li><strong>Withdraw consent</strong> by signing out (which stops further Supabase account sync; local data keeps working) or deleting your account. RevenueCat may continue operating under a randomly generated purchaser identifier so HeadsUp can determine subscription access without an account. You can withdraw analytics/crash-reporting consent independently at any time in <strong>Settings → Privacy</strong>, without signing out. This stops all further analytics and crash collection immediately. If you joined a website list, use the unsubscribe link in any of its emails.</li>
     </ul>

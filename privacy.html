@@ -50,7 +50,7 @@
   <main class="doc">
     <div class="doc-nav"><a href="/">← MundaneApps</a></div>
     <h1>Privacy Policy</h1>
-    <p class="meta">Version <strong>20260810-032657</strong> · Effective 10 August 2026, 03:26 UTC</p>
+    <p class="meta">Version <strong>20260810-151843</strong> · Effective 10 August 2026, 15:18 UTC</p>
 
     <div class="callout">
       <strong>The plain-English version:</strong> we try to be a good houseguest.
@@ -90,9 +90,11 @@
       tour progress. If you sign in, your login tokens are also stored on the
       device, in the operating system's secure keystore (iOS Keychain, Android
       encrypted preferences) rather than with ordinary app data. If you use
-      reminders, the operating system's local notification scheduler stores
-      reminder details such as a cadence title and identifier on the same
-      device. Nothing in this content is uploaded by HeadsUp unless you sign in
+      reminders, the operating system's local notification scheduler stores one
+      daily reminder for each of the next thirty days on the same device. Each
+      one contains only a count of how many cadences need your attention that
+      day — no cadence titles, and no identifiers that point back to a
+      cadence. Nothing in this content is uploaded by HeadsUp unless you sign in
       to an eligible cloud plan or deliberately export, share, email, or send it
       to an external service.
     </p>
@@ -146,7 +148,7 @@
       understand how the app is used and to fix crashes:
     </p>
     <ul>
-      <li><strong>PostHog</strong> (product analytics): app lifecycle and usage events such as onboarding progress, intro-question answers, cadence actions, paywall activity, plan tier, reminder time, and selected app preferences. Data is hosted in the <strong>European Union</strong>.</li>
+      <li><strong>PostHog</strong> (product analytics): app lifecycle and usage events such as onboarding progress, intro-question answers, cadence actions, paywall activity, plan tier, whether reminders are switched on and the time they are set to, and selected app preferences. Data is hosted in the <strong>European Union</strong>.</li>
       <li><strong>Sentry</strong> (crash reporting): diagnostic reports when the app crashes or errors, including a stack trace and device/OS details. Data is hosted in the <strong>European Union</strong>.</li>
     </ul>
     <p>

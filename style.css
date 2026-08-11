@@ -1946,9 +1946,30 @@ body.gallery-preview-open { overflow: hidden; }
 
 @media (max-width: 720px) {
   .gallery-preview-shell { grid-template-columns: 52px minmax(0, 1fr) 52px; gap: 4px; padding-inline: 8px; }
-  .gallery-preview-figure { grid-template-columns: 1fr; gap: 20px; justify-items: center; }
+  /* Device above caption here, so a taller or shorter caption would otherwise
+     re-centre the column and shift the phone between screenshots. Stretch the
+     figure over the whole row and anchor its rows to the top: the device row
+     is a fixed height for a given viewport, so the phone stays put and only
+     the caption below it changes size. */
+  .gallery-preview-figure {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-self: stretch;
+    align-content: start;
+    min-height: 0;
+    gap: 20px;
+    justify-items: center;
+  }
   .gallery-preview-device { width: min(59vw, 28.52dvh, 270px); }
-  .gallery-preview-figure figcaption { text-align: center; padding-inline: 12px; }
+  /* Fill the row left over by the device and scroll inside it, so a long
+     caption on a short screen never runs off the bottom. */
+  .gallery-preview-figure figcaption {
+    text-align: center;
+    padding-inline: 12px;
+    align-self: stretch;
+    min-height: 0;
+    overflow-y: auto;
+  }
   .gallery-preview-figure h3 { font-size: clamp(1.35rem, 6vw, 2rem); margin-bottom: 8px; }
   .gallery-preview-figure p { font-size: 0.92rem; line-height: 1.5; }
   .gallery-preview-close,

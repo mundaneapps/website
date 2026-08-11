@@ -1732,19 +1732,24 @@ a.footer-social-link:focus-visible {
 /* --------------------------------------------------------------------------
    Phone frame for real screenshots
 
-   Device art: Galaxy S24 Ultra, drawn by Skymaker's Designer and distributed
-   by MockUPhone (https://mockuphone.com) under CC BY 3.0. The source PNG is
-   cropped to the device silhouette, so the .phone box IS the device — no
-   transparent padding to account for in layout or box-shadow. The frame art
-   supplies the bezel, rails and punch-hole camera; the screenshot sits behind
-   it, inset to the screen cutout by the percentages below.
+   Device art: Galaxy S25 Ultra, vector, exported from Figma.
+
+   Two edits were made to the export: the screen is knocked out by a mask so
+   the artwork can sit over a screenshot, and Figma's feTurbulence noise layer
+   was removed — it is invisible once the 976px-wide art is drawn at 116-360px
+   and it is the one filter in the file expensive enough to matter across the
+   nine instances on this page.
+
+   The .phone box is the device body (976.548x2048). The side buttons and the
+   S Pen tab are drawn outside that box in the art, so the frame layer overflows
+   by exactly their margin; this keeps box-shadow on the device silhouette.
    -------------------------------------------------------------------------- */
 .phone {
   position: relative;
   isolation: isolate;
   width: clamp(220px, 30vw, 300px);
-  aspect-ratio: 1027 / 2097;
-  border-radius: 4px;
+  aspect-ratio: 976.548 / 2048;
+  border-radius: 6.4577% / 3.0792%;
   border: 0;
   box-shadow: 0 24px 54px rgba(0,0,0,0.32), 0 7px 18px rgba(0,0,0,0.28);
   flex: none;
@@ -1752,19 +1757,23 @@ a.footer-social-link:focus-visible {
 .phone::after {
   content: "";
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 2;
-  background: url("/assets/device/galaxy-s24-ultra.webp") center / 100% 100% no-repeat;
+  width: 100.7631%;
+  height: 100.2441%;
+  background: url("/assets/device/galaxy-s25-ultra.svg") 0 0 / 100% 100% no-repeat;
   pointer-events: none;
 }
-/* Screen cutout: 938x2023 at (42, 37) within the 1027x2097 device. */
+/* Screen cutout: 921.214x1997.92 at (27.5117, 24.7305) within the body. */
 .phone img {
   position: absolute;
   z-index: 1;
-  top: 1.7644%;
-  left: 4.0895%;
-  width: 91.334%;
-  height: 96.4712%;
+  top: 1.2076%;
+  left: 2.8173%;
+  width: 94.3327%;
+  height: 97.5547%;
+  border-radius: 4.4296% / 2.0424%;
   object-fit: cover;
   display: block;
 }
@@ -1928,7 +1937,7 @@ body.gallery-preview-open { overflow: hidden; }
   touch-action: pan-y;
 }
 .gallery-preview-device {
-  width: min(31vw, 36.25dvh, 360px);
+  width: min(31vw, 35.3dvh, 360px);
   box-shadow: 0 22px 70px rgba(0,0,0,0.36);
 }
 .gallery-preview-figure figcaption { max-width: 42ch; }

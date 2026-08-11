@@ -195,25 +195,38 @@
       return image.getAttribute(document.documentElement.dataset.theme === "dark" ? "data-dark-src" : "data-light-src") || image.currentSrc || image.src;
     };
 
+    // The preview steps through screenshots, not slides: a slide carrying two
+    // of them contributes two entries so each gets the full width of the stage.
+    var previewShots = [];
+    galleryItems.forEach(function (item, slideIndex) {
+      var title = (item.querySelector("h3") || {}).textContent || "HeadsUp screenshot";
+      var caption = (item.querySelector("figcaption") || {}).textContent || "";
+      Array.prototype.forEach.call(item.querySelectorAll("img"), function (sourceImage) {
+        previewShots.push({ source: sourceImage, title: title, caption: caption, slide: slideIndex });
+      });
+    });
+
+    var firstShotOfSlide = function (slideIndex) {
+      for (var i = 0; i < previewShots.length; i++) {
+        if (previewShots[i].slide === slideIndex) return i;
+      }
+      return 0;
+    };
+
     var preloadGalleryNeighbor = function (index) {
-      var item = galleryItems[(index + galleryItems.length) % galleryItems.length];
-      var sourceImage = item.querySelector("img");
-      if (!sourceImage) return;
+      var shot = previewShots[(index + previewShots.length) % previewShots.length];
       var preload = new Image();
-      preload.src = gallerySourceForTheme(sourceImage);
+      preload.src = gallerySourceForTheme(shot.source);
     };
 
     var renderGalleryPreview = function (index) {
-      activeGalleryIndex = (index + galleryItems.length) % galleryItems.length;
-      var item = galleryItems[activeGalleryIndex];
-      var sourceImage = item.querySelector("img");
-      var title = (item.querySelector("h3") || {}).textContent || "HeadsUp screenshot";
-      var caption = (item.querySelector("figcaption") || {}).textContent || "";
-      previewImage.src = gallerySourceForTheme(sourceImage);
-      previewImage.alt = sourceImage.alt || title;
-      previewTitle.textContent = title;
-      previewCaption.textContent = caption;
-      previewCount.textContent = (activeGalleryIndex + 1) + " of " + galleryItems.length;
+      activeGalleryIndex = (index + previewShots.length) % previewShots.length;
+      var shot = previewShots[activeGalleryIndex];
+      previewImage.src = gallerySourceForTheme(shot.source);
+      previewImage.alt = shot.source.alt || shot.title;
+      previewTitle.textContent = shot.title;
+      previewCaption.textContent = shot.caption;
+      previewCount.textContent = (activeGalleryIndex + 1) + " of " + previewShots.length;
       preloadGalleryNeighbor(activeGalleryIndex - 1);
       preloadGalleryNeighbor(activeGalleryIndex + 1);
     };
@@ -240,11 +253,11 @@
       art.setAttribute("tabindex", "0");
       art.setAttribute("aria-haspopup", "dialog");
       art.setAttribute("aria-label", "Open full-screen preview: " + title);
-      art.addEventListener("click", function () { openGalleryPreview(index); });
+      art.addEventListener("click", function () { openGalleryPreview(firstShotOfSlide(index)); });
       art.addEventListener("keydown", function (event) {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          openGalleryPreview(index);
+          openGalleryPreview(firstShotOfSlide(index));
         }
       });
     });

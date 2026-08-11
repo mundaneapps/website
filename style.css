@@ -1731,50 +1731,42 @@ a.footer-social-link:focus-visible {
 
 /* --------------------------------------------------------------------------
    Phone frame for real screenshots
+
+   Device art: Galaxy S24 Ultra, drawn by Skymaker's Designer and distributed
+   by MockUPhone (https://mockuphone.com) under CC BY 3.0. The source PNG is
+   cropped to the device silhouette, so the .phone box IS the device — no
+   transparent padding to account for in layout or box-shadow. The frame art
+   supplies the bezel, rails and punch-hole camera; the screenshot sits behind
+   it, inset to the screen cutout by the percentages below.
    -------------------------------------------------------------------------- */
 .phone {
   position: relative;
   isolation: isolate;
   width: clamp(220px, 30vw, 300px);
-  aspect-ratio: 1206 / 2622;
-  border-radius: 44px;
-  padding: 10px;
-  background: linear-gradient(110deg, #777d86 0%, #2a2e34 14%, #101216 48%, #343941 83%, #8a9098 100%);
+  aspect-ratio: 1027 / 2097;
+  border-radius: 4px;
   border: 0;
   box-shadow: 0 24px 54px rgba(0,0,0,0.32), 0 7px 18px rgba(0,0,0,0.28);
   flex: none;
 }
-.phone::before {
-  content: "";
-  position: absolute;
-  inset: 2px;
-  z-index: 2;
-  border: 1px solid rgba(255,255,255,0.28);
-  border-radius: 42px;
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.72), inset 0 -14px 28px rgba(0,0,0,0.22);
-  pointer-events: none;
-}
 .phone::after {
   content: "";
   position: absolute;
-  z-index: -1;
-  top: 22%;
-  left: -4px;
-  width: 4px;
-  height: 42px;
-  border-radius: 4px 0 0 4px;
-  background: linear-gradient(#676c74, #1c1f24 48%, #4b5058);
-  box-shadow: 0 58px 0 #30343a, 0 104px 0 #30343a;
+  inset: 0;
+  z-index: 2;
+  background: url("/assets/device/galaxy-s24-ultra.webp") center / 100% 100% no-repeat;
+  pointer-events: none;
 }
+/* Screen cutout: 938x2023 at (42, 37) within the 1027x2097 device. */
 .phone img {
-  position: relative;
+  position: absolute;
   z-index: 1;
-  width: 100%;
-  height: 100%;
+  top: 1.7644%;
+  left: 4.0895%;
+  width: 91.334%;
+  height: 96.4712%;
   object-fit: cover;
-  border-radius: 35px;
   display: block;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 .phone-cluster { display: flex; gap: clamp(14px, 3vw, 28px); align-items: center; justify-content: center; }
 .phone-cluster .phone { width: clamp(160px, 22vw, 230px); }
@@ -1824,20 +1816,13 @@ a.footer-social-link:focus-visible {
   line-clamp: 2;
 }
 .gallery-art .phone {
-  box-sizing: content-box;
   align-self: end;
   justify-self: center;
   width: min(44%, 142px);
   height: auto;
-  aspect-ratio: 620 / 1348;
-  padding: 7px;
-  border-radius: 30px;
   transform: none;
 }
 .gallery-device-high .gallery-art .phone { align-self: center; }
-.gallery-art .phone::before { border-radius: 28px; }
-.gallery-art .phone::after { left: -3px; width: 3px; height: 28px; box-shadow: 0 38px 0 #30343a, 0 68px 0 #30343a; }
-.gallery-art .phone img { border-radius: 23px; object-fit: contain; }
 .gallery-phone-pair {
   position: relative;
   z-index: 1;
@@ -1943,12 +1928,9 @@ body.gallery-preview-open { overflow: hidden; }
   touch-action: pan-y;
 }
 .gallery-preview-device {
-  box-sizing: content-box;
-  width: min(31vw, 34.04dvh, 360px);
-  aspect-ratio: 620 / 1348;
+  width: min(31vw, 36.25dvh, 360px);
   box-shadow: 0 22px 70px rgba(0,0,0,0.36);
 }
-.gallery-preview-device img { object-fit: contain; }
 .gallery-preview-figure figcaption { max-width: 42ch; }
 .gallery-preview-figure h3 { margin: 0 0 14px; font-size: clamp(1.8rem, 4vw, 3.4rem); line-height: 1.02; letter-spacing: -0.035em; }
 .gallery-preview-figure p { margin: 0; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.16rem); line-height: 1.65; }

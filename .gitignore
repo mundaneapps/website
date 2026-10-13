@@ -145,7 +145,6 @@ vite.config.ts.timestamp-*
 critique_and_change.md
 implementation_plan.md
 .claude/
-.repowise/
 .vscode/
 .mcp.json
 .nojekyll

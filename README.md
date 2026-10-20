@@ -141,4 +141,4 @@ and `/support` resolve the same way they do in production.
 
 Space Voyage targets ages 13+; this is not an official content rating. The current game consent implementation must be revisited for players below the local age of consent before the closed-test rollout. Do not treat publication of these pages as verification that ad consent or provider retention settings are configured.
 
-The old Vercel deployment must remain reachable until old game/console links are updated; configure redirects there when that deployment's source is available. HeadsUp privacy and deletion routes are unchanged.
+The old Vercel project now permanently redirects the home, privacy and account-deletion URLs to mundaneapps.com. Redirect deployment sources are preserved in `migration/spacevoyage-vercel/`. HeadsUp privacy and deletion routes are unchanged.

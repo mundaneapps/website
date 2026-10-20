@@ -127,7 +127,7 @@
       var btn = form.querySelector("button[type=submit]");
       var email = (form.querySelector("input[type=email]") || {}).value || "";
       var idea = (form.querySelector("textarea[name=idea]") || {}).value || "";
-      var platform = (form.querySelector("select[name=platform]") || {}).value || "";
+      var platform = (form.querySelector("[name=platform]") || {}).value || "";
       var honey = (form.querySelector("input[name=company]") || {}).value || "";
       var signup = form.dataset.signup || "community";
 

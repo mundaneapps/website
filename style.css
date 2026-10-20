@@ -1093,6 +1093,8 @@ a.product-card:hover .pc-open svg { transform: translateX(4px); }
 .store-btn:hover { text-decoration: none; }
 .store-btn.enabled:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: color-mix(in srgb, var(--accent) 40%, var(--border-strong)); }
 .store-btn.disabled { opacity: 0.6; cursor: default; }
+.store-btn.enabled { background: var(--btn-bg); color: var(--btn-fg); border-color: transparent; }
+.store-btn.enabled .store-txt small { color: inherit; opacity: 0.8; }
 .store-btn svg { width: 24px; height: 24px; flex: none; }
 .store-btn .store-txt { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
 .store-btn .store-txt small { font-size: 0.66rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }

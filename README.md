@@ -129,3 +129,16 @@ python3 serve.py 8000          # then open http://localhost:8000
 
 Use `serve.py` for local previews so clean routes such as `/headsup`, `/about`,
 and `/support` resolve the same way they do in production.
+
+## Space Voyage / Games
+
+- `/games`: games directory.
+- `/games/space-voyage`: game introduction and closed-testing status.
+- `/games/space-voyage/privacy`: game-specific privacy policy, including AdMob.
+- `/games/space-voyage/delete-account`: in-game and email deletion instructions.
+- `/games/space-voyage/terms`: age, fair-play, purchase and testing terms.
+- `/app-ads.txt`: Google publisher entry matching the game's configured AdMob publisher.
+
+Space Voyage targets ages 13+; this is not an official content rating. The current game consent implementation must be revisited for players below the local age of consent before the closed-test rollout. Do not treat publication of these pages as verification that ad consent or provider retention settings are configured.
+
+The old Vercel deployment must remain reachable until old game/console links are updated; configure redirects there when that deployment's source is available. HeadsUp privacy and deletion routes are unchanged.

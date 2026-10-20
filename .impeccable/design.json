@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20T16:20:33.987024+00:00",
+  "title": "Design System: MundaneApps",
+  "extensions": {
+    "colorMeta": {
+      "org-accent": {
+        "role": "primary",
+        "displayName": "Org Accent",
+        "tonalRamp": [
+          "color-mix(in oklch, #35617a 22%, black)",
+          "color-mix(in oklch, #35617a 42%, black)",
+          "color-mix(in oklch, #35617a 62%, black)",
+          "color-mix(in oklch, #35617a 82%, black)",
+          "color-mix(in oklch, #35617a 82%, white)",
+          "color-mix(in oklch, #35617a 62%, white)",
+          "color-mix(in oklch, #35617a 42%, white)",
+          "color-mix(in oklch, #35617a 22%, white)"
+        ]
+      },
+      "org-accent-hover": {
+        "role": "primary",
+        "displayName": "Org Accent Hover",
+        "tonalRamp": [
+          "color-mix(in oklch, #284e65 22%, black)",
+          "color-mix(in oklch, #284e65 42%, black)",
+          "color-mix(in oklch, #284e65 62%, black)",
+          "color-mix(in oklch, #284e65 82%, black)",
+          "color-mix(in oklch, #284e65 82%, white)",
+          "color-mix(in oklch, #284e65 62%, white)",
+          "color-mix(in oklch, #284e65 42%, white)",
+          "color-mix(in oklch, #284e65 22%, white)"
+        ]
+      },
+      "org-accent-dark": {
+        "role": "primary",
+        "displayName": "Org Accent Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #abcdef 22%, black)",
+          "color-mix(in oklch, #abcdef 42%, black)",
+          "color-mix(in oklch, #abcdef 62%, black)",
+          "color-mix(in oklch, #abcdef 82%, black)",
+          "color-mix(in oklch, #abcdef 82%, white)",
+          "color-mix(in oklch, #abcdef 62%, white)",
+          "color-mix(in oklch, #abcdef 42%, white)",
+          "color-mix(in oklch, #abcdef 22%, white)"
+        ]
+      },
+      "org-accent-hover-dark": {
+        "role": "primary",
+        "displayName": "Org Accent Hover Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #c4def6 22%, black)",
+          "color-mix(in oklch, #c4def6 42%, black)",
+          "color-mix(in oklch, #c4def6 62%, black)",
+          "color-mix(in oklch, #c4def6 82%, black)",
+          "color-mix(in oklch, #c4def6 82%, white)",
+          "color-mix(in oklch, #c4def6 62%, white)",
+          "color-mix(in oklch, #c4def6 42%, white)",
+          "color-mix(in oklch, #c4def6 22%, white)"
+        ]
+      },
+      "org-contrast": {
+        "role": "primary",
+        "displayName": "Org Contrast",
+        "tonalRamp": [
+          "color-mix(in oklch, #ffffff 22%, black)",
+          "color-mix(in oklch, #ffffff 42%, black)",
+          "color-mix(in oklch, #ffffff 62%, black)",
+          "color-mix(in oklch, #ffffff 82%, black)",
+          "color-mix(in oklch, #ffffff 82%, white)",
+          "color-mix(in oklch, #ffffff 62%, white)",
+          "color-mix(in oklch, #ffffff 42%, white)",
+          "color-mix(in oklch, #ffffff 22%, white)"
+        ]
+      },
+      "org-contrast-dark": {
+        "role": "primary",
+        "displayName": "Org Contrast Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #0b1720 22%, black)",
+          "color-mix(in oklch, #0b1720 42%, black)",
+          "color-mix(in oklch, #0b1720 62%, black)",
+          "color-mix(in oklch, #0b1720 82%, black)",
+          "color-mix(in oklch, #0b1720 82%, white)",
+          "color-mix(in oklch, #0b1720 62%, white)",
+          "color-mix(in oklch, #0b1720 42%, white)",
+          "color-mix(in oklch, #0b1720 22%, white)"
+        ]
+      },
+      "headsup-accent": {
+        "role": "primary",
+        "displayName": "Headsup Accent",
+        "tonalRamp": [
+          "color-mix(in oklch, #007272 22%, black)",
+          "color-mix(in oklch, #007272 42%, black)",
+          "color-mix(in oklch, #007272 62%, black)",
+          "color-mix(in oklch, #007272 82%, black)",
+          "color-mix(in oklch, #007272 82%, white)",
+          "color-mix(in oklch, #007272 62%, white)",
+          "color-mix(in oklch, #007272 42%, white)",
+          "color-mix(in oklch, #007272 22%, white)"
+        ]
+      },
+      "headsup-accent-dark": {
+        "role": "primary",
+        "displayName": "Headsup Accent Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #69cee0 22%, black)",
+          "color-mix(in oklch, #69cee0 42%, black)",
+          "color-mix(in oklch, #69cee0 62%, black)",
+          "color-mix(in oklch, #69cee0 82%, black)",
+          "color-mix(in oklch, #69cee0 82%, white)",
+          "color-mix(in oklch, #69cee0 62%, white)",
+          "color-mix(in oklch, #69cee0 42%, white)",
+          "color-mix(in oklch, #69cee0 22%, white)"
+        ]
+      },
+      "bg": {
+        "role": "neutral",
+        "displayName": "Bg",
+        "tonalRamp": [
+          "color-mix(in oklch, #f6f5f2 22%, black)",
+          "color-mix(in oklch, #f6f5f2 42%, black)",
+          "color-mix(in oklch, #f6f5f2 62%, black)",
+          "color-mix(in oklch, #f6f5f2 82%, black)",
+          "color-mix(in oklch, #f6f5f2 82%, white)",
+          "color-mix(in oklch, #f6f5f2 62%, white)",
+          "color-mix(in oklch, #f6f5f2 42%, white)",
+          "color-mix(in oklch, #f6f5f2 22%, white)"
+        ]
+      },
+      "bg-dark": {
+        "role": "neutral",
+        "displayName": "Bg Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #000000 22%, black)",
+          "color-mix(in oklch, #000000 42%, black)",
+          "color-mix(in oklch, #000000 62%, black)",
+          "color-mix(in oklch, #000000 82%, black)",
+          "color-mix(in oklch, #000000 82%, white)",
+          "color-mix(in oklch, #000000 62%, white)",
+          "color-mix(in oklch, #000000 42%, white)",
+          "color-mix(in oklch, #000000 22%, white)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "color-mix(in oklch, #fffffe 22%, black)",
+          "color-mix(in oklch, #fffffe 42%, black)",
+          "color-mix(in oklch, #fffffe 62%, black)",
+          "color-mix(in oklch, #fffffe 82%, black)",
+          "color-mix(in oklch, #fffffe 82%, white)",
+          "color-mix(in oklch, #fffffe 62%, white)",
+          "color-mix(in oklch, #fffffe 42%, white)",
+          "color-mix(in oklch, #fffffe 22%, white)"
+        ]
+      },
+      "surface-dark": {
+        "role": "neutral",
+        "displayName": "Surface Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #171a1f 22%, black)",
+          "color-mix(in oklch, #171a1f 42%, black)",
+          "color-mix(in oklch, #171a1f 62%, black)",
+          "color-mix(in oklch, #171a1f 82%, black)",
+          "color-mix(in oklch, #171a1f 82%, white)",
+          "color-mix(in oklch, #171a1f 62%, white)",
+          "color-mix(in oklch, #171a1f 42%, white)",
+          "color-mix(in oklch, #171a1f 22%, white)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Surface 2",
+        "tonalRamp": [
+          "color-mix(in oklch, #f0f0ed 22%, black)",
+          "color-mix(in oklch, #f0f0ed 42%, black)",
+          "color-mix(in oklch, #f0f0ed 62%, black)",
+          "color-mix(in oklch, #f0f0ed 82%, black)",
+          "color-mix(in oklch, #f0f0ed 82%, white)",
+          "color-mix(in oklch, #f0f0ed 62%, white)",
+          "color-mix(in oklch, #f0f0ed 42%, white)",
+          "color-mix(in oklch, #f0f0ed 22%, white)"
+        ]
+      },
+      "surface-2-dark": {
+        "role": "neutral",
+        "displayName": "Surface 2 Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #22262c 22%, black)",
+          "color-mix(in oklch, #22262c 42%, black)",
+          "color-mix(in oklch, #22262c 62%, black)",
+          "color-mix(in oklch, #22262c 82%, black)",
+          "color-mix(in oklch, #22262c 82%, white)",
+          "color-mix(in oklch, #22262c 62%, white)",
+          "color-mix(in oklch, #22262c 42%, white)",
+          "color-mix(in oklch, #22262c 22%, white)"
+        ]
+      },
+      "fg": {
+        "role": "neutral",
+        "displayName": "Fg",
+        "tonalRamp": [
+          "color-mix(in oklch, #1e2430 22%, black)",
+          "color-mix(in oklch, #1e2430 42%, black)",
+          "color-mix(in oklch, #1e2430 62%, black)",
+          "color-mix(in oklch, #1e2430 82%, black)",
+          "color-mix(in oklch, #1e2430 82%, white)",
+          "color-mix(in oklch, #1e2430 62%, white)",
+          "color-mix(in oklch, #1e2430 42%, white)",
+          "color-mix(in oklch, #1e2430 22%, white)"
+        ]
+      },
+      "fg-dark": {
+        "role": "neutral",
+        "displayName": "Fg Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #eef2f6 22%, black)",
+          "color-mix(in oklch, #eef2f6 42%, black)",
+          "color-mix(in oklch, #eef2f6 62%, black)",
+          "color-mix(in oklch, #eef2f6 82%, black)",
+          "color-mix(in oklch, #eef2f6 82%, white)",
+          "color-mix(in oklch, #eef2f6 62%, white)",
+          "color-mix(in oklch, #eef2f6 42%, white)",
+          "color-mix(in oklch, #eef2f6 22%, white)"
+        ]
+      },
+      "fg-soft": {
+        "role": "neutral",
+        "displayName": "Fg Soft",
+        "tonalRamp": [
+          "color-mix(in oklch, #566172 22%, black)",
+          "color-mix(in oklch, #566172 42%, black)",
+          "color-mix(in oklch, #566172 62%, black)",
+          "color-mix(in oklch, #566172 82%, black)",
+          "color-mix(in oklch, #566172 82%, white)",
+          "color-mix(in oklch, #566172 62%, white)",
+          "color-mix(in oklch, #566172 42%, white)",
+          "color-mix(in oklch, #566172 22%, white)"
+        ]
+      },
+      "fg-soft-dark": {
+        "role": "neutral",
+        "displayName": "Fg Soft Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #b9c1cb 22%, black)",
+          "color-mix(in oklch, #b9c1cb 42%, black)",
+          "color-mix(in oklch, #b9c1cb 62%, black)",
+          "color-mix(in oklch, #b9c1cb 82%, black)",
+          "color-mix(in oklch, #b9c1cb 82%, white)",
+          "color-mix(in oklch, #b9c1cb 62%, white)",
+          "color-mix(in oklch, #b9c1cb 42%, white)",
+          "color-mix(in oklch, #b9c1cb 22%, white)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "color-mix(in oklch, #596476 22%, black)",
+          "color-mix(in oklch, #596476 42%, black)",
+          "color-mix(in oklch, #596476 62%, black)",
+          "color-mix(in oklch, #596476 82%, black)",
+          "color-mix(in oklch, #596476 82%, white)",
+          "color-mix(in oklch, #596476 62%, white)",
+          "color-mix(in oklch, #596476 42%, white)",
+          "color-mix(in oklch, #596476 22%, white)"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Muted Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #a4aeba 22%, black)",
+          "color-mix(in oklch, #a4aeba 42%, black)",
+          "color-mix(in oklch, #a4aeba 62%, black)",
+          "color-mix(in oklch, #a4aeba 82%, black)",
+          "color-mix(in oklch, #a4aeba 82%, white)",
+          "color-mix(in oklch, #a4aeba 62%, white)",
+          "color-mix(in oklch, #a4aeba 42%, white)",
+          "color-mix(in oklch, #a4aeba 22%, white)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Border",
+        "tonalRamp": [
+          "color-mix(in oklch, #dce1ea 22%, black)",
+          "color-mix(in oklch, #dce1ea 42%, black)",
+          "color-mix(in oklch, #dce1ea 62%, black)",
+          "color-mix(in oklch, #dce1ea 82%, black)",
+          "color-mix(in oklch, #dce1ea 82%, white)",
+          "color-mix(in oklch, #dce1ea 62%, white)",
+          "color-mix(in oklch, #dce1ea 42%, white)",
+          "color-mix(in oklch, #dce1ea 22%, white)"
+        ]
+      },
+      "border-dark": {
+        "role": "neutral",
+        "displayName": "Border Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #343a43 22%, black)",
+          "color-mix(in oklch, #343a43 42%, black)",
+          "color-mix(in oklch, #343a43 62%, black)",
+          "color-mix(in oklch, #343a43 82%, black)",
+          "color-mix(in oklch, #343a43 82%, white)",
+          "color-mix(in oklch, #343a43 62%, white)",
+          "color-mix(in oklch, #343a43 42%, white)",
+          "color-mix(in oklch, #343a43 22%, white)"
+        ]
+      },
+      "border-strong": {
+        "role": "neutral",
+        "displayName": "Border Strong",
+        "tonalRamp": [
+          "color-mix(in oklch, #c8d0dd 22%, black)",
+          "color-mix(in oklch, #c8d0dd 42%, black)",
+          "color-mix(in oklch, #c8d0dd 62%, black)",
+          "color-mix(in oklch, #c8d0dd 82%, black)",
+          "color-mix(in oklch, #c8d0dd 82%, white)",
+          "color-mix(in oklch, #c8d0dd 62%, white)",
+          "color-mix(in oklch, #c8d0dd 42%, white)",
+          "color-mix(in oklch, #c8d0dd 22%, white)"
+        ]
+      },
+      "border-strong-dark": {
+        "role": "neutral",
+        "displayName": "Border Strong Dark",
+        "tonalRamp": [
+          "color-mix(in oklch, #4a5260 22%, black)",
+          "color-mix(in oklch, #4a5260 42%, black)",
+          "color-mix(in oklch, #4a5260 62%, black)",
+          "color-mix(in oklch, #4a5260 82%, black)",
+          "color-mix(in oklch, #4a5260 82%, white)",
+          "color-mix(in oklch, #4a5260 62%, white)",
+          "color-mix(in oklch, #4a5260 42%, white)",
+          "color-mix(in oklch, #4a5260 22%, white)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Studio display",
+        "purpose": "Home hero headline."
+      }
+    },
+    "shadows": [
+      {
+        "name": "small-light",
+        "value": "0 2px 8px rgba(0, 0, 0, 0.08)",
+        "purpose": "Controls and icons."
+      },
+      {
+        "name": "medium-light",
+        "value": "0 4px 12px rgba(0, 0, 0, 0.1)",
+        "purpose": "Panels and hovered controls."
+      },
+      {
+        "name": "large-light",
+        "value": "0 8px 24px rgba(0, 0, 0, 0.14)",
+        "purpose": "Floating menu and feature frames."
+      },
+      {
+        "name": "small-dark",
+        "value": "0 2px 8px rgba(0, 0, 0, 0.24)",
+        "purpose": "Dark controls."
+      },
+      {
+        "name": "medium-dark",
+        "value": "0 4px 12px rgba(0, 0, 0, 0.32)",
+        "purpose": "Dark panels."
+      },
+      {
+        "name": "large-dark",
+        "value": "0 8px 24px rgba(0, 0, 0, 0.4)",
+        "purpose": "Dark floating surfaces."
+      }
+    ],
+    "motion": [
+      {
+        "name": "standard-ease",
+        "value": "cubic-bezier(0.22, 0.61, 0.36, 1)",
+        "purpose": "State changes; preserve reduced-motion fallbacks."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "small",
+        "value": "640px"
+      },
+      {
+        "name": "game-stack",
+        "value": "700px"
+      },
+      {
+        "name": "mobile-navigation",
+        "value": "820px"
+      },
+      {
+        "name": "motion-layout",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "description": "Primary button from the incumbent static site.",
+      "html": "<button class=\"ds-btn-primary\">Explore Space Voyage</button>",
+      "css": ".ds-btn-primary{font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,sans-serif;display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.98rem;border:1px solid transparent;background:var(--btn-bg,#35617a);color:var(--btn-fg,#fff);box-shadow:var(--shadow-sm,0 2px 8px rgba(0,0,0,.08));cursor:pointer;transition:transform .15s,background .2s,box-shadow .2s;}.ds-btn-primary:hover{transform:translateY(-2px);background:var(--btn-bg-hover,#284e65);box-shadow:var(--shadow-md,0 4px 12px rgba(0,0,0,.1));}.ds-btn-primary:focus-visible{outline:2px solid var(--accent,#35617a);outline-offset:3px;}",
+      "refersTo": "button-primary"
+    },
+    {
+      "name": "Glass button",
+      "kind": "button",
+      "description": "Glass button from the incumbent static site.",
+      "html": "<button class=\"ds-btn-glass\">Explore Space Voyage</button>",
+      "css": ".ds-btn-glass{font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,sans-serif;display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.98rem;border:1px solid var(--glass-border,rgba(220,225,234,.86));background:var(--glass-bg,rgba(255,255,254,.62));color:var(--fg,#1e2430);backdrop-filter:blur(12px);box-shadow:var(--shadow-sm,0 2px 8px rgba(0,0,0,.08));cursor:pointer;transition:transform .15s,background .2s,box-shadow .2s;}.ds-btn-glass:hover{transform:translateY(-2px);background:var(--glass-bg-strong,rgba(255,255,254,.88));box-shadow:var(--shadow-md,0 4px 12px rgba(0,0,0,.1));}.ds-btn-glass:focus-visible{outline:2px solid var(--accent,#35617a);outline-offset:3px;}"
+    },
+    {
+      "name": "Email field",
+      "kind": "input",
+      "description": "Email field from the incumbent static site.",
+      "html": "<input class=\"ds-input\" type=\"email\" aria-label=\"Email address\" placeholder=\"Your email address\">",
+      "css": ".ds-input{font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,sans-serif;padding:13px 15px;font-size:1rem;color:var(--fg,#1e2430);background:var(--surface,#fffffe);border:1px solid var(--border-strong,#c8d0dd);border-radius:8px;}.ds-input:focus{border-color:var(--accent,#35617a);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent,#35617a) 22%,transparent);}.ds-input:focus-visible{outline:2px solid var(--accent,#35617a);outline-offset:3px;}"
+    },
+    {
+      "name": "Navigation link",
+      "kind": "nav",
+      "description": "Navigation link from the incumbent static site.",
+      "html": "<nav aria-label=\"Preview\"><a class=\"ds-nav\" href=\"/games\">Games</a></nav>",
+      "css": ".ds-nav{font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,sans-serif;display:inline-flex;padding:9px 15px;border-radius:999px;font-size:.95rem;font-weight:500;color:var(--fg-soft,#566172);text-decoration:none;transition:color .2s,background .2s;}.ds-nav:hover{color:var(--fg,#1e2430);background:color-mix(in srgb,var(--fg,#1e2430) 6%,transparent);}.ds-nav:focus-visible{outline:2px solid var(--accent,#35617a);outline-offset:3px;}"
+    },
+    {
+      "name": "Status badge",
+      "kind": "chip",
+      "description": "Status badge from the incumbent static site.",
+      "html": "<span class=\"ds-badge\">In development</span>",
+      "css": ".ds-badge{font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,sans-serif;display:inline-flex;padding:5px 12px;border-radius:999px;font-size:.72rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--accent-ink,#35617a);background:color-mix(in srgb,var(--accent,#35617a) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent,#35617a) 30%,transparent);}.ds-badge:focus-visible{outline:2px solid var(--accent,#35617a);outline-offset:3px;}"
+    },
+    {
+      "name": "Glass panel",
+      "kind": "card",
+      "description": "Glass panel from the incumbent static site.",
+      "html": "<div class=\"ds-panel\">Quiet tools for ordinary life.</div>",
+      "css": ".ds-panel{font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,sans-serif;padding:20px;color:var(--fg,#1e2430);background:var(--component-gradient,linear-gradient(145deg,rgba(255,255,255,.96),rgba(242,243,244,.9)));border:1px solid var(--card-border,transparent);border-radius:16px;box-shadow:var(--shadow-md,0 4px 12px rgba(0,0,0,.1));backdrop-filter:saturate(150%) blur(20px);}.ds-panel:focus-visible{outline:2px solid var(--accent,#35617a);outline-offset:3px;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Calm Studio",
+    "overview": "The incumbent system is a calm, neutral studio: warm pale surfaces in light mode, an absolute-black canvas and charcoal materials in dark mode. System typography, generous space, restrained blue accents, and softly rounded controls keep the site familiar across products and games. This records the implemented site, not an approved redesign comp.",
+    "keyCharacteristics": [
+      "Quiet neutral surfaces and one accent per brand and theme.",
+      "Generous spacing, clear hierarchy, and familiar system type.",
+      "Actual product imagery within a consistent studio shell."
+    ],
+    "rules": [],
+    "dos": [
+      "Do preserve the shared studio header, footer, system typography, and both themes.",
+      "Do show actual game captures at their natural aspect ratio with a clear caption.",
+      "Do use the existing accent variables and visible keyboard focus treatments."
+    ],
+    "donts": [
+      "Don't replace the studio identity with the game\u2019s in-game visual language.",
+      "Don't crop a portrait game capture into an invented promotional composition.",
+      "Don't imply public availability through a download button while closed testing is pending."
+    ]
+  }
+}

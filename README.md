@@ -13,10 +13,12 @@ audience updates from the server side.
 | File | URL |
 |---|---|
 | `index.html` | `/` |
-| `headsup.html` | `/headsup` |
+| `headsup/index.html` | `/headsup` |
+| `headsup/privacy.html` | `/headsup/privacy` (HeadsUp + website policy, synced from the HeadsUp repo) |
+| `headsup/terms.html` | `/headsup/terms` |
 | `about.html` | `/about` |
-| `privacy.html` | `/privacy` |
-| `terms.html` | `/terms` |
+| `privacy.html` | `/privacy` (hub listing every product's policy) |
+| `terms.html` | `/terms` (hub listing every product's terms) |
 | `support.html` | `/support` |
 | `delete-account.html` | `/delete-account` |
 | `404.html` | served for unknown paths |
@@ -84,19 +86,19 @@ curl --request POST \
 
 ## Before publishing: required
 
-- [ ] **[HUMAN]** In `terms.html`, replace **`[legal name/entity, to be
+- [ ] **[HUMAN]** In `headsup/terms.html`, replace **`[legal name/entity, to be
       supplied]`** (introductory section) with the final registered/legal publisher name.
-- [ ] **[HUMAN]** In `terms.html`, replace **`[Governing-law jurisdiction, to
+- [ ] **[HUMAN]** In `headsup/terms.html`, replace **`[Governing-law jurisdiction, to
       be supplied]`** (section 9) with the governing-law jurisdiction (and optional
       venue/arbitration clause).
-- [ ] Confirm the policy version on `privacy.html`/`terms.html` (currently
+- [ ] Confirm the policy version on `headsup/privacy.html`/`headsup/terms.html` (currently
       `2026-07`) matches `kTermsVersion` in the app's
       `lib/utils/app_constants.dart`.
 
 ## When HeadsUp goes live
 
 - [ ] Replace the disabled `store-btn` "Coming soon" placeholders in
-      `headsup.html` (2×) with real, linked Google Play / App Store buttons, and
+      `headsup/index.html` (2×) with real, linked Google Play / App Store buttons, and
       remove the "In development" badge (the product card badge in `index.html`).
 
 ## Deploy: GitHub Pages (current setup)

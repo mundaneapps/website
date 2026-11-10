@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeadsUp Privacy Policy · MundaneApps</title>
+  <meta name="description" content="How MundaneApps and the HeadsUp app handle your data. Your content stays on your device without an account; purchase verification and optional, consent-based analytics use the limited services described here.">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#35617a">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://mundaneapps.com/headsup/privacy">
+  <script src="/theme-init.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="theme-org">
+  <header class="site-header">
+    <nav>
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Mundane<b>Apps</b></span>
+      </a>
+      <div class="nav-cluster">
+        <div class="nav-links" id="nav-links">
+          <div class="nav-item">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+              Products
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="mega" role="menu">
+              <a class="product-tile" href="/headsup" role="menuitem">
+                <img src="/assets/heads-up-icon.png" alt="HeadsUp app icon" width="44" height="44">
+                <div>
+                  <strong>HeadsUp</strong>
+                  <span>Get a HeadsUp while there’s still time.</span>
+                </div>
+              </a>
+              <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
+            </div>
+          </div>
+          <a href="/games">Games</a>
+          <a href="/about">About us</a>
+          <a href="/support">Support</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="doc">
+    <div class="doc-nav"><a href="/privacy">← All privacy policies</a></div>
+    <h1>HeadsUp Privacy Policy</h1>
+    <p>This policy covers the HeadsUp app and the mundaneapps.com website. Policies for our other apps and games are listed on <a href="/privacy">all privacy policies</a>.</p>
+    <p class="meta">Version <strong>20260819-151337</strong> · Effective 19 August 2026, 15:13 UTC</p>
+
+    <div class="callout">
+      <strong>The plain-English version:</strong> we try to be a good houseguest.
+      Without an account, your cadences, notes, tags, profile, and settings stay
+      on your device unless you deliberately export or share them. HeadsUp uses
+      RevenueCat to verify purchases without requiring an account. Analytics and
+      crash reporting are off by default; you opt in, and can opt out anytime.
+      We never sell your data, and you can leave with it whenever you want. The
+      legal detail is below.
+    </div>
+
+    <p>
+      This policy describes how MundaneApps ("we", "us") handles your data. It
+      covers both the HeadsUp app ("the app") and the mundaneapps.com website,
+      including the optional email lists you can join there (section 7). It is
+      written to be truthful and specific about what we actually do. Client-side
+      claims are reviewed against the app's source code before release; hosting,
+      processor, email, and deletion claims are also checked against the
+      relevant production systems.
+    </p>
+
+    <h2>1. The short version</h2>
+    <ul>
+      <li><strong>You do not need an account.</strong> Your cadences, notes, tags, profile, and settings stay on your device unless you deliberately export or share them. HeadsUp works offline; purchase verification may still contact RevenueCat as described below.</li>
+      <li>If you choose to sign in, we store your account email and optional profile. The Free plan uploads no new cadence content; Pro backs it up from one registered device, and Pro+ synchronizes it across devices. Content uploaded while you were on a paid plan stays in the cloud for 30 days after that plan ends (section 8), so being on Free does not always mean nothing of yours is in the cloud.</li>
+      <li>With your consent, we use PostHog analytics and Sentry crash reporting to improve the app. Both are <strong>off until you opt in</strong>. They may process an opaque account or installation identifier, app activity, selected settings, intro-question answers, and device/crash diagnostics, but we do not intentionally send your name, email address, or cadence contents. They can be turned off anytime in Settings and are never used for advertising.</li>
+      <li>We do not sell your data.</li>
+    </ul>
+
+    <h2>2. Data collected, by mode</h2>
+    <h3>No-account mode</h3>
+    <p>
+      HeadsUp stores user content and operational state on your device. This
+      includes cadences, notes, custom tags, profile fields, preferences and
+      customization, consent and onboarding state, subscription-entitlement
+      cache, device/sync state, queued deletion identifiers, backup status, and
+      tour progress. If you sign in, your login tokens are also stored on the
+      device, in the operating system's secure keystore (iOS Keychain, Android
+      encrypted preferences) rather than with ordinary app data. If you use
+      reminders, the operating system's local notification scheduler stores one
+      daily reminder for each of the next thirty days on the same device. Each
+      one contains only a count of how many cadences need your attention that
+      day — no cadence titles, and no identifiers that point back to a
+      cadence. Nothing in this content is uploaded by HeadsUp unless you sign in
+      to an eligible cloud plan or deliberately export, share, email, or send it
+      to an external service.
+    </p>
+    <p>
+      Two more kinds of local storage are worth naming explicitly, because they
+      are easy to overlook:
+    </p>
+    <ul>
+      <li><strong>Home-screen widget storage.</strong> On a paid plan, the app writes a small snapshot — the title of every active cadence, roughly how long until each one is due, and counts — into the widget's private storage whenever your cadences change. This happens whether or not you have actually added a widget to your home screen. On the Free plan the snapshot deliberately contains no cadence-derived content.</li>
+      <li><strong>Temporary export and import files.</strong> Exporting writes a JSON file containing your complete cadence data, including history, into the app's temporary folder before handing it to the system share sheet. Importing copies the file you choose into the same folder. In both cases the app deletes its copy as soon as the transfer is finished — including when you close the share sheet without sending it anywhere, and when an import fails to load.</li>
+    </ul>
+    <p>
+      HeadsUp supports purchases without requiring an account. To determine
+      whether Pro or Pro+ features are available, the app uses RevenueCat, which
+      may process a randomly generated purchaser identifier, device and
+      operating-system information, and purchase or subscription information.
+      If you separately opt in to analytics and crash reporting, the information
+      described in section 3 is also sent without requiring you to sign in.
+    </p>
+    <p>
+      During onboarding, the optional "region" field may be pre-filled from the
+      region code in your device's locale. HeadsUp does not inspect SIM or
+      carrier information. The field is editable free-form text, no location
+      permission is requested, and the value only leaves your device if you sign
+      in and save it as part of your profile.
+    </p>
+    <h3>Signed-in mode (optional)</h3>
+    <p>Signing in is optional. It currently uses Google; Sign in with Apple is not offered. When you sign in, we additionally process:</p>
+    <table>
+      <thead><tr><th>Data</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Account email address from your sign-in provider</td><td>Account identification; transactional email (see section 6)</td></tr>
+        <tr><td>Sign-in tokens and provider account details. Google returns an identity token, which we hand to Supabase; Supabase then holds the resulting session and the account details Google supplies with it, including your Google display name. The app reads that name to pre-fill your profile.</td><td>Keeping you signed in, and refreshing your session</td></tr>
+        <tr><td>Optional profile: name, gender, occupation, free-form region, and an editable profile/contact email that may differ from the account email</td><td>Saved to your account profile and shown back to you in the app</td></tr>
+        <tr><td><strong>Cadence data.</strong> This is more than a list of titles. Each uploaded cadence carries its title, type, category, tags and notes, its schedule and recurrence rules, its due and end dates, how much advance warning you asked for, its priority, whether it is pinned, paused or stopped, when it was created and last changed, and its full history: every completion, every skip, and every pause, resume, stop and reactivation, each with a timestamp.</td><td>Not uploaded on Free; single-device cloud backup on Pro; automatic cross-device sync on Pro+</td></tr>
+        <tr><td>Purchase and subscription state: your plan tier, whether it is active, the store and product involved, renewal or expiry dates, when a plan lapsed, and the identifier RevenueCat uses for you</td><td>Determining your plan tier (Free / Pro / Pro+) and the 30-day window after a plan lapses</td></tr>
+        <tr><td>A per-install device identifier and a label derived from the device model, plus a record of each time your backup moves to a different device</td><td>Enforcing the Pro plan's single-device backup slot, and detecting when you've switched devices</td></tr>
+        <tr><td>A record of each time your account is restored or your backup is pulled to a device</td><td>An activity log we can look at if you report that something went wrong. Nothing is enforced or limited using it.</td></tr>
+        <tr><td>Which version of this policy you accepted, and when</td><td>Keeping a record of what you agreed to</td></tr>
+      </tbody>
+    </table>
+    <p>
+      We do not collect your birth date, phone number, or precise location.
+      We do not collect age or any data intended to identify whether you are
+      a minor. See section 9.
+    </p>
+
+    <h2>3. Analytics &amp; crash reporting (optional, consent-based)</h2>
+    <p>
+      With your explicit opt-in consent, HeadsUp uses two services to
+      understand how the app is used and to fix crashes:
+    </p>
+    <ul>
+      <li><strong>PostHog</strong> (product analytics): app lifecycle and usage events such as onboarding progress, intro-question answers, cadence actions, paywall activity, plan tier, whether reminders are switched on and the time they are set to, and selected app preferences. Data is hosted in the <strong>European Union</strong>.</li>
+      <li><strong>Sentry</strong> (crash reporting): diagnostic reports when the app crashes or errors, including a stack trace and device/OS details. Data is hosted in the <strong>European Union</strong>.</li>
+    </ul>
+    <p>
+      <strong>Both are disabled by default.</strong> We ask once, during
+      onboarding, and you can change your choice at any time in
+      <strong>Settings → Privacy → "Share usage &amp; crash data."</strong>
+      When off, nothing is sent. On an installation that has never opted in,
+      neither library is started at all. If you opt in and later opt out,
+      collection stops immediately and the crash reporter is shut down; the
+      analytics library stays loaded but silenced until you next restart the
+      app.
+    </p>
+    <p>
+      Sentry is configured for crash and error reports only. Its performance
+      monitoring — which samples timings from sessions where nothing has gone
+      wrong — is switched off.
+    </p>
+    <p>
+      We configure these services not to intentionally receive your name, email
+      address, precise location, or cadence contents. When signed out, analytics
+      may use a randomly generated installation identifier. When signed in,
+      analytics and crash reports are associated with your Supabase account UUID.
+      This UUID is pseudonymous—not anonymous—because we can connect it to your
+      account, although it is not your email address. We do <strong>not</strong>
+      use these tools for advertising or cross-app tracking, and we do not build
+      an advertising profile of you.
+    </p>
+
+    <h2>4. Where your data is hosted</h2>
+    <p>
+      Account, cadence, and profile data stored through Supabase is hosted in the
+      <strong>European Union</strong> (Frankfurt region). Analytics and crash
+      information is sent to the EU services described in section 3.
+      Transactional email is sent through Resend from its
+      <strong>European Union</strong> region (Ireland). RevenueCat
+      processes purchaser, technical, and transaction information using
+      infrastructure in the <strong>United States</strong> to validate purchases
+      and determine subscription access.
+    </p>
+    <p>
+      Sending personal data outside the EU needs a legal safeguard, not just a
+      disclosure. For RevenueCat we rely on the European Commission's
+      <strong>Standard Contractual Clauses</strong>, in their UK and Swiss forms
+      where those apply. These form part of RevenueCat's Data Processing
+      Addendum, which RevenueCat publishes at
+      <a href="https://www.revenuecat.com/dpa">revenuecat.com/dpa</a>.
+    </p>
+    <p>
+      Separately, when you buy a subscription, Apple or Google handles the
+      payment itself and processes that purchase under their own terms and their
+      own transfer safeguards, not ours. That is the case whichever tools we use.
+    </p>
+
+    <h2>5. Who we share data with (sub-processors)</h2>
+    <p>
+      We use a small number of service providers for authentication, cloud
+      features, purchases, email, optional analytics, and optional crash
+      reporting. None of them receive more data than needed for the purposes
+      described here, and none may use your data for their own purposes.
+    </p>
+    <table>
+      <thead><tr><th>Sub-processor</th><th>What they receive</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Supabase</td><td>Everything in the "Signed-in mode" table above</td><td>Database hosting, authentication</td></tr>
+        <tr><td>Google</td><td>Your Google account info (if you sign in with Google), and your app-store purchase data (Play Store)</td><td>Sign-in; subscription billing</td></tr>
+        <tr><td>RevenueCat</td><td>A randomly generated purchaser id when signed out, your account id when signed in, device/OS technical information, and purchase/subscription transaction information</td><td>Purchase validation and subscription management across stores; an account is not required</td></tr>
+        <tr><td>Resend</td><td>Your email address and the name shown in the greeting, for the transactional emails listed in section 6 and the website confirmation emails in section 7</td><td>Sending those emails</td></tr>
+        <tr><td>PostHog (EU Cloud)</td><td>Usage events, intro answers, selected settings, and an opaque installation or account id, <strong>only if you opt in</strong></td><td>Product analytics to improve the app</td></tr>
+        <tr><td>Sentry (EU region)</td><td>Crash/error diagnostics (stack trace, device/OS metadata, opaque user id), <strong>only if you opt in</strong></td><td>Crash reporting and stability</td></tr>
+      </tbody>
+    </table>
+    <p>We do not sell any of this data, and we do not share it with anyone for advertising purposes.</p>
+
+    <h2>6. Transactional email</h2>
+    <p>If you sign in, we send you email only for account events you triggered or that affect your account directly:</p>
+    <ul>
+      <li><strong>Welcome</strong>: once, when you first sign in.</li>
+      <li><strong>Account deleted</strong>: confirming a deletion you (or someone with access to your sign-in) initiated, and reminding you of the recovery window described in section 8.</li>
+      <li><strong>Account restored</strong>: confirming that a deleted account has been recovered within that window. Like the deletion email, it doubles as a security notice: if it wasn't you, someone else has reached your sign-in.</li>
+      <li><strong>Subscription lapsed</strong>: when your Pro/Pro+ subscription ends, explaining that your cloud backup will be removed in 30 days unless you resubscribe.</li>
+      <li><strong>Purge warning</strong>: about 7 days before an unclaimed deleted account is permanently purged, so you have a last chance to recover it.</li>
+    </ul>
+    <p>These five are transactional, not marketing: signing in to the app does not add you to any mailing list, and we do not send app users newsletters or promotional email. The optional website lists described in the next section are entirely separate, and you are only on one if you asked to be.</p>
+
+    <h2>7. Website sign-up lists (optional)</h2>
+    <p>
+      The mundaneapps.com website offers two lists you can join by entering your
+      email address. Neither has anything to do with the app: you can use
+      HeadsUp without joining, and joining does not create an app account.
+    </p>
+    <ul>
+      <li><strong>The community list</strong>, for people who want to hear about what we build next.</li>
+      <li><strong>The HeadsUp beta list</strong>, for people who want to test the app before release. This also records which platform you chose (iOS, Android, or either).</li>
+    </ul>
+    <p>
+      For each list we store the email address you gave us, where the sign-up
+      came from, your current status, whether you want updates, when we last
+      emailed you, and a unique unsubscribe token. We also keep a log of the
+      emails we send to these lists, containing the recipient address, which
+      kind of email it was, and the delivery outcome.
+    </p>
+    <p>
+      Joining a list opts you in to occasional update emails as well as the
+      immediate confirmation email. Every one of them carries an unsubscribe
+      link, and unsubscribing stops all further email to that address. You can
+      also email us to be removed entirely.
+    </p>
+    <p>
+      To stop the sign-up form being abused, the website briefly stores a
+      one-way hash derived from the request — not your email address, and not
+      something we can reverse — together with a count of recent attempts.
+    </p>
+
+    <h2>8. Retention: how long we keep your data</h2>
+    <table>
+      <thead><tr><th>What happened</th><th>Cloud content</th><th>Deletion marker</th><th>Your device</th></tr></thead>
+      <tbody>
+        <tr><td>You sign out</td><td>Untouched</td><td>None</td><td>Your cadences, profile and settings stay. Your login tokens are deleted, you are signed out of Google, your analytics identity is reset, and your cached paid status is cleared until you sign back in.</td></tr>
+        <tr><td>You delete one cadence</td><td>Content erased as soon as the deletion is sent, which is shortly after the undo option disappears</td><td>Kept until you delete your account</td><td>Removed immediately</td></tr>
+        <tr><td>Clear my data → This device only</td><td>Untouched (re-downloads next sync)</td><td>None</td><td>Cadences, profile, saved tags, this install's analytics identifier, the last-sync record, the widget snapshot and any leftover export file are all removed. Your sign-in and your app settings — appearance, reminders, text size, app icon, onboarding and tour state, and your analytics choice — are kept.</td></tr>
+        <tr><td>Clear my data → Everywhere</td><td>Erased immediately</td><td>Kept until you delete your account</td><td>Same as above</td></tr>
+        <tr><td>Subscription lapses</td><td>Erased 30 days after lapsing</td><td>Kept</td><td>Untouched</td></tr>
+        <tr><td>You delete your account</td><td>Everything permanently deleted 30 days after you delete, unless you restore first</td><td>Deleted with the account</td><td>Same as signing out: content stays, login and paid status are cleared</td></tr>
+      </tbody>
+    </table>
+    <p>
+      In plain terms: <strong>content you delete is erased from our servers
+      straight away, not on a delay.</strong> Deleting a single cadence is held
+      back only for the few seconds the undo option is on screen, so that undo
+      can still work; after that the content is gone and cannot be brought
+      back, by you or by us.
+    </p>
+    <p>
+      What remains is a deletion marker: the cadence's identifier, a "this was
+      deleted" flag, and the times involved. It exists so a device that comes
+      back online later cannot resurrect something you deleted, and it is erased
+      when your account is deleted. These markers are <strong>not
+      anonymous</strong> — each one is stored against your account, so it shows
+      that your account deleted something and when. Calling them anonymous, as
+      an earlier version of this policy did, was wrong.
+    </p>
+    <p>
+      The two activity logs in section 2 — the record of your backup moving
+      between devices, and the record of restores and syncs — are
+      <strong>deleted after 90 days</strong> by a daily job. They used to be kept
+      for as long as the account existed, which meant a long-running account
+      built up a permanent history of both. Ninety days is long enough for us to
+      look into a problem you report, and long enough for the device-switch limit
+      described in section 2, which only counts the last 30 days.
+    </p>
+    <h3>How long our service providers keep data</h3>
+    <p>
+      The table above covers our own database. The providers in section 5 keep
+      their own copies for their own periods:
+    </p>
+    <table>
+      <thead><tr><th>Provider</th><th>Retention</th></tr></thead>
+      <tbody>
+        <tr><td>Supabase (account, profile, cadences)</td><td>Deleted 30 days after you delete your account. Deleting the account removes the login record and everything attached to it — cadences, devices, entitlements, restore history and sessions.</td></tr>
+        <tr><td>PostHog (analytics, only if you opt in)</td><td>Configured to retain events for 12 months.</td></tr>
+        <tr><td>Sentry (crash reports, only if you opt in)</td><td>As configured by the provider under our current plan.</td></tr>
+        <tr><td>RevenueCat (purchases)</td><td>As configured by the provider. Purchase records may outlive your HeadsUp account, because they also exist to satisfy the app stores' own billing requirements.</td></tr>
+        <tr><td>Resend (email delivery)</td><td>As configured by the provider.</td></tr>
+        <tr><td>Website sign-up lists (section 7)</td><td>Kept until you unsubscribe or ask us to remove you.</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Where a row says "as configured by the provider", we have not stated a
+      number because we would not be able to stand behind it here. Deleting your
+      HeadsUp account removes your data from our database on the schedule above;
+      telemetry and delivery records already sent to those providers expire on
+      their own schedules.
+    </p>
+
+    <h2>9. Children</h2>
+    <p>
+      HeadsUp is not directed at children and is intended for users 18 and
+      older (see our <a href="/headsup/terms">Terms of Service</a>). We do not
+      knowingly collect data from children, and we do not collect age or
+      birth-date information from anyone, at any age.
+    </p>
+
+    <h2>10. Your rights</h2>
+    <p>Regardless of where you live, you can:</p>
+    <ul>
+      <li><strong>Access and export</strong> your data: the in-app Settings export contains your cadence data. Email us as described in section 11 to request access to other account data.</li>
+      <li><strong>Delete your data</strong>: in the app, "Clear my data" removes your cadences, profile and saved tags (locally, or everywhere, your choice, see section 8) while leaving your sign-in and app settings in place; "Delete account" removes your cloud account on the 30-day schedule in section 8. To remove everything from a device you are handing on, uninstall the app. You can also request deletion by email, or via <a href="/delete-account">mundaneapps.com/delete-account</a> if you no longer have the app installed.</li>
+      <li><strong>Correct</strong> your profile at any time in Settings.</li>
+      <li><strong>Withdraw consent</strong> by signing out (which stops further Supabase account sync; local data keeps working) or deleting your account. RevenueCat may continue operating under a randomly generated purchaser identifier so HeadsUp can determine subscription access without an account. You can withdraw analytics/crash-reporting consent independently at any time in <strong>Settings → Privacy</strong>, without signing out. This stops all further analytics and crash collection immediately. If you joined a website list, use the unsubscribe link in any of its emails.</li>
+    </ul>
+    <p>If you are in the EU/EEA or UK, these rights are provided under the GDPR / UK GDPR. If you are in India, they are provided under the DPDP Act. We extend the same rights to users everywhere, regardless of location.</p>
+
+    <h2>11. Contact</h2>
+    <p>Questions, requests, or concerns about this policy: <a href="mailto:info@mundaneapps.com">info@mundaneapps.com</a>.</p>
+
+    <h2>12. Changes to this policy</h2>
+    <p>
+      We may update this policy as the app changes. Material changes receive a
+      new visible version and effective date on this page, and HeadsUp always
+      links to the current published policy from Settings, so the version you
+      reach from the app is the current one. The app does not currently show an
+      in-app notice when the policy changes, or ask you to accept a new version;
+      if we add processing that requires your renewed consent, we will build
+      that before the processing starts.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">Mundane<b>Apps</b></span>
+        </a>
+        <p>Quiet, privacy-first apps that come in handy every day.</p>
+        <p style="margin-top:10px"><a href="/#circle">Join the Mundane Circle →</a></p>
+        <nav class="footer-socials" aria-label="MundaneApps social links">
+          <a class="footer-social-link footer-social-discord" href="https://discord.gg/KyemSVPEU" target="_blank" rel="noopener noreferrer" aria-label="Join MundaneApps on Discord" title="Discord"></a>
+          <a class="footer-social-link footer-social-instagram" href="https://www.instagram.com/mundaneapps/" target="_blank" rel="noopener noreferrer" aria-label="Follow MundaneApps on Instagram" title="Instagram"></a>
+          <a class="footer-social-link footer-social-twitter" href="https://x.com/mundaneapps" target="_blank" rel="noopener noreferrer" aria-label="Follow MundaneApps on X" title="X (Twitter)"></a>
+        </nav>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Products</h4>
+          <a href="/headsup">HeadsUp</a>
+        </div>
+        <div class="footer-col">
+          <h4>Games</h4>
+          <a href="/games">All games</a>
+          <a href="/games/space-voyage">Space Voyage</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about">About us</a>
+          <a href="/support">Support</a>
+          <a href="mailto:info@mundaneapps.com">info@mundaneapps.com</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/delete-account">Delete account</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MundaneApps. All rights reserved.</span>
+      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

@@ -86,9 +86,9 @@ curl --request POST \
 
 ## Before publishing: required
 
-- [ ] **[HUMAN]** In `headsup/terms.html`, replace **`[legal name/entity, to be
+- [x] **[HUMAN]** In `headsup/terms.html`, replace **`[legal name/entity, to be
       supplied]`** (introductory section) with the final registered/legal publisher name.
-- [ ] **[HUMAN]** In `headsup/terms.html`, replace **`[Governing-law jurisdiction, to
+- [x] **[HUMAN]** In `headsup/terms.html`, replace **`[Governing-law jurisdiction, to
       be supplied]`** (section 9) with the governing-law jurisdiction (and optional
       venue/arbitration clause).
 - [ ] Confirm the policy version on `headsup/privacy.html`/`headsup/terms.html` (currently

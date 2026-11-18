@@ -1,6 +1,16 @@
-/* MundaneApps: dependency-free progressive enhancement. No tracking. */
+/* MundaneApps: dependency-free progressive enhancement. No cookies, no ad tracking. */
 (function () {
   "use strict";
+
+  // Cookie-free visit counts (Cloudflare Web Analytics). Off until a site token is set here.
+  var CF_ANALYTICS_TOKEN = "";
+  if (CF_ANALYTICS_TOKEN && location.hostname === "mundaneapps.com") {
+    var beacon = document.createElement("script");
+    beacon.defer = true;
+    beacon.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    beacon.setAttribute("data-cf-beacon", JSON.stringify({ token: CF_ANALYTICS_TOKEN }));
+    document.head.appendChild(beacon);
+  }
 
   // Unified home product carousel. No autoplay; touch and trackpad use native scrolling.
   var productCarousel = document.querySelector(".product-carousel");

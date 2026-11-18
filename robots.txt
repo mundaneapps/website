@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /migration/
+Disallow: /graphify-out/
+
+Sitemap: https://mundaneapps.com/sitemap.xml

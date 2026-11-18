@@ -112,7 +112,15 @@ html[data-theme="dark"] .buy-status.error { color: #ffb4ab; }
 
 /* Install: each step card carries its picture, in an equal-height area at the bottom */
 .install-steps li { display: flex; flex-direction: column; }
-.install-steps .step-visual { margin: 16px -20px -18px; flex: 1; min-height: 260px; display: grid; place-items: center; padding: 20px;
+.install-steps .step-text { margin: 0; }
+/* Line the cards' parts up across each row: number, title, text, picture. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 700px) {
+    .install-steps li { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; }
+    .install-steps { row-gap: 14px; }
+  }
+}
+.install-steps .step-visual { margin: 16px -20px -18px; flex: 1; align-self: stretch; min-height: 260px; display: grid; place-items: center; padding: 20px;
   border-top: 1px solid var(--border); border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   background: linear-gradient(160deg, #1b1d3a 0%, #3b2a5c 60%, #6a3f62 100%); }
 .install-steps .step-visual img { display: block; max-width: 100%; max-height: 240px; width: auto; height: auto; }
@@ -121,3 +129,4 @@ html[data-theme="dark"] .buy-status.error { color: #ffb4ab; }
 .install-trust { max-width: 760px; margin: 22px 0 0; color: var(--fg-soft); font-size: .95rem; }
 @media (min-width: 700px) { .steps-list { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 699px) { .install-steps .step-visual { min-height: 200px; } }
+.install-steps .step-visual img.popup { border-radius: 18px; box-shadow: 0 12px 30px rgba(0,0,0,.35); }

@@ -4,7 +4,7 @@ window.ISLAND_CONFIG = {
   api: "https://zueyffhnkzlknhzqowxz.supabase.co/functions/v1",
   // Paddle Billing. "sandbox" while testing, "production" at launch.
   // The client-side token is public by design (Paddle → Developer tools → Authentication → Client-side tokens).
-  paddle: { environment: "sandbox", token: "test_a9a92a0c739451c6a560bec01da" },
+  paddle: { environment: "production", token: "live_4e52ad5e2eb0c56e689ec563917" },
   // The free download. Leave empty until the release is uploaded; the buttons then say "Coming soon".
   downloadURL: "/island/Island-1.4.dmg",
   version: "1.4",

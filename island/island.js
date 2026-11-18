@@ -7,7 +7,6 @@
     if (cfg.downloadURL) {
       a.href = cfg.downloadURL;
       a.setAttribute("download", "");
-      if (cfg.version && /Download free/.test(a.textContent)) a.textContent = "Download Island " + cfg.version;
     } else if (a.getAttribute("href") !== "#install" || a.closest("#install")) {
       a.textContent = "Download coming soon";
       a.setAttribute("aria-disabled", "true");
@@ -15,7 +14,7 @@
     }
   });
   document.querySelectorAll("[data-download-name]").forEach(function (s) {
-    if (cfg.version) s.textContent = "Island-" + cfg.version + ".dmg";
+    s.textContent = "Island .dmg file";
   });
 
   // Launch price: ask the server how many launch licences are left.

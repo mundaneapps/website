@@ -1,6 +1,6 @@
 {
-  "version": "2.0.2",
-  "url": "https://mundaneapps.com/island/Island-2.0.2.zip",
-  "sha256": "f468c4164311a949338f2d4ffbc715310858d9ffbb470afd2e01c3c00f6d776d",
-  "notes": "The brief before a call now shows last time's summary and the next steps still open"
+  "version": "2.0.3",
+  "url": "https://mundaneapps.com/island/Island-2.0.3.zip",
+  "sha256": "0ce4e8e12c53245e49f55d61aa895855c5733fa48c5a221319c21f93710d862d",
+  "notes": "Island no longer asks for your location again and again; clearer install read-me"
 }

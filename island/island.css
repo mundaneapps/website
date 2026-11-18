@@ -106,6 +106,6 @@ html[data-theme="dark"] .buy-status.error { color: #ffb4ab; }
 .compare td { color: var(--fg-soft); }
 
 /* Demo film */
-.film { margin: 0 auto; max-width: 1040px; }
+.film { margin: 0 auto; max-width: 720px; }
 .film video { display: block; width: 100%; height: auto; border-radius: 20px; background: #0b0b0d; box-shadow: var(--shadow-md); }
 .film figcaption { margin-top: 10px; text-align: center; font-size: .85rem; color: var(--fg-soft); }

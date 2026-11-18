@@ -2,6 +2,55 @@
 (function () {
   "use strict";
 
+  // Unified home product carousel. No autoplay; touch and trackpad use native scrolling.
+  var productCarousel = document.querySelector(".product-carousel");
+  if (productCarousel) {
+    var productTrack = productCarousel.querySelector(".product-track");
+    var productSlides = Array.prototype.slice.call(productTrack.querySelectorAll(".product-slide"));
+    var productPrevious = productCarousel.querySelector("[data-product-prev]");
+    var productNext = productCarousel.querySelector("[data-product-next]");
+    var productStatus = productCarousel.querySelector(".product-carousel-status");
+    var activeProduct = 0;
+    var productScrollFrame = null;
+    var syncProductCarousel = function () {
+      var trackLeft = productTrack.getBoundingClientRect().left + productTrack.clientLeft;
+      var closestDistance = Infinity;
+      productSlides.forEach(function (slide, index) {
+        var distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
+        if (distance < closestDistance) { closestDistance = distance; activeProduct = index; }
+      });
+      productPrevious.disabled = activeProduct === 0;
+      productNext.disabled = activeProduct === productSlides.length - 1;
+      productStatus.textContent = (activeProduct + 1) + " / " + productSlides.length + " · " + productSlides[activeProduct].querySelector("h3").textContent;
+    };
+    var showProduct = function (index) {
+      index = Math.max(0, Math.min(productSlides.length - 1, index));
+      var left = productTrack.scrollLeft + productSlides[index].getBoundingClientRect().left - productTrack.getBoundingClientRect().left - productTrack.clientLeft;
+      productTrack.scrollTo({ left: left, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    };
+    productCarousel.querySelector(".product-carousel-controls").hidden = productSlides.length < 2;
+    productPrevious.addEventListener("click", function () { showProduct(activeProduct - 1); });
+    productNext.addEventListener("click", function () { showProduct(activeProduct + 1); });
+    productTrack.addEventListener("keydown", function (event) {
+      if (event.target !== productTrack) return;
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+        showProduct(event.key === "Home" ? 0 : event.key === "End" ? productSlides.length - 1 : activeProduct + (event.key === "ArrowRight" ? 1 : -1));
+      }
+    });
+    productTrack.addEventListener("scroll", function () {
+      if (productScrollFrame !== null) return;
+      productScrollFrame = window.requestAnimationFrame(function () { productScrollFrame = null; syncProductCarousel(); });
+    }, { passive: true });
+    // Keep keyboard focus on a product link visible when tabbing between slides.
+    productTrack.addEventListener("focusin", function (event) {
+      var slide = event.target.closest(".product-slide");
+      if (slide) showProduct(productSlides.indexOf(slide));
+    });
+    window.addEventListener("resize", syncProductCarousel, { passive: true });
+    syncProductCarousel();
+  }
+
   // Header border/background on scroll.
   var header = document.querySelector(".site-header");
   if (header) {
@@ -80,10 +129,10 @@
     var closeMobileNav = function () {
       links.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
-      var openProduct = links.querySelector(".nav-item.open");
-      var openProductTrigger = openProduct ? openProduct.querySelector(".nav-trigger") : null;
-      if (openProduct) openProduct.classList.remove("open");
-      if (openProductTrigger) openProductTrigger.setAttribute("aria-expanded", "false");
+      Array.prototype.forEach.call(links.querySelectorAll(".nav-item.open"), function (openItem) {
+        openItem.classList.remove("open");
+        openItem.querySelector(".nav-trigger").setAttribute("aria-expanded", "false");
+      });
     };
     toggle.addEventListener("click", function () {
       var open = links.classList.toggle("open");
@@ -91,30 +140,48 @@
       if (!open) closeMobileNav();
     });
     links.addEventListener("click", function (e) {
-      // Follow real links closes the mobile menu; the Products button does not.
+      // Following a real link closes the mobile menu; dropdown buttons keep it open.
       if (e.target.closest("a")) closeMobileNav();
     });
   }
 
-  // Products dropdown: click to open, stays open until dismissed.
-  var item = document.querySelector(".nav-item");
-  var trigger = item ? item.querySelector(".nav-trigger") : null;
-  if (item && trigger) {
-    var setOpen = function (open) {
+  // App and game dropdowns share dismissal and keyboard behavior.
+  var navItems = Array.prototype.slice.call(document.querySelectorAll(".nav-item"));
+  var closeDropdowns = function (except) {
+    navItems.forEach(function (navItem) {
+      if (navItem === except) return;
+      navItem.classList.remove("open");
+      navItem.querySelector(".nav-trigger").setAttribute("aria-expanded", "false");
+    });
+  };
+  navItems.forEach(function (item) {
+    var trigger = item.querySelector(".nav-trigger");
+    trigger.addEventListener("click", function () {
+      var open = !item.classList.contains("open");
+      closeDropdowns();
       item.classList.toggle("open", open);
       trigger.setAttribute("aria-expanded", open ? "true" : "false");
-    };
-    trigger.addEventListener("click", function (e) {
-      e.stopPropagation();
-      setOpen(!item.classList.contains("open"));
     });
-    document.addEventListener("click", function (e) {
-      if (!item.contains(e.target)) setOpen(false);
+    item.addEventListener("focusout", function (event) {
+      if (!item.contains(event.relatedTarget)) {
+        item.classList.remove("open");
+        trigger.setAttribute("aria-expanded", "false");
+      }
     });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") setOpen(false);
-    });
-  }
+  });
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest(".nav-item")) closeDropdowns();
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Escape") return;
+    var openItem = document.querySelector(".nav-item.open");
+    if (openItem && openItem.contains(document.activeElement)) openItem.querySelector(".nav-trigger").focus();
+    closeDropdowns();
+    if (toggle && links && links.classList.contains("open")) {
+      closeMobileNav();
+      toggle.focus();
+    }
+  });
 
   // Community and product-beta signups share one hardened Supabase Edge
   // Function while remaining separate audiences and email preferences.

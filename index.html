@@ -19,7 +19,7 @@
   <meta name="twitter:image" content="https://mundaneapps.com/assets/og/og-home-v2.png">
   <link rel="preload" as="image" href="/assets/brand/home-mundane-human-v3.webp">
   <script src="/theme-init.js"></script>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/style.css?v=20261118-2">
 </head>
 <body class="theme-org motion-page motion-home">
   <header class="site-header">
@@ -32,7 +32,7 @@
         <div class="nav-links" id="nav-links">
           <div class="nav-item">
             <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
-              Products
+              Apps
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
             <div class="mega" role="menu">
@@ -43,10 +43,30 @@
                   <span>Get a HeadsUp while there’s still time.</span>
                 </div>
               </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>Island</strong><span>Coming soon</span></div>
+              </div>
               <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
             </div>
           </div>
-          <a href="/games">Games</a>
+          <div class="nav-item">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+              Games
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="mega" role="menu">
+              <a class="product-tile game-nav-tile" href="/games/space-voyage" role="menuitem">
+                <img src="/assets/games/space-voyage-icon.png" alt="Space Voyage game icon" width="44" height="44">
+                <div><strong>Space Voyage</strong><span>One rocket. A long way from Earth.</span></div>
+              </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>Rotate</strong><span>Coming soon</span></div>
+              </div>
+              <a class="mega-note" href="/games" role="menuitem">Explore all games &rarr;</a>
+            </div>
+          </div>
           <a href="/about">About us</a>
           <a href="/support">Support</a>
         </div>
@@ -66,53 +86,63 @@
           <h1 class="reveal d1">We build the <span class="grad">mundane</span> stuff, on purpose.</h1>
           <p class="lede reveal d2">Quiet, privacy-first tools for the everyday things that often go unnoticed: useful when needed, out of the way when not.</p>
           <div class="hero-actions reveal d3">
-            <a class="btn btn-primary" href="#products">Meet HeadsUp</a>
+            <a class="btn btn-primary" href="#products">Explore our apps &amp; games</a>
           </div>
-          <p class="org-hero-note reveal d3">HeadsUp has no ads. Our games have their own clearly stated ad and privacy choices. An independent two-person studio, mindful of what you pay.</p>
+          <p class="org-hero-note reveal d3">An independent two-person studio, mindful of your privacy, security, and what you pay.</p>
         </div>
       </div>
     </section>
 
-    <!-- First product -->
-    <section id="products">
-      <div class="shell">
-        <div class="featured-product theme-headsup-scope">
-          <div class="featured-product-copy reveal">
-            <div class="product-brand">
-              <img src="/assets/heads-up-icon.png" alt="">
-              <span>HeadsUp</span>
-              <span class="badge">Now on Google Play</span>
-            </div>
-            <h2>HeadsUp gives you lead time, at your pace.</h2>
-            <p>Instead of a last-minute reminder, HeadsUp keeps what’s coming visible early, so you can prepare without carrying it around in your head.</p>
-            <div class="featured-product-actions">
-              <a class="store-btn enabled" href="https://play.google.com/store/apps/details?id=com.mundaneapps.headsup&amp;utm_source=mundaneapps.com&amp;utm_medium=website&amp;utm_campaign=home-featured" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.1v-.2L3.7 2.2l-.1.1z" opacity=".9"/><path d="M16.4 15.3 13 12.1v-.2l3.4-3.2 3.9 2.2c1.1.6 1.1 1.7 0 2.3l-3.9 2.1z"/><path d="m3.7 21.8 9.3-9.3 3.4 3.2-9.9 5.6c-1 .6-1.8.5-2.8.5z" opacity=".8"/><path d="m3.7 2.2 12.7 6.5-3.4 3.2L3.7 2.2z" opacity=".6"/></svg>
-                <span class="store-txt"><small>Get it on</small><strong>Google Play</strong></span>
-              </a>
-              <a class="btn btn-glass" href="/headsup">Explore HeadsUp</a>
-            </div>
+    <!-- Apps and games share one horizontally browsable showcase. -->
+    <section id="products" aria-labelledby="products-title">
+      <div class="shell product-carousel" role="region" aria-roledescription="carousel" aria-label="Our apps and games">
+        <div class="product-carousel-heading">
+          <div class="section-head">
+            <h2 id="products-title">Apps &amp; games</h2>
           </div>
-          <div class="featured-product-visual reveal d1">
-            <div class="phone">
-              <img src="/assets/shots/upcoming.webp" data-light-src="/assets/shots/upcoming.webp" data-dark-src="/assets/shots/upcoming-dark.webp" width="620" height="1348" alt="HeadsUp Home screen showing what needs attention soon" loading="lazy">
-            </div>
+          <div class="product-carousel-controls" hidden>
+            <button type="button" data-product-prev aria-label="Previous product" aria-controls="product-track" disabled>←</button>
+            <button type="button" data-product-next aria-label="Next product" aria-controls="product-track">→</button>
           </div>
         </div>
+        <div class="product-track" id="product-track" tabindex="0" aria-label="Swipe or use arrow keys to explore products">
+          <article class="product-slide theme-headsup-scope" role="group" aria-roledescription="slide" aria-label="1 of 2: HeadsUp">
+            <div class="product-slide-copy">
+              <p class="product-kind"><span class="product-type">Application</span><span>Android</span></p>
+              <div class="product-brand">
+                <img src="/assets/heads-up-icon.png" alt="" width="48" height="48">
+                <h3>HeadsUp</h3>
+              </div>
+              <h4>A HeadsUp while there’s still time.</h4>
+              <p>Keep what’s coming visible early, so you can prepare without carrying it all in your head.</p>
+              <p class="product-availability">Now on Google Play</p>
+              <a class="btn btn-primary" href="/headsup">Explore HeadsUp <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="product-slide-art">
+              <img src="/assets/shots/upcoming.webp" data-light-src="/assets/shots/upcoming.webp" data-dark-src="/assets/shots/upcoming-dark.webp" width="620" height="1348" alt="HeadsUp showing upcoming tasks and advance reminders" loading="lazy">
+            </div>
+          </article>
+          <article class="product-slide" role="group" aria-roledescription="slide" aria-label="2 of 2: Space Voyage">
+            <div class="product-slide-copy">
+              <p class="product-kind"><span class="product-type">Game</span><span>Android · Ages 13+</span></p>
+              <div class="product-brand">
+                <img src="/assets/games/space-voyage-icon.png" alt="" width="48" height="48">
+                <h3>Space Voyage</h3>
+              </div>
+              <h4>One rocket. A long way from Earth.</h4>
+              <p>Dodge falling hazards, catch fuel, and chase your best voyage through 23 regions of space.</p>
+              <p class="product-availability">Preparing for closed testing</p>
+              <a class="btn btn-primary" href="/games/space-voyage">Explore Space Voyage <span aria-hidden="true">→</span></a>
+              <p class="product-disclosure">Contains ads and optional in-app purchases.</p>
+            </div>
+            <div class="product-slide-art">
+              <img src="/assets/games/space-voyage-home.webp" width="540" height="1206" alt="Space Voyage hangar and rocket selection; test builds may change" loading="lazy">
+            </div>
+          </article>
+        </div>
+        <p class="product-carousel-status" aria-live="polite" aria-atomic="true">1 / 2 · HeadsUp</p>
       </div>
     </section>
-
-    <section id="games"><div class="shell"><div class="section-head"><h2>A little room for play.</h2><p>Games by MundaneApps. Start with Space Voyage.</p></div><article class="game-feature">
-  <div class="game-feature-copy">
-    <div class="product-brand"><img src="/assets/games/space-voyage-icon.png" alt="" width="56" height="56"><span>Space Voyage</span></div>
-    <h2>One rocket. A long way from Earth.</h2>
-    <p>Steer through falling hazards, catch fuel, and collect crystals as you fly through 23 regions of space. Unlock rockets and chase your best voyage.</p>
-    <p class="game-details">Android · Ages 13+ · Contains ads and optional in-app purchases</p>
-    <a class="btn btn-primary" href="/games/space-voyage">Explore Space Voyage</a>
-    <p class="game-caption">Preparing for closed testing. Public download is not available yet.</p>
-  </div>
-  <figure class="game-preview"><img src="/assets/games/space-voyage-home.webp" alt="Space Voyage hangar showing the Classic rocket, voyage progress, and launch controls" width="540" height="1206" loading="lazy"><figcaption>In-game capture. Test builds may change.</figcaption></figure>
-</article><p class="games-directory-link"><a href="/games">Explore our games →</a></p></div></section>
 
     <!-- Mundane Circle community -->
     <section id="circle">
@@ -136,7 +166,7 @@
               </div>
               <label class="field-label" for="home-circle-email">Your email address</label>
               <div class="join-row">
-                <input type="email" id="home-circle-email" name="email" inputmode="email" autocomplete="email" placeholder="you@email.com" aria-label="Email address" required>
+                <input type="email" id="home-circle-email" name="email" inputmode="email" autocomplete="email" placeholder="Your email address" aria-label="Email address" required>
                 <button class="btn btn-primary" type="submit">Join Mundane Circle</button>
               </div>
               <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -167,7 +197,7 @@
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h4>Products</h4>
+          <h4>Apps</h4>
           <a href="/headsup">HeadsUp</a>
         </div>
         <div class="footer-col">
@@ -183,13 +213,14 @@
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
           <a href="/delete-account">Delete account</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 MundaneApps. All rights reserved.</span>
-      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
     </div>
   </footer>
 

@@ -26,7 +26,7 @@
         <div class="nav-links" id="nav-links">
           <div class="nav-item">
             <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
-              Products
+              Apps
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
             <div class="mega" role="menu">
@@ -37,10 +37,30 @@
                   <span>Get a HeadsUp while there’s still time.</span>
                 </div>
               </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>Island</strong><span>Coming soon</span></div>
+              </div>
               <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
             </div>
           </div>
-          <a href="/games">Games</a>
+          <div class="nav-item">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+              Games
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="mega" role="menu">
+              <a class="product-tile game-nav-tile" href="/games/space-voyage" role="menuitem">
+                <img src="/assets/games/space-voyage-icon.png" alt="Space Voyage game icon" width="44" height="44">
+                <div><strong>Space Voyage</strong><span>One rocket. A long way from Earth.</span></div>
+              </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>Rotate</strong><span>Coming soon</span></div>
+              </div>
+              <a class="mega-note" href="/games" role="menuitem">Explore all games &rarr;</a>
+            </div>
+          </div>
           <a href="/about">About us</a>
           <a href="/support">Support</a>
         </div>
@@ -61,7 +81,7 @@
 <p>Play as a guest, or choose Google sign-in for online progress and leaderboards. One-thumb controls keep each voyage close at hand.</p>
 <p class="game-details">Android · Intended for ages 13+ · Contains ads and optional in-app purchases</p>
 <p><strong>Preparing for closed testing.</strong> The game is not yet publicly available. Tester enrollment and release availability will be shared when the test is live.</p>
-<a class="btn btn-primary" href="mailto:mundaneapps@gmail.com?subject=Space%20Voyage%20testing">Ask about testing</a>
+<a class="btn btn-primary" href="mailto:info@mundaneapps.com?subject=Space%20Voyage%20testing">Ask about testing</a>
 </div>
 <figure class="game-preview"><img src="/assets/games/space-voyage-home.webp" alt="Classic rocket in the Space Voyage hangar with controls to launch a voyage" width="540" height="1206" fetchpriority="high"><figcaption>In-game capture. Test builds may change.</figcaption></figure>
 </div>
@@ -69,7 +89,7 @@
 <section><div class="shell game-reading"><h2>Before you launch</h2>
 <p>The game includes optional rewarded ads for a revive and interstitial ads between some runs. Ad availability varies. Crystal packs and other available purchases are optional, and payments are handled by Google Play. Guest play does not require an account, but advertising services can still process device and ad data.</p>
 <p>Space Voyage is intended for players aged 13 and older. This audience statement is not an official store content rating. Testing can involve bugs, balance changes, and changes to saved progress; keep that in mind before making purchases in a test build.</p>
-<h2>Your data and your choices</h2><p>Read how accounts, public profiles, purchases, optional play analytics, and advertising work, or request deletion without reinstalling the game.</p><nav class="game-links" aria-label="Space Voyage information"><a href="/games/space-voyage/privacy">Privacy policy</a><a href="/games/space-voyage/delete-account">Delete account</a><a href="/games/space-voyage/terms">Game terms</a><a href="mailto:mundaneapps@gmail.com?subject=Space%20Voyage%20support">Contact support</a></nav>
+<h2>Your data and your choices</h2><p>Read how accounts, public profiles, purchases, optional play analytics, and advertising work, or request deletion without reinstalling the game.</p><nav class="game-links" aria-label="Space Voyage information"><a href="/games/space-voyage/privacy">Privacy policy</a><a href="/games/space-voyage/delete-account">Delete account</a><a href="/games/space-voyage/terms">Game terms</a><a href="mailto:info@mundaneapps.com?subject=Space%20Voyage%20support">Contact support</a></nav>
 </div></section>
   </main>
   <footer class="site-footer">
@@ -89,7 +109,7 @@
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h4>Products</h4>
+          <h4>Apps</h4>
           <a href="/headsup">HeadsUp</a>
         </div>
         <div class="footer-col">
@@ -105,13 +125,14 @@
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
           <a href="/delete-account">Delete account</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 MundaneApps. All rights reserved.</span>
-      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
     </div>
   </footer>
   <script src="/main.js" defer></script>

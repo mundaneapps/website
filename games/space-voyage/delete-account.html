@@ -26,7 +26,7 @@
         <div class="nav-links" id="nav-links">
           <div class="nav-item">
             <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
-              Products
+              Apps
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
             <div class="mega" role="menu">
@@ -37,10 +37,30 @@
                   <span>Get a HeadsUp while there’s still time.</span>
                 </div>
               </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>Island</strong><span>Coming soon</span></div>
+              </div>
               <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
             </div>
           </div>
-          <a href="/games">Games</a>
+          <div class="nav-item">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+              Games
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="mega" role="menu">
+              <a class="product-tile game-nav-tile" href="/games/space-voyage" role="menuitem">
+                <img src="/assets/games/space-voyage-icon.png" alt="Space Voyage game icon" width="44" height="44">
+                <div><strong>Space Voyage</strong><span>One rocket. A long way from Earth.</span></div>
+              </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>Rotate</strong><span>Coming soon</span></div>
+              </div>
+              <a class="mega-note" href="/games" role="menuitem">Explore all games &rarr;</a>
+            </div>
+          </div>
           <a href="/about">About us</a>
           <a href="/support">Support</a>
         </div>
@@ -53,11 +73,11 @@
   <main class="doc" id="main-content">
 <div class="doc-nav"><a href="/games/space-voyage">← Space Voyage</a></div><h1>Delete your Space Voyage account</h1><p class="meta">MundaneApps · Updated 20 October 2026</p>
 <h2>In the game</h2><ol><li>Open your profile from the home screen.</li><li>Open <strong>Account</strong>.</li><li>Choose <strong>Delete account</strong>, then <strong>Yes, delete my account</strong>.</li></ol>
-<h2>Without the game</h2><p>Email <a href="mailto:mundaneapps@gmail.com?subject=Delete%20my%20Space%20Voyage%20account">mundaneapps@gmail.com</a> from the Google email address used to sign in, with the subject <strong>Delete my Space Voyage account</strong>. Tell us that you want your Space Voyage account and game data deleted. We may ask for information to verify ownership. Do not send your password, payment-card details, or a sign-in code.</p>
+<h2>Without the game</h2><p>Email <a href="mailto:info@mundaneapps.com?subject=Delete%20my%20Space%20Voyage%20account">info@mundaneapps.com</a> from the Google email address used to sign in, with the subject <strong>Delete my Space Voyage account</strong>. Tell us that you want your Space Voyage account and game data deleted. We may ask for information to verify ownership. Do not send your password, payment-card details, or a sign-in code.</p>
 <h2>What is deleted</h2><p>The deletion covers your Space Voyage profile, display name, handle, stars, crystals (including bought crystals), upgrades, rockets, ports, objectives, streak, and associated completed-run records. Deleted run records no longer appear in the leaderboards. This does not delete your Google account or unrelated MundaneApps product data.</p>
 <h2>What may be kept</h2><p>Purchase and refund records may remain for accounting and fraud prevention after their direct player link is removed. Provider records, including data already collected by analytics or advertising services, follow those providers' retention rules. Contact us if you want help requesting deletion of those records too.</p>
 <h2>Timing and cancellation</h2><p>The game schedules deletion after a <strong>30-day cancellation period</strong>. If you change your mind before the deadline, sign in and choose <strong>Cancel deletion</strong>. Signing in alone is not a cancellation. For an email request, we will confirm the request and the scheduled deletion date after verifying ownership.</p>
-<h2>Guest progress and purchases</h2><p>Guest progress is stored locally; clear the game's app data or uninstall it to remove that local copy. Deleting an account does not itself clear every device's local data and does not refund purchases. To request a refund, use Google Play's refund process.</p><nav class="game-links" aria-label="Space Voyage information"><a href="/games/space-voyage/privacy">Privacy policy</a><a href="/games/space-voyage/delete-account">Delete account</a><a href="/games/space-voyage/terms">Game terms</a><a href="mailto:mundaneapps@gmail.com?subject=Space%20Voyage%20support">Contact support</a></nav>
+<h2>Guest progress and purchases</h2><p>Guest progress is stored locally; clear the game's app data or uninstall it to remove that local copy. Deleting an account does not itself clear every device's local data and does not refund purchases. To request a refund, use Google Play's refund process.</p><nav class="game-links" aria-label="Space Voyage information"><a href="/games/space-voyage/privacy">Privacy policy</a><a href="/games/space-voyage/delete-account">Delete account</a><a href="/games/space-voyage/terms">Game terms</a><a href="mailto:info@mundaneapps.com?subject=Space%20Voyage%20support">Contact support</a></nav>
   </main>
   <footer class="site-footer">
     <div class="footer-grid">
@@ -76,7 +96,7 @@
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h4>Products</h4>
+          <h4>Apps</h4>
           <a href="/headsup">HeadsUp</a>
         </div>
         <div class="footer-col">
@@ -92,13 +112,14 @@
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
           <a href="/delete-account">Delete account</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 MundaneApps. All rights reserved.</span>
-      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
     </div>
   </footer>
   <script src="/main.js" defer></script>

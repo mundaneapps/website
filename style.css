@@ -3066,3 +3066,46 @@ body.gallery-preview-open { overflow: hidden; }
 .game-links a, .games-directory-link a { text-decoration:underline; text-underline-offset:4px; }
 .games-directory-link { margin-top:36px; }
 @media(max-width:700px) { .game-feature { grid-template-columns:1fr; } .game-preview { max-width:260px; } .game-links { flex-direction:column; align-items:flex-start; } }
+
+
+/* Home: one shared carousel for apps and games. Native scrolling works without JS. */
+.product-carousel-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+.product-carousel-heading .section-head { margin: 0; }
+.product-carousel-controls { display: flex; gap: 10px; flex-shrink: 0; }
+.product-carousel-controls[hidden] { display: none; }
+.product-carousel-controls button { width: 46px; height: 46px; border: 1px solid var(--border-strong); border-radius: 50%; background: var(--surface); color: var(--fg); font: inherit; font-size: 1.35rem; cursor: pointer; }
+.product-carousel-controls button:hover:not(:disabled) { background: var(--surface-2); border-color: var(--accent); }
+.product-carousel-controls button:disabled { opacity: .35; cursor: default; }
+.product-track { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; border-radius: 18px; padding-bottom: 16px; scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+.product-slide { box-sizing: border-box; flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(160px, .65fr); align-items: center; gap: clamp(20px, 4vw, 60px); padding: clamp(24px, 4vw, 48px); border: 1px solid var(--border); border-radius: 18px; background: var(--surface); scroll-snap-align: start; scroll-margin-inline: 0; }
+.product-slide-copy { min-width: 0; }
+.product-kind { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: .85rem; margin: 0 0 24px; }
+.product-type { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 8px; background: var(--surface-2); color: var(--fg); font-weight: 600; }
+.product-slide .product-brand { flex-wrap: wrap; }
+.product-slide .product-brand img { width: 48px; height: 48px; border-radius: 12px; }
+.product-slide h3 { font-size: 1.2rem; margin: 0; }
+.product-slide h4 { font-size: clamp(1.7rem, 3.2vw, 2.8rem); line-height: 1.15; letter-spacing: -.03em; margin: 24px 0 16px; max-width: 18ch; }
+.product-slide-copy > p:not(.product-kind) { max-width: 43ch; color: var(--fg-soft); }
+.product-slide .product-availability { font-size: .86rem; margin: 24px 0 16px; }
+.product-slide .product-disclosure { font-size: .78rem; margin: 14px 0 0; }
+.product-slide-art { display: grid; place-items: center; }
+.product-slide-art > img { display: block; width: auto; max-width: 100%; height: 340px; object-fit: contain; border-radius: 16px; }
+.product-carousel-status { color: var(--muted); font-size: .85rem; margin: 14px 0 0; font-variant-numeric: tabular-nums; }
+@media (max-width: 700px) {
+  .product-carousel-heading { align-items: flex-end; gap: 12px; }
+  .product-carousel-heading h2 { font-size: 1.8rem; }
+  .product-carousel-controls { gap: 6px; }
+  .product-carousel-controls button { width: 40px; height: 40px; }
+  .product-slide { flex-basis: 100%; grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 24px; }
+  .product-slide-art { order: -1; }
+  .product-slide-art > img { height: 230px; }
+  .product-kind { margin-bottom: 16px; }
+  .product-slide h4 { margin-top: 18px; }
+  .product-track { gap: 14px; }
+}
+
+/* Matching app/game navigation, including non-interactive future releases. */
+.game-nav-tile { --accent: var(--org-accent); --accent-ink: var(--org-accent); }
+.product-tile-coming { color: var(--muted); border-style: dashed; background: transparent; }
+.product-tile-coming:hover { transform: none; background: transparent; border-color: var(--glass-hairline); box-shadow: none; }
+.product-coming-icon { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: 10px; background: var(--surface-2); color: var(--muted); font-size: 1.5rem; }

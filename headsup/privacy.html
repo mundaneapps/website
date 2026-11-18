@@ -23,7 +23,7 @@
         <div class="nav-links" id="nav-links">
           <div class="nav-item">
             <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
-              Products
+              Apps
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
             <div class="mega" role="menu">
@@ -34,10 +34,30 @@
                   <span>Get a HeadsUp while there’s still time.</span>
                 </div>
               </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>Island</strong><span>Coming soon</span></div>
+              </div>
               <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
             </div>
           </div>
-          <a href="/games">Games</a>
+          <div class="nav-item">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+              Games
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="mega" role="menu">
+              <a class="product-tile game-nav-tile" href="/games/space-voyage" role="menuitem">
+                <img src="/assets/games/space-voyage-icon.png" alt="Space Voyage game icon" width="44" height="44">
+                <div><strong>Space Voyage</strong><span>One rocket. A long way from Earth.</span></div>
+              </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>Rotate</strong><span>Coming soon</span></div>
+              </div>
+              <a class="mega-note" href="/games" role="menuitem">Explore all games &rarr;</a>
+            </div>
+          </div>
           <a href="/about">About us</a>
           <a href="/support">Support</a>
         </div>
@@ -52,7 +72,7 @@
     <div class="doc-nav"><a href="/privacy">← All privacy policies</a></div>
     <h1>HeadsUp Privacy Policy</h1>
     <p>This policy covers the HeadsUp app and the mundaneapps.com website. Policies for our other apps and games are listed on <a href="/privacy">all privacy policies</a>.</p>
-    <p class="meta">Version <strong>20260819-151337</strong> · Effective 19 August 2026, 15:13 UTC</p>
+    <p class="meta">Version <strong>20261115-180651</strong> · Effective 15 November 2026, 18:06 UTC</p>
 
     <div class="callout">
       <strong>The plain-English version:</strong> we try to be a good houseguest.
@@ -101,12 +121,13 @@
       to an external service.
     </p>
     <p>
-      Two more kinds of local storage are worth naming explicitly, because they
+      Three more kinds of local storage are worth naming explicitly, because they
       are easy to overlook:
     </p>
     <ul>
       <li><strong>Home-screen widget storage.</strong> On a paid plan, the app writes a small snapshot — the title of every active cadence, roughly how long until each one is due, and counts — into the widget's private storage whenever your cadences change. This happens whether or not you have actually added a widget to your home screen. On the Free plan the snapshot deliberately contains no cadence-derived content.</li>
       <li><strong>Temporary export and import files.</strong> Exporting writes a JSON file containing your complete cadence data, including history, into the app's temporary folder before handing it to the system share sheet. Importing copies the file you choose into the same folder. In both cases the app deletes its copy as soon as the transfer is finished — including when you close the share sheet without sending it anywhere, and when an import fails to load.</li>
+      <li><strong>Voice add (Android).</strong> If you add a cadence by voice — with the mic button or the Voice Add widget — HeadsUp asks for microphone access and uses your phone's speech recognition service (on most phones, Google's) to turn what you say into text. That service may process your audio under its own terms; HeadsUp receives only the text and never records or keeps audio. The text fills in the Add Cadence form for you to review. Sentences spoken to the widget are kept as drafts in the app's private storage on your device until you add or discard them. Voice text is not sent to HeadsUp's servers or analytics; a cadence you save from it is handled like any other cadence.</li>
     </ul>
     <p>
       HeadsUp supports purchases without requiring an account. To determine
@@ -337,7 +358,7 @@
     <p>Regardless of where you live, you can:</p>
     <ul>
       <li><strong>Access and export</strong> your data: the in-app Settings export contains your cadence data. Email us as described in section 11 to request access to other account data.</li>
-      <li><strong>Delete your data</strong>: in the app, "Clear my data" removes your cadences, profile and saved tags (locally, or everywhere, your choice, see section 8) while leaving your sign-in and app settings in place; "Delete account" removes your cloud account on the 30-day schedule in section 8. To remove everything from a device you are handing on, uninstall the app. You can also request deletion by email, or via <a href="/delete-account">mundaneapps.com/delete-account</a> if you no longer have the app installed.</li>
+      <li><strong>Delete your data</strong>: in the app, "Clear my data" removes your cadences, profile and saved tags (locally, or everywhere, your choice, see section 8) while leaving your sign-in and app settings in place; "Delete account" removes your cloud account on the 30-day schedule in section 8. To remove everything from a device you are handing on, uninstall the app. You can also request deletion by email, or via <a href="/headsup/delete-account">mundaneapps.com/headsup/delete-account</a> if you no longer have the app installed.</li>
       <li><strong>Correct</strong> your profile at any time in Settings.</li>
       <li><strong>Withdraw consent</strong> by signing out (which stops further Supabase account sync; local data keeps working) or deleting your account. RevenueCat may continue operating under a randomly generated purchaser identifier so HeadsUp can determine subscription access without an account. You can withdraw analytics/crash-reporting consent independently at any time in <strong>Settings → Privacy</strong>, without signing out. This stops all further analytics and crash collection immediately. If you joined a website list, use the unsubscribe link in any of its emails.</li>
     </ul>
@@ -375,7 +396,7 @@
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h4>Products</h4>
+          <h4>Apps</h4>
           <a href="/headsup">HeadsUp</a>
         </div>
         <div class="footer-col">
@@ -391,13 +412,14 @@
         </div>
         <div class="footer-col">
           <h4>Legal</h4>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
           <a href="/delete-account">Delete account</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 MundaneApps. All rights reserved.</span>
-      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
     </div>
   </footer>
 

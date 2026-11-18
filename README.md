@@ -16,6 +16,11 @@ audience updates from the server side.
 | `headsup/index.html` | `/headsup` |
 | `headsup/privacy.html` | `/headsup/privacy` (HeadsUp + website policy, synced from the HeadsUp repo) |
 | `headsup/terms.html` | `/headsup/terms` |
+| `island/index.html` | `/island` (Island for Mac) |
+| `island/buy.html` | `/island/buy` (Paddle checkout; closed until the backend's `ISLAND_SALES_OPEN=true`) |
+| `island/privacy.html`, `terms.html`, `refunds.html`, `support.html`, `delete-account.html` | Island policies and help |
+| `island/Island-<version>.dmg`, `.zip`, `update.json` | Island download and the in-app updater's feed (from `release.sh` in the Island repo) |
+| `island/config.js` | Island settings: Paddle environment and token, download link, prices |
 | `about.html` | `/about` |
 | `privacy.html` | `/privacy` (hub listing every product's policy) |
 | `terms.html` | `/terms` (hub listing every product's terms) |

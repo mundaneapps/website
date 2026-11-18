@@ -38,6 +38,15 @@
   if (!cfg.api || !window.fetch) return;
   fetch(cfg.api + "/island-checkout", { method: "GET", cache: "no-store" })
     .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (d) { if (d && d.offer_available) showOffer(d.offer_remaining); })
+    .then(function (d) {
+      if (!d) return;
+      if (d.offer_available) showOffer(d.offer_remaining);
+      if (d.on_sale === false) {
+        document.querySelectorAll("[data-offer-note]").forEach(function (el) {
+          el.textContent = d.offer_available ? "Launch price for the first " + price.launchSlots + " buyers · on sale soon" : "On sale soon";
+        });
+        document.dispatchEvent(new CustomEvent("island:not-on-sale"));
+      }
+    })
     .catch(function () { /* regular price stays shown */ });
 })();

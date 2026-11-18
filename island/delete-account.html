@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete your Island data · MundaneApps</title>
+  <meta name="description" content="Island has no account. How to remove Island from your Mac and have purchase data deleted.">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#35617a">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/mundaneapps-icon.png">
+  <link rel="canonical" href="https://mundaneapps.com/island/delete-account">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Delete your Island data">
+  <meta property="og:description" content="Island has no account. How to remove Island from your Mac and have purchase data deleted.">
+  <meta property="og:url" content="https://mundaneapps.com/island/delete-account">
+  <meta property="og:image" content="https://mundaneapps.com/assets/island/home.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script src="/theme-init.js"></script>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/island/island.css?v=1">
+</head>
+<body class="theme-org">
+  <header class="site-header">
+    <nav>
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Mundane<b>Apps</b></span>
+      </a>
+      <div class="nav-cluster">
+        <div class="nav-links" id="nav-links">
+          <div class="nav-item">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+              Apps
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="mega" role="menu">
+              <a class="product-tile" href="/headsup" role="menuitem">
+                <img src="/assets/heads-up-icon.png" alt="HeadsUp app icon" width="44" height="44">
+                <div>
+                  <strong>HeadsUp</strong>
+                  <span>Get a HeadsUp while there’s still time.</span>
+                </div>
+              </a>
+              <a class="product-tile" href="/island" role="menuitem">
+                <img src="/assets/island/island-icon.png" alt="Island app icon" width="44" height="44">
+                <div>
+                  <strong>Island</strong>
+                  <span>Your Mac’s notch, put to work.</span>
+                </div>
+              </a>
+              <a class="mega-note" href="/#circle" role="menuitem">More on the way. Help us choose what's next &rarr;</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <button class="nav-trigger" aria-haspopup="true" aria-expanded="false">
+              Games
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="mega" role="menu">
+              <a class="product-tile game-nav-tile" href="/games/space-voyage" role="menuitem">
+                <img src="/assets/games/space-voyage-icon.png" alt="Space Voyage game icon" width="44" height="44">
+                <div><strong>Space Voyage</strong><span>One rocket. A long way from Earth.</span></div>
+              </a>
+              <div class="product-tile product-tile-coming" role="menuitem" aria-disabled="true">
+                <span class="product-coming-icon" aria-hidden="true">+</span>
+                <div><strong>rotate</strong><span>Coming soon</span></div>
+              </div>
+              <a class="mega-note" href="/games" role="menuitem">Explore all games &rarr;</a>
+            </div>
+          </div>
+          <a href="/about">About us</a>
+          <a href="/support">Support</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="doc">
+    <div class="doc-nav"><a href="/island">← Island</a></div>
+    <h1>Delete your Island data</h1>
+    <p><strong>Island has no account.</strong> You don’t sign up to use Island or its trial, so there is no account to delete. Here is how to remove what exists.</p>
+
+    <h2>On your Mac</h2>
+    <p>Everything Island makes stays on your Mac. To remove it:</p>
+    <ol>
+      <li>Quit Island (menu bar icon → Quit Island) and move Island from Applications to the Bin.</li>
+      <li>Delete the folder <code>~/Library/Application Support/Island</code> (in Finder: Go → Go to Folder…). It holds the trial dates, your licence and this Mac’s confirmation.</li>
+      <li>Delete Island’s settings: run <code>defaults delete com.mundaneapps.island</code> in Terminal.</li>
+      <li>Meeting notes are ordinary Markdown files in the notes folder you chose in Settings → Meetings &amp; notes. Delete them in Finder if you don’t want them; Island never deletes your notes.</li>
+    </ol>
+
+    <h2>If you bought Island Pro</h2>
+    <p>We keep your name and email, the purchase reference, your licence, and the confirmations of the Macs you use (a public key and dates; no hardware identifiers). To have these deleted, email <a href="mailto:info@mundaneapps.com">info@mundaneapps.com</a> from the address you bought with and ask us to delete your Island data. We’ll confirm within 30 days.</p>
+    <ul>
+      <li>Deleting your data cancels the licence: Pro turns off on your Macs at their next weekly check-in, and the licence can’t be recovered.</li>
+      <li>We may keep the payment record that tax and accounting law requires. Payment details themselves are held by Paddle, our reseller; see <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">Paddle’s privacy policy</a> for their part.</li>
+      <li>If you also want your money back, ask for a refund first (within 14 days): see the <a href="/island/refunds">refund policy</a>.</li>
+    </ul>
+
+    <h2>Questions</h2>
+    <p>Email <a href="mailto:info@mundaneapps.com">info@mundaneapps.com</a>. See also the <a href="/island/privacy">Island privacy policy</a>.</p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">Mundane<b>Apps</b></span>
+        </a>
+        <p>Quiet, privacy-first apps for everyday life.</p>
+        <p style="margin-top:10px"><a href="/#circle">Join Mundane Circle →</a></p>
+        <nav class="footer-socials" aria-label="MundaneApps social links">
+          <a class="footer-social-link footer-social-discord" href="https://discord.gg/xRrQYTbXJG" target="_blank" rel="noopener noreferrer" aria-label="Join MundaneApps on Discord" title="Discord"></a>
+          <a class="footer-social-link footer-social-instagram" href="https://www.instagram.com/mundaneapps/" target="_blank" rel="noopener noreferrer" aria-label="Follow MundaneApps on Instagram" title="Instagram"></a>
+          <a class="footer-social-link footer-social-twitter" href="https://x.com/mundaneapps" target="_blank" rel="noopener noreferrer" aria-label="Follow MundaneApps on X" title="X (Twitter)"></a>
+        </nav>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Apps</h4>
+          <a href="/headsup">HeadsUp</a>
+          <a href="/island">Island</a>
+        </div>
+        <div class="footer-col">
+          <h4>Games</h4>
+          <a href="/games">All games</a>
+          <a href="/games/space-voyage">Space Voyage</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="/about">About us</a>
+          <a href="/support">Support</a>
+          <a href="mailto:info@mundaneapps.com">info@mundaneapps.com</a>
+        </div>
+        <div class="footer-col">
+          <h4>Island</h4>
+          <a href="/island/buy">Buy Lifetime Pro</a>
+          <a href="/island/terms">Terms</a>
+          <a href="/island/privacy">Privacy</a>
+          <a href="/island/refunds">Refunds</a>
+          <a href="/island/support">Support</a>
+          <a href="/island/delete-account">Delete your data</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/delete-account">Delete account</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MundaneApps. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

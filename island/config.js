@@ -6,7 +6,7 @@ window.ISLAND_CONFIG = {
   // The client-side token is public by design (Paddle → Developer tools → Authentication → Client-side tokens).
   paddle: { environment: "sandbox", token: "test_a9a92a0c739451c6a560bec01da" },
   // The free download. Leave empty until the release is uploaded; the buttons then say "Coming soon".
-  downloadURL: "",
-  version: "",
+  downloadURL: "/island/Island-1.2.dmg",
+  version: "1.2",
   price: { regular: "$9.99", launch: "$4.99", launchSlots: 100 },
 };

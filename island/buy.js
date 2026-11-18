@@ -36,14 +36,24 @@
     } catch (err) { paddleReady = false; }
   }
 
+  // Before launch the backend says it isn't on sale yet: say so instead of offering a button that fails.
+  var notOnSale = false;
+  document.addEventListener("island:not-on-sale", function () {
+    notOnSale = true;
+    button.disabled = true;
+    button.textContent = "On sale soon";
+    say("Island Pro goes on sale soon. In the meantime, every Pro feature is free for 14 days: download Island from the Island page.");
+  });
+
   function problem(code) {
+    if (code === "not_on_sale") return "Island Pro isn’t on sale yet. Every Pro feature is free for 14 days in the meantime.";
     if (code === "rate_limited") return "Too many tries from this network. Please wait a few minutes and try again.";
     if (code === "checkout_unavailable") return "Checkout is unavailable right now. Please try again in a minute.";
     return "Something went wrong opening checkout. Please try again, or write to info@mundaneapps.com.";
   }
 
   button.addEventListener("click", function () {
-    if (!paddleReady) { say("Checkout isn’t open yet. Island Pro goes on sale soon.", true); return; }
+    if (notOnSale || !paddleReady) { say("Island Pro goes on sale soon.", true); return; }
     button.disabled = true;
     say("Opening secure checkout…");
     fetch(cfg.api + "/island-checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" })

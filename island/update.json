@@ -1,6 +1,6 @@
 {
-  "version": "2.0",
-  "url": "https://mundaneapps.com/island/Island-2.0.zip",
-  "sha256": "d6f03dcfd1c8c24bbc053944768a5ce2da230b1e8136a23c74e98dfc16a78eb2",
-  "notes": "Meeting briefs before each call, Follow-ups, remembered voices, recaps to email/Slack/Notion/Word, Hinglish (beta), a simpler setup, and the Pro trial now starts when you first use Pro"
+  "version": "2.0.1",
+  "url": "https://mundaneapps.com/island/Island-2.0.1.zip",
+  "sha256": "25a529c7bdebe643608c91b4200a593ff83a99a349485e789b3b437188c7d042",
+  "notes": "Pro checks in once a day in the background, so a refund or a new licence takes effect sooner"
 }

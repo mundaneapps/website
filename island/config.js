@@ -8,5 +8,5 @@ window.ISLAND_CONFIG = {
   // The free download. Leave empty until the release is uploaded; the buttons then say "Coming soon".
   downloadURL: "",
   version: "",
-  price: { regular: "$9.99", launch: "$4.99", launchSlots: 500 },
+  price: { regular: "$9.99", launch: "$4.99", launchSlots: 100 },
 };

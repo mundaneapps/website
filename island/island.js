@@ -19,7 +19,7 @@
   });
 
   // Launch price: ask the server how many launch licences are left.
-  var price = cfg.price || { regular: "$9.99", launch: "$4.99", launchSlots: 500 };
+  var price = cfg.price || { regular: "$9.99", launch: "$4.99", launchSlots: 100 };
   function showOffer(left) {
     var on = left > 0;
     document.querySelectorAll("[data-price]").forEach(function (el) { el.textContent = on ? price.launch : price.regular; });

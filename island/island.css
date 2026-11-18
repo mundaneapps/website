@@ -110,15 +110,23 @@ html[data-theme="dark"] .buy-status.error { color: #ffb4ab; }
 .film video { display: block; width: 100%; height: auto; border-radius: 20px; background: #0b0b0d; box-shadow: var(--shadow-md); }
 .film figcaption { margin-top: 10px; text-align: center; font-size: .85rem; color: var(--fg-soft); }
 
-/* Install: what macOS shows the first time (two cards matching the step cards) */
-.install-shots { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
-.install-shots figure { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; }
-.install-shots .shot-screen { height: 300px; display: grid; place-items: center; padding: 18px;
+/* Install: each step card carries its picture, in an equal-height area at the bottom */
+.install-steps li { display: flex; flex-direction: column; }
+.install-steps .step-text { margin: 0; }
+/* Line the cards' parts up across each row: number, title, text, picture. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 700px) {
+    .install-steps li { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; }
+    .install-steps { row-gap: 14px; }
+  }
+}
+.install-steps .step-visual { margin: 16px -20px -18px; flex: 1; align-self: stretch; min-height: 260px; display: grid; place-items: center; padding: 20px;
+  border-top: 1px solid var(--border); border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   background: linear-gradient(160deg, #1b1d3a 0%, #3b2a5c 60%, #6a3f62 100%); }
-.install-shots img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-.install-shots figure:last-child img { border-radius: 10px; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
-.install-shots figcaption { padding: 14px 20px 18px; color: var(--fg-soft); font-size: .95rem; }
-.install-shots figcaption strong { color: var(--fg); display: block; margin-bottom: 4px; }
-.install-trust { max-width: 760px; margin: 18px 0 0; color: var(--fg-soft); font-size: .95rem; }
-@media (min-width: 700px) { .steps-list, .install-shots { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 699px) { .install-shots .shot-screen { height: 240px; } }
+.install-steps .step-visual img { display: block; max-width: 100%; max-height: 240px; width: auto; height: auto; }
+.install-steps .step-visual img.framed { border-radius: 10px; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+.install-steps .step-visual .btn { box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+.install-trust { max-width: 760px; margin: 22px 0 0; color: var(--fg-soft); font-size: .95rem; }
+@media (min-width: 700px) { .steps-list { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 699px) { .install-steps .step-visual { min-height: 200px; } }
+.install-steps .step-visual img.popup { border-radius: 18px; box-shadow: 0 12px 30px rgba(0,0,0,.35); }

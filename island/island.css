@@ -104,3 +104,8 @@ html[data-theme="dark"] .buy-status.error { color: #ffb4ab; }
 .compare thead th:nth-child(2), .compare td:nth-child(2) { color: var(--fg); font-weight: 700; background: color-mix(in srgb, var(--accent, #7c5cff) 8%, transparent); }
 .compare tbody th { font-weight: 600; }
 .compare td { color: var(--fg-soft); }
+
+/* Demo film */
+.film { margin: 0 auto; max-width: 1040px; }
+.film video { display: block; width: 100%; height: auto; border-radius: 20px; background: #0b0b0d; box-shadow: var(--shadow-md); }
+.film figcaption { margin-top: 10px; text-align: center; font-size: .85rem; color: var(--fg-soft); }

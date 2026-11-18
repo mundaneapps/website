@@ -1,6 +1,6 @@
 {
-  "version": "1.5",
-  "url": "https://mundaneapps.com/island/Island-1.5.zip",
-  "sha256": "9212ce0c96fcccc319ee10fb99c7be48e6c027340e9697a184ca91c89e1bd069",
-  "notes": "Admin tools have their own section in Settings"
+  "version": "2.0",
+  "url": "https://mundaneapps.com/island/Island-2.0.zip",
+  "sha256": "d6f03dcfd1c8c24bbc053944768a5ce2da230b1e8136a23c74e98dfc16a78eb2",
+  "notes": "Meeting briefs before each call, Follow-ups, remembered voices, recaps to email/Slack/Notion/Word, Hinglish (beta), a simpler setup, and the Pro trial now starts when you first use Pro"
 }

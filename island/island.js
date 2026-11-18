@@ -39,6 +39,11 @@
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
       if (!d) return;
+      // After the launch places are gone the server reports the new regular price.
+      if (d.regular_price) {
+        price.regular = d.regular_price;
+        document.querySelectorAll("[data-price]").forEach(function (el) { el.textContent = d.regular_price; });
+      }
       if (d.offer_available) showOffer(d.offer_remaining);
       if (d.on_sale === false) {
         document.querySelectorAll("[data-offer-note]").forEach(function (el) {
